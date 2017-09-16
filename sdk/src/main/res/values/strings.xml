@@ -1,0 +1,35 @@
+<resources>
+    <string name="dialog_positive">Confirm</string>
+    <string name="dialog_negative">Cancel</string>
+    <string name="loading">Loading……</string>
+    <string name="load_failed">Load failed. Please click me again</string>
+    <string name="press_again">Press again to exit</string>
+
+    <!--历史数据界面-->
+    <string name="history_day">Day</string>
+    <string name="history_week">Week</string>
+    <string name="history_month">Month</string>
+    <string name="history_year">Year</string>
+    <string name="history_Indoor">Indoor</string>
+    <string name="history_Temp">Temp</string>
+    <string name="history_Setpoint">Setpoint</string>
+    <string name="history_On">Cumulative</string>
+    <string name="history_Time">Time</string>
+    <string name="history_x_unit_day">(DAY)</string>
+    <string name="history_x_unit_hour">(HOUR)</string>
+    <string name="history_x_unit_month">(MONTH)</string>
+    <string name="history_y1_unit">(℃)</string>
+    <string name="history_y2_unit">(%)</string>
+
+    <!--能耗单位-->
+    <string name="y_unit_day">(min)</string>
+    <string name="y_unit_week">(hour)</string>
+    <string name="y_unit_month">(hour)</string>
+    <string name="x_unit_day">(hour)</string>
+    <string name="x_unit_week">(day)</string>
+    <string name="x_unit_month">(day)</string>
+    <string name="y_unit_degree">(KW/H)</string>
+    <string name="energy_consumption_day">DAY</string>
+    <string name="energy_consumption_week">WEEK</string>
+    <string name="energy_consumption_month">MONTH</string>
+</resources>

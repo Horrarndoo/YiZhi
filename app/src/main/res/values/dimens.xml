@@ -1,0 +1,49 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_image_size">80dp</dimen>
+    <dimen name="top_viewpager_height">200dp</dimen>
+    <dimen name="detail_image_height">260dp</dimen>
+    <dimen name="theme_image_height">120dp</dimen>
+    <dimen name="item_emoticon_size_default">32dp</dimen>
+    <dimen name="bar_tool_btn_width">56dp</dimen>
+    <dimen name="margin_layout">16dp</dimen>
+    <dimen name="margin_text">8dp</dimen>
+    <dimen name="big_image_size">74dp</dimen>
+    <dimen name="middle_text_size">17sp</dimen>
+    <dimen name="mini_text_size">13sp</dimen>
+    <dimen name="bar_height">48dp</dimen>
+    <dimen name="btn_height">32dp</dimen>
+    <dimen name="min_button_width">52dp</dimen>
+    <dimen name="small_text_size">15sp</dimen>
+    <dimen name="btn_radius">2dp</dimen>
+    <dimen name="status_bar_height">25dp</dimen>
+    <dimen name="indicator_margin">10dp</dimen>
+    <dimen name="horizontalspit_view_height">0.6dp</dimen>
+    <dimen name="verticalspit_view_width">0.6dp</dimen>
+    <dimen name="bar_icon_height_userdef">28dp</dimen>
+    <dimen name="toolbar_high">48dp</dimen>
+    <dimen name="space_15dp">15dp</dimen>
+    <dimen name="txt_10sp">10sp</dimen>
+    <dimen name="txt_14sp">14sp</dimen>
+    <dimen name="vertical_video_height">222dp</dimen>
+    <dimen name="fullscreen_topmargin">36dp</dimen>
+    <dimen name="dimen_250dp">250dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+    <dimen name="dimen_160dp">160dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_0.5dp">0.5dp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_150dp">150dp</dimen>
+</resources>

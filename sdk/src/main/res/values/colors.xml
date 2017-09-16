@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- basic -->
+    <!-- 主色调 -->
+    <color name="colorPrimary">#ffeeeeee</color>
+    <!-- 主题相关颜色 -->
+    <color name="window_background_light">#ffeeeeee</color>
+    <color name="window_background_dark">#ff303030</color>
+    <color name="text_color_light">#b3ffffff</color>
+    <color name="text_color_dark">#de000000</color>
+    <color name="list_divider_light">#ffe0e0e0</color>
+    <color name="list_divider_dark">#ff666666</color>
+    <color name="selectable_item_background_general_light_normal">@android:color/white</color>
+    <color name="selectable_item_background_general_light_pressed">#ffeeeeee</color>
+    <color name="selectable_item_background_general_light_accent">#ffcccccc</color>
+    <color name="selectable_item_background_general_dark_normal">#ff3c3c3c</color>
+    <color name="selectable_item_background_general_dark_pressed">#ff444444</color>
+    <color name="selectable_item_background_general_dark_accent">#ff666666</color>
+    <!-- 主体文字,标题/标签 -->
+    <color name="txt_black">#212121</color>
+    <!-- 内容文字,正文 -->
+    <color name="txt_gray">#808080</color>
+    <!-- 辅助文字,提示 -->
+    <color name="txt_light_gray">#CCCCCC</color>
+    <!-- 背景色 -->
+    <color name="bg_gray">#f1f1f1</color>
+    <!-- 按下灰色 -->
+    <color name="bg_gray_pressed">#e8e8e8</color>
+    <!-- 高亮,红棕色 -->
+    <color name="brown">#d54c1c</color>
+    <!-- 分割线 -->
+    <color name="divider_gray">#cbcbcb</color>
+    <!-- other -->
+    <color name="txt_link_blue">#1ea5ff</color>
+
+    <!-- wheel -->
+    <color name="province_line_border">#C7C7C7</color>
+
+    <!-- drop down menu -->
+    <color name="white">#ffffff</color>
+    <color name="gray">#cccccc</color>
+
+    <color name="drop_down_selected">#8BC34A</color>
+    <color name="drop_down_unselected">#808080</color>
+
+    <color name="mask_color">#88888888</color>
+    <color name="check_bg">#f1f1f1</color>
+    <color name="un_press_color">#8BC34A</color>
+
+    <!-- position bar -->
+    <color name="bg_position_bar_up">#0D8BC34A</color>
+    <color name="bg_position_bar_down">#1A8BC34A</color>
+    <color name="theme_black_7f">#8f000000</color>
+
+    <color name="light_yellow">#FF9500</color>
+    <color name="light_grey">#808080</color>
+    <color name="dark_grey">#333333</color>
+
+    <color name="yellow_translucent">#80FF9500</color>
+
+    <color name="grey_line">#808080</color>
+    <color name="setpoint_temp">#FF9500</color>
+    <color name="indoor_temp">#ffffff</color>
+    <color name="power_time">#4a2317</color>
+    <color name="light_grey2">#AAAAAA</color>
+</resources>

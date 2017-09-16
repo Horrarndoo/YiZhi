@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/iv_click_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/week_status"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_click_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/history_day"
+        android:gravity="center_horizontal"
+        android:textColor="@color/light_grey"
+        android:paddingTop="5dp"
+        android:paddingBottom="8dp"/>
+
+</LinearLayout>

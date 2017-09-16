@@ -1,0 +1,29 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="AppThemeLight">
+
+    </style>
+
+    <style name="CompatAppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowActionBar">false</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="windowActionModeOverlay">true</item>
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
+    <style name="TextViewTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/txt_black</item>
+    </style>
+
+    <style name="TextViewSubhead" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/txt_black</item>
+    </style>
+
+</resources>

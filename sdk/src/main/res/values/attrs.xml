@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themeColor" format="color|reference" />
+    <attr name="widgetBackground" format="color|reference" />
+    <attr name="widgetBackgroundDark" format="color|reference" />
+    <attr name="widgetBackgroundTitle" format="color|reference" />
+
+    <declare-styleable name="RecyclerViewPager">
+        <attr name="rvp_triggerOffset" format="float" />
+        <attr name="rvp_flingFactor" format="float" />
+        <attr name="rvp_singlePageFling" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SlideSwitchView">
+        <attr name="slide_button" format="reference"/>
+        <attr name="android:text"/>
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="HistoryModeView">
+        <attr name="android:textColor"/>
+        <attr name="android:text"/>
+        <attr name="select_text_size" format="dimension"/>
+        <attr name="un_select_text_size" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="HistoryTipsView">
+        <attr name="android:textColor"/>
+        <attr name="android:textSize"/>
+        <attr name="android:src"/>
+        <attr name="tip_one_text" format="string"/>
+        <attr name="tip_two_text" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="HistoryChartView">
+        <attr name="ylabel_text_size" format="dimension"/>
+        <attr name="xlabel_text_size" format="dimension"/>
+        <attr name="margin_top" format="dimension"/>
+        <attr name="margin_bottom" format="dimension"/>
+        <attr name="margin_left" format="dimension"/>
+        <attr name="margin_right" format="dimension"/>
+        <attr name="line_stroke_width" format="dimension"/>
+        <attr name="data_stroke_width" format="dimension"/>
+        <attr name="circle_radius" format="dimension"/>
+        <attr name="line_color" format="color"/>
+        <attr name="unit_color" format="color"/>
+        <attr name="x_unit_text" format="string"/>
+        <attr name="y1_unit_text" format="string"/>
+        <attr name="y2_unit_text" format="string"/>
+        <attr name="y_unit_text_size" format="dimension"/>
+        <attr name="x_unit_text_size" format="dimension"/>
+        <attr name="first_data_line_color" format="color"/>
+        <attr name="second_data_line_color" format="color"/>
+        <attr name="rect_background_color" format="color"/>
+        <attr name="x_first_point_offset" format="dimension"/>
+    </declare-styleable>
+</resources>
