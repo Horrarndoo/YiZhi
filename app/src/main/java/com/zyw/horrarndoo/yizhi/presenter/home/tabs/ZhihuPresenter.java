@@ -34,7 +34,7 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
     public void loadMoreDaily() {
         if (mIModel == null)
             return;
-        mRxManager.add(mIModel.getDailyList(mDate).subscribe(new Consumer<ZhihuDailyListBean>() {
+        mRxManager.register(mIModel.getDailyList(mDate).subscribe(new Consumer<ZhihuDailyListBean>() {
             @Override
             public void accept(ZhihuDailyListBean zhihuDailyListBean) throws Exception {
                 if (mDate.equals(zhihuDailyListBean.getDate()))
@@ -59,7 +59,7 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
     public void loadLastDaily() {
         if (mIModel == null)
             return;
-        mRxManager.add(mIModel.getDailyList().subscribe(new Consumer<ZhihuDailyListBean>() {
+        mRxManager.register(mIModel.getDailyList().subscribe(new Consumer<ZhihuDailyListBean>() {
             @Override
             public void accept(ZhihuDailyListBean zhihuDailyListBean) throws Exception {
                 mDate = zhihuDailyListBean.getDate();
@@ -82,7 +82,7 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
     @Override
     public void onItemClick(final int position, final ZhihuDailyItemBean item) {
         //        Logger.e("item.getId() = " + item.getId());
-        mRxManager.add(mIModel.recordItemIsRead(item.getId()).subscribe(new Consumer<Boolean>() {
+        mRxManager.register(mIModel.recordItemIsRead(item.getId()).subscribe(new Consumer<Boolean>() {
             @Override
             public void accept(Boolean aBoolean) throws Exception {
                 if (mIView == null)
@@ -104,7 +104,6 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
         if (mIView == null)
             return;
 
-        mRxManager.clear();
         Bundle bundle = new Bundle();
         bundle.putString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL, item.getId());
         mIView.startNewActivity(ZhihuDailyDetailActivity.class, bundle);

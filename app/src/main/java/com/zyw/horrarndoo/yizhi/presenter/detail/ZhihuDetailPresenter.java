@@ -24,7 +24,7 @@ public class ZhihuDetailPresenter extends ZhihuDetailContract.ZhihuDetailPresent
     public void loadDailyDetail(String id) {
         if (mIModel == null)
             return;
-        mRxManager.add(mIModel.getDailyDetail(id).subscribe(new Consumer<ZhihuDailyDetailBean>() {
+        mRxManager.register(mIModel.getDailyDetail(id).subscribe(new Consumer<ZhihuDailyDetailBean>() {
             @Override
             public void accept(ZhihuDailyDetailBean zhihuDailyDetailBean) throws Exception {
                 if (mIView != null)

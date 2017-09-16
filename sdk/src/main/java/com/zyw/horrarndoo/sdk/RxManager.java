@@ -46,11 +46,11 @@ public class RxManager {
                 }));
     }
 
-    public void add(Disposable d) {
+    public void register(Disposable d) {
         mCompositeDisposable.add(d);
     }
 
-    public void clear() {
+    public void unSubscribe() {
         rxManager = null;
         mCompositeDisposable.dispose();// 取消订阅
         for (Map.Entry<String, Observable<?>> entry : mObservables.entrySet())

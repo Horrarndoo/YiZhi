@@ -38,7 +38,7 @@ public abstract class BasePresenter<M, V> {
      * 解绑IModel和IView
      */
     public void detachMV() {
-        mRxManager.clear();
+        mRxManager.unSubscribe();
         mIView = null;
         mIModel = null;
     }

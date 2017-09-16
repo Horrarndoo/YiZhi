@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.zyw.horrarndoo.sdk.AppManager;
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
@@ -39,6 +40,12 @@ public abstract class BaseCompatActivity extends SupportActivity {
         init(savedInstanceState);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().finishActivity(this);
+    }
+
     private void init(Bundle savedInstanceState) {
         setTheme(ThemeUtils.themeArr[SpUtils.getThemeIndex(this)][
                 SpUtils.getNightModel(this) ? 1 : 0]);
@@ -48,15 +55,16 @@ public abstract class BaseCompatActivity extends SupportActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initData();
         initView(savedInstanceState);
+        AppManager.getAppManager().addActivity(this);
     }
     
     public void reload() {
         Intent intent = getIntent();
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
         overridePendingTransition(0, 0);
         startActivity(intent);
+        finish();
     }
 
     /**
