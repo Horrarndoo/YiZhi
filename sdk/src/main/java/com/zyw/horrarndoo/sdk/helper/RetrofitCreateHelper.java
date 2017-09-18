@@ -30,8 +30,8 @@ public class RetrofitCreateHelper {
             .hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
             //打印日志
             .addInterceptor(interceptor)
-            //设置Cache
-            .addNetworkInterceptor(cacheInterceptor)//缓存方面需要加入这个拦截器
+            //设置Cache拦截器
+            .addNetworkInterceptor(cacheInterceptor)
             .addInterceptor(cacheInterceptor)
             .cache(HttpCache.getCache())
             //time out

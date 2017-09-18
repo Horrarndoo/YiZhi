@@ -9,5 +9,5 @@ package com.zyw.horrarndoo.sdk.config;
 public class DBConfig {
     public static final String DB_IS_READ = "db_is_read";
     public static final String TABLE_ZHIHU = "table_zhihu";
-    public static final String TABLE_TOP_NEWS = "table_top_news";
+    public static final String TABLE_WANGYI = "table_top_news";
 }

@@ -22,10 +22,10 @@ import static com.zyw.horrarndoo.sdk.utils.LogUtils.e;
  * <p>
  * Wifi连接工具类
  */
-public class WifiConnectionUtils {
-    private final static String TAG = "WifiConnectionUtils";
+public class NetworkConnectionUtils {
+    private final static String TAG = "NetworkConnectionUtils";
 
-    public WifiConnectionUtils() {
+    public NetworkConnectionUtils() {
     }
 
     /**
@@ -177,6 +177,24 @@ public class WifiConnectionUtils {
         if (null != info && info.isConnected()) {
             if (info.getState() == NetworkInfo.State.CONNECTED) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否有网络
+     *
+     * @return 返回值
+     */
+    public static boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
             }
         }
         return false;

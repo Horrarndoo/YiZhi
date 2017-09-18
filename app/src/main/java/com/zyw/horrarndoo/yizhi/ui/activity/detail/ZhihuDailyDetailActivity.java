@@ -24,8 +24,8 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatActivity;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.HtmlUtils;
+import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
-import com.zyw.horrarndoo.sdk.utils.WifiConnectionUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.detail.ZhihuDetailContract;
@@ -82,7 +82,7 @@ public class ZhihuDailyDetailActivity extends BaseMVPCompatActivity<ZhihuDetailC
         settings.setAppCacheEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
-        if (WifiConnectionUtils.isConnected(mContext)) {
+        if (NetworkConnectionUtils.isConnected(mContext)) {
             settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
             settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);

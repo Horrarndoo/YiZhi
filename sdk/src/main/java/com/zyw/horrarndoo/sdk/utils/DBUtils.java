@@ -87,7 +87,7 @@ public class DBUtils {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_ZHIHU));
-            db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_TOP_NEWS));
+            db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_WANGYI));
         }
 
         @Override
