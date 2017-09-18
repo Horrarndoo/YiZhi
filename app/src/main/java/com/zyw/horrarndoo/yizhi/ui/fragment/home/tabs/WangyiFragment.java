@@ -105,7 +105,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public void showNoMoreData() {
-        mWangyiAdapter.loadMoreEnd(true);
+        mWangyiAdapter.loadMoreEnd();
     }
 
     @Override

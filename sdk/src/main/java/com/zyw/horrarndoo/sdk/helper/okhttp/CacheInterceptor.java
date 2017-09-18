@@ -24,8 +24,8 @@ public class CacheInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         if (NetworkConnectionUtils.isNetworkConnected(AppUtils.getContext())) {
-            int maxAge = 60;
-            // 有网络时, 缓存1分钟, 最大保存时长为60s
+            // 有网络时, 缓存4周
+            int maxAge = 60 * 60 * 24 * 28;
             request = request.newBuilder()
                     .removeHeader("User-Agent")
                     .header("User-Agent", getUserAgent())
@@ -38,7 +38,7 @@ public class CacheInterceptor implements Interceptor {
                     .header("Cache-Control", "public, max-age=" + maxAge)
                     .build();
         } else {
-            // 无网络时，设置超时为4周
+            // 无网络时，缓存为4周
             int maxStale = 60 * 60 * 24 * 28;
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
