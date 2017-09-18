@@ -44,12 +44,13 @@
             <TextView
                 android:id="@+id/tv_news_item_source"
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"
+                android:layout_height="20dp"
                 android:layout_gravity="bottom|right"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:stateListAnimator="@animator/raise"
                 android:text="helooeddd"
+                android:gravity="center"
                 android:textColor="@color/md_grey_500"
                 android:textSize="10sp"/>
         </LinearLayout>

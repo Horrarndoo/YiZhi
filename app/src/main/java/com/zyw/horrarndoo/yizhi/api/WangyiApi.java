@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 public interface WangyiApi {
     public final String HOST = "http://c.m.163.com";
 
-    @GET("/nc/article/headline/T1348647909107/{id}-100.html")
+    @GET("/nc/article/headline/T1348647909107/{id}-20.html")
     Observable<WangyiNewsListBean> getNewsList(@Path("id") int id);
 
     @GET("/nc/article/{id}/full.html")
