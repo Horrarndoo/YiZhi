@@ -13,7 +13,7 @@ import com.zyw.horrarndoo.sdk.RxManager;
 public abstract class BasePresenter<M, V> {
     public M mIModel;
     public V mIView;
-    protected RxManager mRxManager = RxManager.getInstance();
+    protected RxManager mRxManager = new RxManager();
 
     /**
      * 返回presenter想持有的Model引用

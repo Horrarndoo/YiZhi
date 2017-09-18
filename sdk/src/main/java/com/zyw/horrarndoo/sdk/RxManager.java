@@ -16,23 +16,9 @@ import io.reactivex.functions.Consumer;
  */
 
 public class RxManager {
-    private static RxManager rxManager;
     private Map<String, Observable<?>> mObservables = new HashMap<>();// 管理观察源
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();// 管理订阅者者
     public RxBus mRxBus = RxBus.getInstance();
-
-    public RxManager() {
-    }
-
-    public static RxManager getInstance() {
-        if (rxManager == null) {
-            synchronized (RxManager.class) {
-                if (rxManager == null)
-                    rxManager = new RxManager();
-            }
-        }
-        return rxManager;
-    }
 
     public void on(final String eventName, Consumer<Object> consumer) {
         Observable<?> mObservable = mRxBus.register(eventName);
@@ -51,7 +37,6 @@ public class RxManager {
     }
 
     public void unSubscribe() {
-        rxManager = null;
         mCompositeDisposable.dispose();// 取消订阅
         for (Map.Entry<String, Observable<?>> entry : mObservables.entrySet())
             mRxBus.unregister(entry.getKey(), entry.getValue());// 移除观察
