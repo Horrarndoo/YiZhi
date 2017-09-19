@@ -56,14 +56,6 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
 
     @Override
     public void loadMoreNewsList() {
-        if (mCurrentIndex > 400) {
-            if (mIView == null)
-                return;
-
-            mIView.showNoMoreData();
-            return;
-        }
-
         if (!isLoading) {
             isLoading = true;
             mRxManager.register(mIModel.getNewsList(mCurrentIndex).subscribe(new Consumer<WangyiNewsListBean>() {
@@ -71,13 +63,20 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
                 public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
                     isLoading = false;
                     mCurrentIndex += 20;
-                    if (mIView != null)
+                    if (mIView == null)
+                        return;
+                    if (wangyiNewsListBean.getNewsList().size() > 0) {
                         mIView.updateNewsList(wangyiNewsListBean.getNewsList());
+                    } else {
+                        mIView.showNoMoreData();
+                    }
                 }
             }, new Consumer<Throwable>() {
                 @Override
                 public void accept(Throwable throwable) throws Exception {
                     isLoading = false;
+                    if (mIView == null)
+                        return;
                     mIView.showLoadMoreError();
                 }
             }));
