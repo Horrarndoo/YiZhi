@@ -3,6 +3,7 @@
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
                                                  android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -17,11 +18,13 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_image_height"
+            app:expandedTitleMarginStart="48dp"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleGravity="left"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="0dp"
             app:expandedTitleTextAppearance="@style/TextAppearance.ExpandedTitle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <FrameLayout
                 android:layout_width="match_parent"

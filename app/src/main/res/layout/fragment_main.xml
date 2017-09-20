@@ -6,6 +6,7 @@
                                                  android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -37,11 +38,11 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_Email"
+        android:id="@+id/fab_download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="?attr/colorPrimary"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        app:srcCompat="@mipmap/download"/>
 </android.support.design.widget.CoordinatorLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -24,8 +25,8 @@ import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
 import com.zyw.horrarndoo.yizhi.presenter.home.MainPresenter;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WangyiFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.ToutiaoFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WangyiFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WeixinFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.ZhihuFragment;
 
@@ -44,14 +45,16 @@ import butterknife.BindView;
 public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresenter, MainContract
         .IMainModel> implements MainContract.IMainView {
 
+    @BindView(R.id.app_bar)
+    AppBarLayout appBar;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tl_tabs)
     TabLayout tlTabs;
     @BindView(R.id.vp_fragment)
     ViewPager vpFragment;
-    @BindView(R.id.fab_Email)
-    FloatingActionButton fabEmail;
+    @BindView(R.id.fab_download)
+    FloatingActionButton fabDownload;
 
     protected OnOpenDrawerLayoutListener onOpenDrawerLayoutListener;
     private List<Fragment> fragments;
@@ -95,7 +98,18 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
                 }
             }
         });
-        fabEmail.setOnClickListener(new View.OnClickListener() {
+        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset)
+            {
+                if(verticalOffset == 0){
+                    fabDownload.show();
+                }else {
+                    fabDownload.hide();
+                }
+            }
+        });
+        fabDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "this is snackbar text", Snackbar.LENGTH_SHORT).show();
@@ -106,11 +120,11 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.night:
                         item.setChecked(!item.isChecked());
                         SpUtils.setNightModel(mContext, item.isChecked());
-                        ((BaseCompatActivity)mActivity).reload();
+                        ((BaseCompatActivity) mActivity).reload();
                         break;
                 }
                 return false;

@@ -5,9 +5,13 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import java.lang.reflect.Field;
 
 
 /**
@@ -66,17 +70,54 @@ public class StatusBarUtils {
     }
 
     /**
-     * 获取状态栏高度
+     * 修正 Toolbar 的位置
+     * 在 Android 4.4 版本下无法显示内容在 StatusBar 下，所以无需修正 Toolbar 的位置
      *
-     * @param context context
-     * @return 状态栏高度
+     * @param toolbar
      */
-    private static int getStatusBarHeight(Context context) {
-        // 获得状态栏高度
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
-                "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
+    public static void fixToolbar(Toolbar toolbar, Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusHeight = getStatusBarHeight(activity);
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) toolbar.getLayoutParams();
+            layoutParams.setMargins(0, statusHeight, 0, 0);
+        }
     }
+
+    /**
+     * 获取系统状态栏高度
+     *
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context) {
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = context.getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return statusBarHeight;
+    }
+
+//    /**
+//     * 获取状态栏高度
+//     *
+//     * @param context context
+//     * @return 状态栏高度
+//     */
+//    private static int getStatusBarHeight(Context context) {
+//        // 获得状态栏高度
+//        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
+//                "android");
+//        return context.getResources().getDimensionPixelSize(resourceId);
+//    }
 
     /**
      * 计算状态栏颜色
