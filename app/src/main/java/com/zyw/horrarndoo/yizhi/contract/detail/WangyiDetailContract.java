@@ -1,7 +1,6 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseActivity;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsDetailBean;
 
@@ -44,7 +43,7 @@ public interface WangyiDetailContract {
         Observable<ResponseBody> getNewsDetail(String id);
     }
 
-    interface IWangyiDetailView extends IBaseActivity {
+    interface IWangyiDetailView extends BaseDetailContract.IBaseDetailView {
         /**
          * 显示新闻详细内容
          *
@@ -58,10 +57,5 @@ public interface WangyiDetailContract {
          * @param url url
          */
         void showNewsDetail(String url);
-
-        /**
-         * 显示网络错误
-         */
-        void showNetworkError();
     }
 }

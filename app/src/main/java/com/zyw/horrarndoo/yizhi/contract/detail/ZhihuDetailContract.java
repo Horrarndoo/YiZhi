@@ -1,7 +1,6 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseActivity;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyDetailBean;
 
@@ -31,17 +30,12 @@ public interface ZhihuDetailContract {
         Observable<ZhihuDailyDetailBean> getDailyDetail(String id);
     }
 
-    interface IZhihuDetailView extends IBaseActivity {
+    interface IZhihuDetailView extends BaseDetailContract.IBaseDetailView {
         /**
          * 显示日报详细内容
          *
          * @param bean ZhihuDailyDetailBean
          */
         void showDailyDetail(ZhihuDailyDetailBean bean);
-
-        /**
-         * 显示网络错误
-         */
-        void showNetworkError();
     }
 }
