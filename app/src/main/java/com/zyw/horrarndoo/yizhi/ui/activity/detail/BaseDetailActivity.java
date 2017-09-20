@@ -32,6 +32,8 @@ import butterknife.BindView;
 public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBaseModel> extends
         BaseMVPCompatActivity<P, M> implements BaseDetailContract.IBaseDetailView{
 
+    @BindView(R.id.tv_detail_title)
+    TextView tvDetailTitle;
     @BindView(R.id.iv_detail)
     ImageView ivDetail;
     @BindView(R.id.toolbar)
@@ -53,7 +55,7 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        initTitleBar(toolbar, "");
+        initTitleBar(toolbar, getToolbarTitle());
         WebSettings settings = wvDetailContent.getSettings();
         settings.setBlockNetworkImage(false);
         settings.setAppCacheEnabled(true);
@@ -116,4 +118,10 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
      * 加载详情，交由子类实现
      */
     protected abstract void loadDetail();
+
+    /**
+     * 返回title，子类实现
+     * @return
+     */
+    protected abstract String getToolbarTitle();
 }

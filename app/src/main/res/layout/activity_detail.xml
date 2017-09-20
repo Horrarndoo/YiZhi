@@ -18,13 +18,13 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_image_height"
-            app:expandedTitleMarginStart="48dp"
             android:fitsSystemWindows="true"
-            app:collapsedTitleGravity="left"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:collapsedTitleGravity="left"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/TextAppearance.ExpandedTitle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:titleEnabled="false">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -41,12 +41,30 @@
                     android:scaleType="centerCrop"/>
 
                 <TextView
+                    android:id="@+id/tv_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginBottom="@dimen/dimen_30dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:text="Title"/>
+
+                <TextView
                     android:id="@+id/tv_detail_copyright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|bottom"
                     android:layout_marginBottom="3dp"
-                    android:padding="6dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:text="copyright"
                     android:textSize="12sp"/>
             </FrameLayout>
 

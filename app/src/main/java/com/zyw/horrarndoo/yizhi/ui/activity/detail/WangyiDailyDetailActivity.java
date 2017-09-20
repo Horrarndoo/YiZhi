@@ -7,6 +7,8 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.HtmlUtils;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
+import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.detail.WangyiDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsDetailBean;
@@ -38,7 +40,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        collapsingToolbar.setTitle(mTitle);
+        tvDetailTitle.setText(mTitle);
         Glide.with(mContext).load(mImageUrl).crossFade().into(ivDetail);
     }
 
@@ -46,6 +48,11 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     protected void loadDetail() {
         mPresenter.loadNewsDetailWithUrl(mUrl);
         //mPresenter.loadNewsDetailWithId(mId);
+    }
+
+    @Override
+    protected String getToolbarTitle() {
+        return ResourcesUtils.getString(R.string.wangyi_detail_title);
     }
 
     @NonNull
@@ -57,7 +64,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     @Override
     public void showNewsDetail(WangyiNewsDetailBean bean) {
         flNetView.setVisibility(View.GONE);
-        collapsingToolbar.setTitle(bean.getTitle());
+        tvDetailTitle.setText(bean.getTitle());
         tvDetailcopyright.setText(bean.getSource());
         wvDetailContent.loadData(bean.getBody(), HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
     }

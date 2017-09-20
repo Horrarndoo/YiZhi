@@ -7,6 +7,8 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.HtmlUtils;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
+import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.detail.ZhihuDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyDetailBean;
@@ -40,7 +42,7 @@ public class ZhihuDailyDetailActivity extends BaseDetailActivity<ZhihuDetailCont
     public void showDailyDetail(ZhihuDailyDetailBean bean) {
         flNetView.setVisibility(View.GONE);
         Glide.with(mContext).load(bean.getImage()).crossFade().into(ivDetail);
-        collapsingToolbar.setTitle(bean.getTitle());
+        tvDetailTitle.setText(bean.getTitle());
         tvDetailcopyright.setText(bean.getImage_source());
         String htmlData = HtmlUtils.createHtmlData(bean.getBody(), bean.getCss(), bean.getJs());
         wvDetailContent.loadData(htmlData, HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
@@ -49,5 +51,10 @@ public class ZhihuDailyDetailActivity extends BaseDetailActivity<ZhihuDetailCont
     @Override
     protected void loadDetail() {
         mPresenter.loadDailyDetail(mId);
+    }
+
+    @Override
+    protected String getToolbarTitle() {
+        return ResourcesUtils.getString(R.string.zhihu_detail_title);
     }
 }
