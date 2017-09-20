@@ -3,6 +3,7 @@ package com.zyw.horrarndoo.yizhi.api;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsListBean;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -18,5 +19,5 @@ public interface WangyiApi {
     Observable<WangyiNewsListBean> getNewsList(@Path("id") int id);
 
     @GET("/nc/article/{id}/full.html")
-    Observable<String> getNewsDetail(@Path("id") String id);
+    Observable<ResponseBody> getNewsDetail(@Path("id") String id);
 }

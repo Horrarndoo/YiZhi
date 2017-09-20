@@ -47,6 +47,9 @@ public class WangyiNewsDetailBean implements Serializable {
     @SerializedName("imgList")
     private List<String> imgList;
 
+    @SerializedName("shareLink")
+    private String shareLink;
+
 
     public String getDocid() {
         return docid;
@@ -102,5 +105,13 @@ public class WangyiNewsDetailBean implements Serializable {
 
     public void setImgList(List<String> imgList) {
         this.imgList = imgList;
+    }
+
+    public String getShareLink() {
+        return shareLink;
+    }
+
+    public void setShareLink(String shareLink) {
+        this.shareLink = shareLink;
     }
 }
