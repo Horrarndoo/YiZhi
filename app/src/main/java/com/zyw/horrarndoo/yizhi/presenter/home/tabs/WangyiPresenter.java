@@ -37,14 +37,14 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
     }
 
     @Override
-    public void loadNewsList() {
+    public void loadLatestList() {
         mCurrentIndex = 0;
         mRxManager.register(mIModel.getNewsList(mCurrentIndex).subscribe(new Consumer<WangyiNewsListBean>() {
             @Override
             public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
                 mCurrentIndex += 20;
                 if (mIView != null)
-                    mIView.updateNewsList(wangyiNewsListBean.getNewsList());
+                    mIView.updateContentList(wangyiNewsListBean.getNewsList());
             }
         }, new Consumer<Throwable>() {
             @Override
@@ -58,7 +58,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
     }
 
     @Override
-    public void loadMoreNewsList() {
+    public void loadMoreList() {
         if (!isLoading) {
             isLoading = true;
             mRxManager.register(mIModel.getNewsList(mCurrentIndex).subscribe(new Consumer<WangyiNewsListBean>() {
@@ -69,7 +69,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
                     if (mIView == null)
                         return;
                     if (wangyiNewsListBean.getNewsList().size() > 0) {
-                        mIView.updateNewsList(wangyiNewsListBean.getNewsList());
+                        mIView.updateContentList(wangyiNewsListBean.getNewsList());
                     } else {
                         mIView.showNoMoreData();
                     }

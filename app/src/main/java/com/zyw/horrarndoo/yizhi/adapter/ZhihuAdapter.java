@@ -32,6 +32,10 @@ public class ZhihuAdapter extends BaseQuickAdapter<ZhihuDailyItemBean, BaseViewH
         super(layoutResId, data);
     }
 
+    public ZhihuAdapter(@Nullable List<ZhihuDailyItemBean> data) {
+        super(data);
+    }
+
     @Override
     protected void convert(final BaseViewHolder helper, ZhihuDailyItemBean item) {
         if (DBUtils.getDB(mContext).isRead(DBConfig.TABLE_ZHIHU, item.getId(), ItemState

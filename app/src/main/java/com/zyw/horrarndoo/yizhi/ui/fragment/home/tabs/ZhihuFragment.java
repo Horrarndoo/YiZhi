@@ -16,7 +16,6 @@ import com.zyw.horrarndoo.yizhi.adapter.ZhihuAdapter;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.ZhihuContract;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyItemBean;
 import com.zyw.horrarndoo.yizhi.presenter.home.tabs.ZhihuPresenter;
-import com.zyw.horrarndoo.yizhi.ui.widgets.RvLoadMoreView;
 
 import java.util.List;
 
@@ -51,10 +50,7 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
         mZhihuAdapter = new ZhihuAdapter(R.layout.item_zhihu);
-        mZhihuAdapter.setLoadMoreView(new RvLoadMoreView());
-        mZhihuAdapter.setEnableLoadMore(true);
         mZhihuAdapter.setOnLoadMoreListener(this, rvZhihu);
-        mZhihuAdapter.openLoadAnimation();//开启默认动画载入（仅开启加载新item时开启动画）
         mZhihuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -69,11 +65,11 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.loadLastDaily();
+                mPresenter.loadLatestList();
             }
         });
 
-        mPresenter.loadLastDaily();//第一次显示时请求最新的日报list
+        mPresenter.loadLatestList();//第一次显示时请求最新的日报list
     }
 
     @NonNull
@@ -83,7 +79,7 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
     }
 
     @Override
-    public void updateDailyList(List<ZhihuDailyItemBean> list) {
+    public void updateContentList(List<ZhihuDailyItemBean> list) {
         //        Logger.e(list.toString());
         mZhihuAdapter.addData(list);
     }
@@ -106,8 +102,13 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
     }
 
     @Override
+    public void showNoMoreData() {
+        mZhihuAdapter.loadMoreEnd(false);
+    }
+
+    @Override
     public void onLoadMoreRequested() {
-        mPresenter.loadMoreDaily();
         mZhihuAdapter.loadMoreComplete();
+        mPresenter.loadMoreList();
     }
 }

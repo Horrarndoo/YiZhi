@@ -31,7 +31,32 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
     }
 
     @Override
-    public void loadMoreDaily() {
+    public void loadLatestList() {
+        if (mIModel == null)
+            return;
+
+        mRxManager.register(mIModel.getDailyList().subscribe(new Consumer<ZhihuDailyListBean>() {
+            @Override
+            public void accept(ZhihuDailyListBean zhihuDailyListBean) throws Exception {
+                mDate = zhihuDailyListBean.getDate();
+                //Logger.e("mDate = " + mDate);
+
+                if (mIView != null)
+                    mIView.updateContentList(zhihuDailyListBean.getStories());
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                if (mIView != null) {
+                    mIView.showToast("网络异常");
+                    mIView.showNetworkError();
+                }
+            }
+        }));
+    }
+
+    @Override
+    public void loadMoreList() {
         if (mIModel == null)
             return;
         mRxManager.register(mIModel.getDailyList(mDate).subscribe(new Consumer<ZhihuDailyListBean>() {
@@ -43,37 +68,13 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
                 mDate = zhihuDailyListBean.getDate();
                 //Logger.e("mdate = " + mDate);
                 if (mIView != null)
-                    mIView.updateDailyList(zhihuDailyListBean.getStories());
+                    mIView.updateContentList(zhihuDailyListBean.getStories());
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
                     mIView.showLoadMoreError();
-                }
-            }
-        }));
-    }
-
-    @Override
-    public void loadLastDaily() {
-        if (mIModel == null)
-            return;
-        mRxManager.register(mIModel.getDailyList().subscribe(new Consumer<ZhihuDailyListBean>() {
-            @Override
-            public void accept(ZhihuDailyListBean zhihuDailyListBean) throws Exception {
-                mDate = zhihuDailyListBean.getDate();
-                //Logger.e("mDate = " + mDate);
-
-                if (mIView != null)
-                    mIView.updateDailyList(zhihuDailyListBean.getStories());
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                if (mIView != null) {
-                    mIView.showToast("网络异常");
-                    mIView.showNetworkError();
                 }
             }
         }));

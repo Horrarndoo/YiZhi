@@ -16,7 +16,6 @@ import com.zyw.horrarndoo.yizhi.adapter.WangyiAdapter;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WangyiContract;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsItemBean;
 import com.zyw.horrarndoo.yizhi.presenter.home.tabs.WangyiPresenter;
-import com.zyw.horrarndoo.yizhi.ui.widgets.RvLoadMoreView;
 
 import java.util.List;
 
@@ -51,10 +50,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
         mWangyiAdapter = new WangyiAdapter(R.layout.item_wangyi);
-        mWangyiAdapter.setLoadMoreView(new RvLoadMoreView());
-        mWangyiAdapter.setEnableLoadMore(true);
         mWangyiAdapter.setOnLoadMoreListener(this, rvWangyi);
-        mWangyiAdapter.openLoadAnimation();//开启默认动画载入（仅开启加载新item时开启动画）
         mWangyiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -69,11 +65,11 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.loadNewsList();
+                mPresenter.loadLatestList();
             }
         });
 
-        mPresenter.loadNewsList();//第一次显示时请求最新的日报list
+        mPresenter.loadLatestList();//第一次显示时请求最新的日报list
     }
 
     @NonNull
@@ -83,7 +79,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
     }
 
     @Override
-    public void updateNewsList(List<WangyiNewsItemBean> list) {
+    public void updateContentList(List<WangyiNewsItemBean> list) {
         //Logger.e(list.toString());
         mWangyiAdapter.addData(list);
     }
@@ -112,6 +108,6 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
     public void onLoadMoreRequested() {
         //这里loadMoreComplete要放在前面，避免在Presenter.loadMoreNewsList处理中直接showNoMoreData，出现无限显示加载item
         mWangyiAdapter.loadMoreComplete();
-        mPresenter.loadMoreNewsList();
+        mPresenter.loadMoreList();
     }
 }
