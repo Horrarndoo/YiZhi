@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
+import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -115,6 +116,21 @@ public class WangyiDailyDetailActivity extends BaseMVPCompatActivity<WangyiDetai
     public BasePresenter initPresenter() {
         return WangyiDetailPresenter.newInstance();
     }
+
+    @Override
+    public void onBackPressedSupport() {
+        if (wvDetailContent.canGoBack()) {
+            //获取webView的浏览记录
+            WebBackForwardList mWebBackForwardList = wvDetailContent.copyBackForwardList();
+            //这里的判断是为了让页面在有上一个页面的情况下，跳转到上一个html页面，而不是退出当前activity
+            if (mWebBackForwardList.getCurrentIndex() > 0) {
+                wvDetailContent.goBack();
+                return;
+            }
+        }
+        super.onBackPressedSupport();
+    }
+
 
     @Override
     public void showNewsDetail(WangyiNewsDetailBean bean) {
