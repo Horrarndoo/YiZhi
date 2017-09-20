@@ -24,8 +24,8 @@ public class CacheInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         if (NetworkConnectionUtils.isNetworkConnected(AppUtils.getContext())) {
-            // 有网络时, 缓存4周
-            int maxAge = 60 * 60 * 24 * 28;
+            // 有网络时, 不缓存
+            int maxAge = 0;
             request = request.newBuilder()
                     .removeHeader("User-Agent")
                     .header("User-Agent", getUserAgent())

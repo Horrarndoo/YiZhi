@@ -81,6 +81,9 @@ dependencies {
     //SwitchButton
     compile "com.kyleduo.switchbutton:library:$rootProject.SwtichButtonVersion"
 
+    //html-textview
+    compile 'org.sufficientlysecure:html-textview:1.3'
+
     //permissions
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
 }

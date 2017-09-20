@@ -22,6 +22,8 @@
             android:name=".ui.activity.detail.ZhihuDailyDetailActivity">
         </activity>
 
+        <activity android:name=".ui.activity.detail.WangyiDailyDetailActivity"/>
+
         <activity
             android:name=".ui.activity.MainActivity">
         </activity>

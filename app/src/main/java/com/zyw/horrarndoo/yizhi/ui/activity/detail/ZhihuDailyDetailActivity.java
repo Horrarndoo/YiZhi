@@ -69,7 +69,7 @@ public class ZhihuDailyDetailActivity extends BaseMVPCompatActivity<ZhihuDetailC
     @Override
     protected void initData() {
         Bundle bundle = getIntent().getExtras();
-        mId = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL);
+        mId = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_ID);
         super.initData();
     }
 

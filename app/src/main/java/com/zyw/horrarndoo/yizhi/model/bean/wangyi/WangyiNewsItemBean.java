@@ -48,6 +48,12 @@ public class WangyiNewsItemBean implements Serializable {
     @SerializedName("tag")
     private String tag;
 
+    /**
+     * url
+     */
+    @SerializedName("url")
+    private String url;
+
     public boolean hasFadedIn = false;
 
     public String getDocid() {
@@ -106,6 +112,14 @@ public class WangyiNewsItemBean implements Serializable {
         this.tag = tag;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "WangyiNewsItemBean{" +
@@ -116,6 +130,7 @@ public class WangyiNewsItemBean implements Serializable {
                 ", source='" + source + '\'' +
                 ", ptime='" + ptime + '\'' +
                 ", tag='" + tag + '\'' +
+                ", url='" + url + '\'' +
                 ", hasFadedIn=" + hasFadedIn +
                 '}';
     }

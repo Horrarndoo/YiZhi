@@ -105,7 +105,7 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
             return;
 
         Bundle bundle = new Bundle();
-        bundle.putString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL, item.getId());
+        bundle.putString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_ID, item.getId());
         mIView.startNewActivity(ZhihuDailyDetailActivity.class, bundle);
     }
 

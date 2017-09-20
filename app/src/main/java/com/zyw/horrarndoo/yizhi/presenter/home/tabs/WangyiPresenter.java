@@ -1,12 +1,15 @@
 package com.zyw.horrarndoo.yizhi.presenter.home.tabs;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WangyiContract;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsListBean;
 import com.zyw.horrarndoo.yizhi.model.tabs.WangyiModel;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.WangyiDailyDetailActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -104,11 +107,13 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
             }
         }));
 
-        //        if (mIView == null)
-        //            return;
-        //
-        //        Bundle bundle = new Bundle();
-        //        bundle.putString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL, item.getDocid());
-        //        mIView.startNewActivity(ZhihuDailyDetailActivity.class, bundle);
+        if (mIView == null)
+            return;
+
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_URL, item.getUrl());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_TITLE, item.getTitle());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_IMAGE_URL, item.getImgsrc());
+        mIView.startNewActivity(WangyiDailyDetailActivity.class, bundle);
     }
 }
