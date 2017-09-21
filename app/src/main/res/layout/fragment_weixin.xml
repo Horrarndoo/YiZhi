@@ -4,15 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_weixin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="微信"
-            android:textSize="80sp"/>
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"/>
 </LinearLayout>

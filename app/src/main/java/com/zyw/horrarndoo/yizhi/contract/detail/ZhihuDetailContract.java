@@ -9,10 +9,10 @@ import io.reactivex.Observable;
 /**
  * Created by Horrarndoo on 2017/9/13.
  * <p>
+ * 知乎日报详情页接口
  */
 
 public interface ZhihuDetailContract {
-    //知乎接口
     abstract class ZhihuDetailPresenter extends BasePresenter<IZhihuDetailModel, IZhihuDetailView> {
         /**
          * 加载日报详情

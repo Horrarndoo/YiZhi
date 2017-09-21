@@ -8,12 +8,13 @@ import io.reactivex.Observable;
 /**
  * Created by Horrarndoo on 2017/9/12.
  * <p>
+ * 知乎头条接口
  */
 
 public interface ZhihuContract {
-    //知乎接口
+
     abstract class ZhihuPresenter extends BaseTabsContract.BaseTabsPresenter<IZhihuModel,
-                    IZhihuView, ZhihuDailyItemBean> {
+            IZhihuView, ZhihuDailyItemBean> {
     }
 
     interface IZhihuModel extends BaseTabsContract.IBaseTabsModel {

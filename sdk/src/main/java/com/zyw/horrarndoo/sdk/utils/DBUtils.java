@@ -86,13 +86,21 @@ public class DBUtils {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            //onCreate()方法只有数据库第一次被创建时才会调用，若数据库已存在，此方法不会被调用
+        }
+
+        @Override
+        public void onOpen(SQLiteDatabase db) {
+            super.onOpen(db);
+            //数据库打开时就会被调用，将插入新表的操作方到onOpen中
             db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_ZHIHU));
             db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_WANGYI));
+            db.execSQL(String.format(CREATE_TABLE_IF_NOT_EXISTS, DBConfig.TABLE_WEIXIN));
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+            //只有数据库进行版本升级时被调用
         }
     }
 }

@@ -49,7 +49,7 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mZhihuAdapter = new ZhihuAdapter(R.layout.item_zhihu);
+        mZhihuAdapter = new ZhihuAdapter(R.layout.item_recycle);
         mZhihuAdapter.setOnLoadMoreListener(this, rvZhihu);
         mZhihuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
             }
         });
 
-        mPresenter.loadLatestList();//第一次显示时请求最新的日报list
+        mPresenter.loadLatestList();//第一次显示时请求最新的list
     }
 
     @NonNull

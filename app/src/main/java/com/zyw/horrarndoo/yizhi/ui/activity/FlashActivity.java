@@ -3,14 +3,13 @@ package com.zyw.horrarndoo.yizhi.ui.activity;
 import android.os.Bundle;
 
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.R;
 
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class FlashActivity extends BaseCompatActivity {
 
@@ -18,9 +17,8 @@ public class FlashActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        Observable.timer(200, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        Observable.timer(500, TimeUnit.MILLISECONDS)
+                .compose(RxHelper.<Long>rxSchedulerHelper())
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long l) throws Exception {

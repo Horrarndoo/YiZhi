@@ -49,7 +49,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mWangyiAdapter = new WangyiAdapter(R.layout.item_wangyi);
+        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle);
         mWangyiAdapter.setOnLoadMoreListener(this, rvWangyi);
         mWangyiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
             }
         });
 
-        mPresenter.loadLatestList();//第一次显示时请求最新的日报list
+        mPresenter.loadLatestList();//第一次显示时请求最新的list
     }
 
     @NonNull

@@ -14,14 +14,18 @@ import com.zyw.horrarndoo.sdk.global.GlobalApplication;
  */
 
 public class MyApplication extends GlobalApplication {
+    //这个key是自己在聚合数据申请的key，需要自己去聚合数据申请
+    public static final String JU_HE_APP_KEY = "799b785ba7b97223be80534651dd0d63";
     public static int SCREEN_WIDTH = -1;
     public static int SCREEN_HEIGHT = -1;
     public static float DIMEN_RATE = -1.0F;
     public static int DIMEN_DPI = -1;
+    public static MyApplication app;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         //初始化屏幕宽高
         getScreenSize();
 

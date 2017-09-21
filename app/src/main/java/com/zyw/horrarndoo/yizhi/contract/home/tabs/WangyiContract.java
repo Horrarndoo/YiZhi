@@ -8,6 +8,7 @@ import io.reactivex.Observable;
 /**
  * Created by Horrarndoo on 2017/9/18.
  * <p>
+ *     网易新闻接口
  */
 
 public interface WangyiContract {

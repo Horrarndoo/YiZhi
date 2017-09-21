@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.activity.detail.ZhihuDailyDetailActivity">
-        </activity>
+        <activity android:name=".ui.activity.detail.ZhihuDailyDetailActivity"/>
 
         <activity android:name=".ui.activity.detail.WangyiDailyDetailActivity"/>
+
+        <activity android:name=".ui.activity.detail.WeixinChoiceDetailActivity"/>
 
         <activity
             android:name=".ui.activity.MainActivity">

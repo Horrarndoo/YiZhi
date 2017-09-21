@@ -10,10 +10,10 @@ import okhttp3.ResponseBody;
 /**
  * Created by Horrarndoo on 2017/9/19.
  * <p>
+ * 网易新闻详情页接口
  */
 
 public interface WangyiDetailContract {
-    //网易接口
     abstract class WangyiDetailPresenter extends BasePresenter<IWangyiDetailModel,
             IWangyiDetailView> {
         /**
