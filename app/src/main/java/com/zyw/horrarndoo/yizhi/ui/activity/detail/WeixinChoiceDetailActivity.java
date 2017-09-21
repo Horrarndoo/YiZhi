@@ -41,6 +41,7 @@ public class WeixinChoiceDetailActivity extends BaseDetailActivity<WeixinDetailC
         tvDetailTitle.setText(mTitle);
         tvDetailcopyright.setText(mCopyright);
         Glide.with(mContext).load(mImageUrl).crossFade().into(ivDetail);
+        appBar.setExpanded(false);
     }
 
     @Override
