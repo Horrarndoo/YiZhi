@@ -115,6 +115,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
         bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_URL, item.getUrl());
         bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_TITLE, item.getTitle());
         bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_IMAGE_URL, item.getImgsrc());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_COPYRIGHT, item.getSource());
         mIView.startNewActivity(WangyiDailyDetailActivity.class, bundle);
     }
 }

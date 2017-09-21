@@ -20,6 +20,6 @@ public class MainModel extends BaseModel implements MainContract.IMainModel {
 
     @Override
     public String[] getTabs() {
-        return new String[]{"知乎日报", "热点新闻", "每日头条", "微信精选"};
+        return new String[]{"知乎日报", "热点新闻", "微信精选"};
     }
 }

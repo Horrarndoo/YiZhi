@@ -50,6 +50,7 @@ public class WangyiAdapter extends BaseCompatAdapter<WangyiNewsItemBean, BaseVie
         }
         helper.setText(R.id.tv_news_item_title, item.getTitle());
         helper.setText(R.id.tv_news_item_source, item.getSource());
+        helper.setText(R.id.tv_news_item_time, item.getPtime());
         Glide.with(mContext).load(item.getImgsrc()).crossFade().into((ImageView) helper.getView(R
                 .id.iv_news_item_image));
     }

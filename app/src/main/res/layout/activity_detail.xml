@@ -51,8 +51,7 @@
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:text="Title"/>
+                    android:paddingTop="6dp"/>
 
                 <TextView
                     android:id="@+id/tv_detail_copyright"
@@ -64,7 +63,6 @@
                     android:paddingLeft="20dp"
                     android:paddingBottom="6dp"
                     android:paddingTop="6dp"
-                    android:text="copyright"
                     android:textSize="12sp"/>
             </FrameLayout>
 

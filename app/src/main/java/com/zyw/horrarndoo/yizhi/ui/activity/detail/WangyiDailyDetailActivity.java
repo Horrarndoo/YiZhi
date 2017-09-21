@@ -23,7 +23,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
         .WangyiDetailPresenter, WangyiDetailContract.IWangyiDetailModel>
         implements WangyiDetailContract.IWangyiDetailView {
 
-    private String mTitle, mUrl, mId, mImageUrl;
+    private String mTitle, mUrl, mId, mImageUrl, mCopyright;
 
     @Override
     protected void initData() {
@@ -34,6 +34,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
             mUrl = bundle.getString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_URL);
             mTitle = bundle.getString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_TITLE);
             mImageUrl = bundle.getString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_IMAGE_URL);
+            mCopyright = bundle.getString(BundleKeyConstant.ARG_KEY_WANGYI_DETAIL_COPYRIGHT);
         }
     }
 
@@ -41,6 +42,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         tvDetailTitle.setText(mTitle);
+        tvDetailcopyright.setText(mCopyright);
         Glide.with(mContext).load(mImageUrl).crossFade().into(ivDetail);
     }
 
@@ -64,8 +66,7 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     @Override
     public void showNewsDetail(WangyiNewsDetailBean bean) {
         flNetView.setVisibility(View.GONE);
-        tvDetailTitle.setText(bean.getTitle());
-        tvDetailcopyright.setText(bean.getSource());
+        //tvDetailTitle.setText(bean.getTitle());
         wvDetailContent.loadData(bean.getBody(), HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
     }
 

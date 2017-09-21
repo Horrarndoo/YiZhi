@@ -9,6 +9,5 @@ package com.zyw.horrarndoo.yizhi.constant;
 public class TabFragmentIndex {
     public final static int TAB_ZHIHU_INDEX = 0;
     public final static int TAB_WANGYI_INDEX = 1;
-    public final static int TAB_TOUTIAO_INDEX = 2;
-    public final static int TAB_WEIXIN_INDEX = 3;
+    public final static int TAB_WEIXIN_INDEX = 2;
 }

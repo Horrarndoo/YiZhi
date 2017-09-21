@@ -33,17 +33,36 @@
                 android:textColor="@color/txt_black"
                 android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/tv_news_item_source"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:layout_gravity="bottom|left"
-                android:layout_marginLeft="10dp"
-                android:stateListAnimator="@animator/raise"
-                android:text="source"
-                android:gravity="center"
-                android:textColor="@color/md_grey_500"
-                android:textSize="10sp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_news_item_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:stateListAnimator="@animator/raise"
+                    android:textColor="@color/md_grey_500"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/tv_news_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@animator/raise"
+                    android:textColor="@color/md_grey_500"
+                    android:textSize="10sp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView

@@ -25,7 +25,6 @@ import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
 import com.zyw.horrarndoo.yizhi.presenter.home.MainPresenter;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.ToutiaoFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WangyiFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WeixinFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.ZhihuFragment;
@@ -151,9 +150,6 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
                     break;
                 case TabFragmentIndex.TAB_WANGYI_INDEX:
                     fragments.add(WangyiFragment.newInstance());
-                    break;
-                case TabFragmentIndex.TAB_TOUTIAO_INDEX:
-                    fragments.add(ToutiaoFragment.newInstance());
                     break;
                 case TabFragmentIndex.TAB_WEIXIN_INDEX:
                     fragments.add(WeixinFragment.newInstance());

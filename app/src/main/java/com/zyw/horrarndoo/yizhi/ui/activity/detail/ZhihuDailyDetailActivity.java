@@ -23,13 +23,22 @@ public class ZhihuDailyDetailActivity extends BaseDetailActivity<ZhihuDetailCont
         .ZhihuDetailPresenter, ZhihuDetailContract.IZhihuDetailModel> implements
         ZhihuDetailContract.IZhihuDetailView {
 
-    private String mId;
+    private String mId, mTitle;
 
     @Override
     protected void initData() {
-        Bundle bundle = getIntent().getExtras();
-        mId = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_ID);
         super.initData();
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            mId = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_ID);
+            mTitle = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_TITLE);
+        }
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        tvDetailTitle.setText(mTitle);
     }
 
     @NonNull
