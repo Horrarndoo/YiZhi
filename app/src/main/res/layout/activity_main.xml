@@ -8,12 +8,27 @@
                                         android:fitsSystemWindows="true"
                                         tools:openDrawer="start">
 
-    <FrameLayout
-        android:id="@+id/fl_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".ui.activity.MainActivity" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fitsSystemWindows="true"
+            tools:context=".ui.activity.MainActivity"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bviv_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemIconTint="@color/selector_bottom_item_color"
+            app:itemTextColor="@color/selector_bottom_item_color"
+            app:menu="@menu/bottom_bar_menu"/>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nv_menu"
@@ -22,6 +37,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:insetForeground="@android:color/transparent"
+        app:menu="@menu/activity_main_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>
