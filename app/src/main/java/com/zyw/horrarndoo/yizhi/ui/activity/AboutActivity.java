@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 
 import butterknife.BindView;
@@ -20,8 +21,8 @@ public class AboutActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
         toolbar.setTitle("关于");
+        toolbar.setTitleTextColor(ResourcesUtils.getColor(R.color.md_white));
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(com.zyw.horrarndoo.sdk.R.mipmap.ic_arrow_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

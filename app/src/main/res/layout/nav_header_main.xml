@@ -24,15 +24,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:paddingLeft="@dimen/dimen_5dp"
         android:paddingTop="@dimen/dimen_5dp"
-        android:text="github:https://github.com/Horrarndoo"
+        android:text="Learn and live."
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dimen_5dp"
-        android:text="博客主页:http://blog.csdn.net/oqinyou"/>
-
 </LinearLayout>
