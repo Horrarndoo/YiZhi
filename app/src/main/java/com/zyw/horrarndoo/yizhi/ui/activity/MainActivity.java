@@ -61,7 +61,7 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
                 ToastUtils.showToast("setting is clicked");
                 break;
             case R.id.item_about:
-                ToastUtils.showToast("about is clicked");
+                startActivity(AboutActivity.class);
                 break;
         }
 
