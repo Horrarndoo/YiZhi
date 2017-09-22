@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 
 def buildTime() {
     def date = new Date()
@@ -18,7 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        ndk{abiFilters "armeabi"}
+        ndk { abiFilters "armeabi" }
     }
     buildTypes {
         debug {
@@ -40,7 +39,7 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
-                            &&'release'.equals(variant.buildType.name)) {
+                            && 'release'.equals(variant.buildType.name)) {
                         def apkFile = new File(
                                 output.outputFile.getParent(),
                                 "YiZhi_${variant.flavorName}_v${variant.versionName}_${buildTime()}.apk")
@@ -58,9 +57,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
-    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    //Butterknife
+//    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     testCompile 'junit:junit:4.12'
 //    compile project(':sdk')
-    releaseCompile project(path:':sdk',configuration:'release')
-    debugCompile project(path:':sdk',configuration: 'debug')
+    releaseCompile project(path: ':sdk', configuration: 'release')
+    debugCompile project(path: ':sdk', configuration: 'debug')
 }
