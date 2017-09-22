@@ -22,7 +22,7 @@ public class DBUtils {
     private SQLiteDatabase mSQLiteDatabase;
 
     private DBUtils(Context context) {
-        mSQLiteDatabase = new DBHelper(context, DBConfig.DB_IS_READ + ".db")
+        mSQLiteDatabase = new DBHelper(context, DBConfig.DB_NAME + ".db")
                 .getWritableDatabase();
     }
 

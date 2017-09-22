@@ -7,7 +7,7 @@ package com.zyw.horrarndoo.sdk.config;
  */
 
 public class DBConfig {
-    public static final String DB_IS_READ = "db_is_read";
+    public static final String DB_NAME = "db_name_yizhi";
     public static final String TABLE_ZHIHU = "table_zhihu";
     public static final String TABLE_WANGYI = "table_top_news";
     public static final String TABLE_WEIXIN = "table_weixin";
