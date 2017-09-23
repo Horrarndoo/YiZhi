@@ -45,7 +45,7 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_weixin;
+        return R.layout.fragment_tabs_weixin;
     }
 
     @Override

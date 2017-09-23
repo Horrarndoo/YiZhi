@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             app:itemIconTint="@color/selector_bottom_item_color"
             app:itemTextColor="@color/selector_bottom_item_color"
-            app:menu="@menu/bottom_bar_menu"/>
+            app:menu="@menu/bottom_navigation_menu"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

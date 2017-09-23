@@ -44,7 +44,7 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_zhihu;
+        return R.layout.fragment_tabs_zhihu;
     }
 
     @Override

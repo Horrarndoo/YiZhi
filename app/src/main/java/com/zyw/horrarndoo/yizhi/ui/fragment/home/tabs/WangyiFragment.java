@@ -44,7 +44,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_wangyi;
+        return R.layout.fragment_tabs_wangyi;
     }
 
     @Override

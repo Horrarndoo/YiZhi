@@ -41,7 +41,7 @@ import butterknife.BindView;
  * 主页fragment
  */
 
-public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresenter, MainContract
+public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresenter, MainContract
         .IMainModel> implements MainContract.IMainView {
 
     @BindView(R.id.app_bar)
@@ -58,9 +58,9 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
     protected OnOpenDrawerLayoutListener onOpenDrawerLayoutListener;
     private List<Fragment> fragments;
 
-    public static MainFragment newInstance() {
+    public static HomeFragment newInstance() {
         Bundle args = new Bundle();
-        MainFragment fragment = new MainFragment();
+        HomeFragment fragment = new HomeFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -82,7 +82,7 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_main;
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -99,11 +99,10 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
         });
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset)
-            {
-                if(verticalOffset == 0){
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset == 0) {
                     fabDownload.show();
-                }else {
+                } else {
                     fabDownload.hide();
                 }
             }
@@ -167,6 +166,13 @@ public class MainFragment extends BaseMVPCompatFragment<MainContract.MainPresent
         for (int i = 0; i < tabs.length; i++) {
             tlTabs.getTabAt(i).setText(tabs[i]);
         }
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        Logger.e("onLazyInitView");
+        // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 
     /**
