@@ -8,7 +8,7 @@ import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WeixinContract;
 import com.zyw.horrarndoo.yizhi.model.bean.weixin.WeixinChoiceItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.weixin.WeixinChoiceListBean;
-import com.zyw.horrarndoo.yizhi.model.tabs.WeixinChoiceModel;
+import com.zyw.horrarndoo.yizhi.model.home.tabs.WeixinChoiceModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.WeixinChoiceDetailActivity;
 
 import io.reactivex.functions.Consumer;

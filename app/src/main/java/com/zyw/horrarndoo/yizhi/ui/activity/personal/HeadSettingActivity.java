@@ -13,6 +13,7 @@ import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.sdk.widgets.headclip.ClipViewLayout;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.constant.HeadConstant;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
 
 import java.io.File;
@@ -105,7 +106,7 @@ public class HeadSettingActivity extends BaseCompatActivity {
         //调用返回剪切图
         Bitmap zoomedCropBitmap;
         zoomedCropBitmap = cvlRect.clip();
-        Uri mSaveUri = Uri.fromFile(new File(getCacheDir(), "yizhi_head_image" + ".jpg"));
+        Uri mSaveUri = Uri.fromFile(new File(getCacheDir(), HeadConstant.HEAD_IMAGE_NAME + ".jpg"));
         if (mSaveUri != null) {
             OutputStream outputStream = null;
             try {

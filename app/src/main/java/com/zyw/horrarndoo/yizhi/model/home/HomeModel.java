@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.model;
+package com.zyw.horrarndoo.yizhi.model.home;
 
 import android.support.annotation.NonNull;
 
@@ -11,11 +11,11 @@ import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
  * 主页model
  */
 
-public class MainModel extends BaseModel implements MainContract.IMainModel {
+public class HomeModel extends BaseModel implements MainContract.IMainModel {
 
     @NonNull
-    public static MainModel newInstance() {
-        return new MainModel();
+    public static HomeModel newInstance() {
+        return new HomeModel();
     }
 
     @Override

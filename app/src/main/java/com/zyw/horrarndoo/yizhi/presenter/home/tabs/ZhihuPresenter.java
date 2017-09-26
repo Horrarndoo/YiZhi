@@ -8,7 +8,7 @@ import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.ZhihuContract;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyListBean;
-import com.zyw.horrarndoo.yizhi.model.tabs.ZhihuModel;
+import com.zyw.horrarndoo.yizhi.model.home.tabs.ZhihuModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.ZhihuDailyDetailActivity;
 
 import io.reactivex.functions.Consumer;

@@ -43,7 +43,6 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
     protected WaitPorgressDialog mWaitPorgressDialog;
     protected View errorView;
     private Unbinder binder;
-    private static final String TRANSLATE_VIEW = "translate_view";
 
     @Override
     public void onAttach(Context context) {

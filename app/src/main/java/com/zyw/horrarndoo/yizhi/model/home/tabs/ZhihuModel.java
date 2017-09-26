@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.model.tabs;
+package com.zyw.horrarndoo.yizhi.model.home.tabs;
 
 import android.support.annotation.NonNull;
 

@@ -8,7 +8,7 @@ import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WangyiContract;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsListBean;
-import com.zyw.horrarndoo.yizhi.model.tabs.WangyiModel;
+import com.zyw.horrarndoo.yizhi.model.home.tabs.WangyiModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.WangyiDailyDetailActivity;
 
 import io.reactivex.functions.Consumer;
