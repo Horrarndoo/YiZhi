@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="?attr/colorPrimary"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:popupTheme="@style/AppTheme.ToolbarPopupOverlay"/>
+
+    <!--圆形裁剪框示例
+        app:clipBorderWidth="5dp"     ： 裁剪框边框宽度
+        app:clipType="circle"         ： 裁剪框类型为圆形
+        app:mHorizontalPadding="30dp" ：裁剪框距离左右边距为30dp
+     -->
+
+    <!--矩形裁剪框示例 -->
+    <com.zyw.horrarndoo.sdk.widgets.headclip.ClipViewLayout
+        android:id="@+id/cvl_rect"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:clipBorderWidth="2dp"
+        app:clipType="rectangle"
+        app:mHorizontalPadding="30dp"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/tv_ok"
+            android:gravity="center_vertical|start"
+            android:paddingEnd="0dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="0dp"
+            android:paddingStart="15dp"
+            android:text="取消"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="15dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="15dp"
+            android:paddingStart="0dp"
+            android:text="选取"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+</LinearLayout>

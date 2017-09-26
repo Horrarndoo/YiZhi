@@ -21,7 +21,7 @@
         app:miv_start_delay="100"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
+        android:id="@+id/civ_head"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="16dp"

@@ -171,7 +171,7 @@ public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresent
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        Logger.e("onLazyInitView");
+        //Logger.e("onLazyInitView");
         // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 

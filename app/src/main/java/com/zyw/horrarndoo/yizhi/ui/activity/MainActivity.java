@@ -1,28 +1,40 @@
 package com.zyw.horrarndoo.yizhi.ui.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.BottomNavigationViewHelper;
+import com.zyw.horrarndoo.sdk.rxbus.RxBus;
+import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
+import com.zyw.horrarndoo.sdk.utils.AppUtils;
+import com.zyw.horrarndoo.sdk.utils.FileUtils;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
 import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.HomeFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.information.InformationFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.message.MessageFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.PersonalFragment;
 
+import java.io.File;
+
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.yokeyword.fragmentation.SupportFragment;
+
+import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE_URI;
 
 /**
  * Created by Horrarndoo on 2017/9/7.
@@ -48,9 +60,22 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
     private SupportFragment[] mFragments = new SupportFragment[4];
 
     private MovingImageView mivMenu;
+    private CircleImageView civHead;
     // 再点一次退出程序时间设置
     private static final long WAIT_TIME = 2000L;
     private long TOUCH_TIME = 0;
+
+    @Override
+    protected void initData() {
+        super.initData();
+        RxBus.get().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxBus.get().unRegister(this);
+    }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -77,8 +102,25 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
         }
 
         mivMenu = (MovingImageView) nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        civHead = (CircleImageView) nvMenu.getHeaderView(0).findViewById(R.id.civ_head);
 
+        //此处实际应用中替换成服务器拉取图片
+        Uri headUri = Uri.fromFile(new File(getCacheDir(), "yizhi_head_image" + ".jpg"));
+        if(headUri != null){
+            String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
+            Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
+            civHead.setImageBitmap(bitMap);
+        }
+
+        civHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlRoot.closeDrawer(GravityCompat.START);
+                bottomNavigationView.setSelectedItemId(R.id.menu_item_personal);
+            }
+        });
+
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView
                 .OnNavigationItemSelectedListener() {
             @Override
@@ -120,7 +162,6 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                Log.e("tag", "onClose");
                 mivMenu.stopMoving();
             }
 
@@ -192,5 +233,16 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
         if (!dlRoot.isDrawerOpen(GravityCompat.START)) {
             dlRoot.openDrawer(GravityCompat.START);
         }
+    }
+
+    @Subscribe(code = RX_BUS_CODE_HEAD_IMAGE_URI)
+    public void rxBusEvent(RxEventHeadBean bean) {
+        Uri uri = bean.getUri();
+        if (uri == null) {
+            return;
+        }
+        String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), uri);
+        Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
+        civHead.setImageBitmap(bitMap);
     }
 }

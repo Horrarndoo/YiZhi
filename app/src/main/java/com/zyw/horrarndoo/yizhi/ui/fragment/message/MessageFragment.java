@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.yizhi.R;
@@ -42,6 +41,7 @@ public class MessageFragment extends BaseMVPCompatFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        Logger.e("onLazyInitView");
+        //Logger.e("onLazyInitView");
+        //加载子fragment
     }
 }
