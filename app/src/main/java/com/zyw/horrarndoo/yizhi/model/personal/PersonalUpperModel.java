@@ -9,10 +9,10 @@ import com.zyw.horrarndoo.yizhi.contract.personal.PersonalContract;
  * <p>
  */
 
-public class PersonalModel implements PersonalContract.IPersonalModel {
+public class PersonalUpperModel implements PersonalContract.IPersonalUpperModel {
 
     @NonNull
-    public static PersonalModel newInstance() {
-        return new PersonalModel();
+    public static PersonalUpperModel newInstance() {
+        return new PersonalUpperModel();
     }
 }

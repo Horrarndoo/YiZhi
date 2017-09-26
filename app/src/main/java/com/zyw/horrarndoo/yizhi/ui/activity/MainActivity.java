@@ -18,6 +18,7 @@ import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
+import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
 import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
@@ -42,8 +43,8 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE
  * 主页activity
  */
 
-public class MainActivity extends BaseCompatActivity implements NavigationView
-        .OnNavigationItemSelectedListener, HomeFragment.OnOpenDrawerLayoutListener {
+public class MainActivity extends BaseCompatActivity implements HomeFragment
+        .OnOpenDrawerLayoutListener {
 
     @BindView(R.id.nv_menu)
     NavigationView nvMenu;
@@ -68,12 +69,14 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
     @Override
     protected void initData() {
         super.initData();
+//        Logger.e("RxBus.get().register(this)");
         RxBus.get().register(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        Logger.e("RxBus.get().unRegister(this)");
         RxBus.get().unRegister(this);
     }
 
@@ -106,7 +109,7 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
 
         //此处实际应用中替换成服务器拉取图片
         Uri headUri = Uri.fromFile(new File(getCacheDir(), "yizhi_head_image" + ".jpg"));
-        if(headUri != null){
+        if (headUri != null) {
             String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
             Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
             civHead.setImageBitmap(bitMap);
@@ -143,7 +146,36 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
             }
         });
 
-        nvMenu.setNavigationItemSelectedListener(this);
+        nvMenu.getMenu().findItem(R.id.item_setting).setTitle(SpUtils.getNightModel(mContext) ?
+                "夜间模式" : "日间模式");
+        nvMenu.setNavigationItemSelectedListener(new NavigationView
+                .OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.group_item_publish:
+                        ToastUtils.showToast("publish is clicked");
+                        break;
+                    case R.id.group_item_tv:
+                        ToastUtils.showToast("tv is clicked");
+                        break;
+                    case R.id.group_item_map:
+                        ToastUtils.showToast("map is clicked");
+                        break;
+                    case R.id.item_setting:
+                        SpUtils.setNightModel(mContext, !SpUtils.getNightModel(mContext));
+                        MainActivity.this.reload();
+                        break;
+                    case R.id.item_about:
+                        startActivity(AboutActivity.class);
+                        break;
+                }
+
+                item.setCheckable(false);
+                dlRoot.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
 
         dlRoot.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -182,31 +214,6 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.group_item_publish:
-                ToastUtils.showToast("publish is clicked");
-                break;
-            case R.id.group_item_tv:
-                ToastUtils.showToast("tv is clicked");
-                break;
-            case R.id.group_item_map:
-                ToastUtils.showToast("map is clicked");
-                break;
-            case R.id.item_setting:
-                ToastUtils.showToast("setting is clicked");
-                break;
-            case R.id.item_about:
-                startActivity(AboutActivity.class);
-                break;
-        }
-
-        item.setCheckable(false);
-        dlRoot.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
     public void onBackPressedSupport() {
 
         if (dlRoot.isDrawerOpen(GravityCompat.START)) {
@@ -235,6 +242,11 @@ public class MainActivity extends BaseCompatActivity implements NavigationView
         }
     }
 
+    /**
+     * RxBus接收图片Uri
+     *
+     * @param bean RxEventHeadBean
+     */
     @Subscribe(code = RX_BUS_CODE_HEAD_IMAGE_URI)
     public void rxBusEvent(RxEventHeadBean bean) {
         Uri uri = bean.getUri();

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/personal_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:theme="@style/">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_head"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/header_icon"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="2dp"/>
-</RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fl_personal_container_upper"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"/>
+
+    <FrameLayout
+        android:id="@+id/fl_personal_container_lower"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="210dp"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/AppTheme.ToolbarPopupOverlay"
+        app:titleTextAppearance="@style/TextAppearance.Toolbar.White"/>
+</FrameLayout>

@@ -44,6 +44,7 @@ public class HeadSettingActivity extends BaseCompatActivity {
     @Override
     protected void initData() {
         super.initData();
+//        Logger.e("RxBus.get().register(this)");
         RxBus.get().register(this);
     }
 
@@ -77,18 +78,20 @@ public class HeadSettingActivity extends BaseCompatActivity {
             case R.id.tv_ok:
                 Observable.create(new ObservableOnSubscribe<Uri>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Uri> e) throws Exception {
+                    public void subscribe(ObservableEmitter<Uri> e) throws
+                            Exception {
                         e.onNext(generateUri());
                         e.onComplete();
                     }
-                }).compose(RxHelper.<Uri>rxSchedulerHelper()).subscribe(new Consumer<Uri>() {
-                    @Override
-                    public void accept(Uri uri) throws Exception {
-                        RxEventHeadBean rxEventHeadBean = new RxEventHeadBean(uri);
-                        RxBus.get().send(RX_BUS_CODE_HEAD_IMAGE_URI, rxEventHeadBean);
-                        onBackPressedSupport();
-                    }
-                });
+                }).compose(RxHelper.<Uri>rxSchedulerHelper())
+                        .subscribe(new Consumer<Uri>() {
+                            @Override
+                            public void accept(Uri uri) throws Exception {
+                                RxEventHeadBean rxEventHeadBean = new RxEventHeadBean(uri);
+                                RxBus.get().send(RX_BUS_CODE_HEAD_IMAGE_URI, rxEventHeadBean);
+                                onBackPressedSupport();
+                            }
+                        });
                 break;
         }
     }
@@ -96,6 +99,7 @@ public class HeadSettingActivity extends BaseCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        Logger.e("RxBus.get().unRegister(this)");
         RxBus.get().unRegister(this);
     }
 

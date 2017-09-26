@@ -18,7 +18,7 @@ import java.io.File;
  */
 
 public interface PersonalContract {
-    abstract class PersonalPresenter extends BasePresenter<IPersonalModel, IPersonalView> {
+    abstract class PersonalUpperPresenter extends BasePresenter<IPersonalUpperModel, IPersonalUpperView> {
         /**
          * 头像点击
          */
@@ -55,10 +55,10 @@ public interface PersonalContract {
         public abstract void onActivityResult(int requestCode, int resultCode, Intent intent);
     }
 
-    interface IPersonalModel extends IBaseModel {
+    interface IPersonalUpperModel extends IBaseModel {
     }
 
-    interface IPersonalView extends IBaseFragment {
+    interface IPersonalUpperView extends IBaseFragment {
         /**
          * 初始化PopupView
          */

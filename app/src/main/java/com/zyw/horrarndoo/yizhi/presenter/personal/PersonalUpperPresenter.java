@@ -17,7 +17,7 @@ import com.zyw.horrarndoo.sdk.utils.FileUtils;
 import com.zyw.horrarndoo.sdk.utils.MD5Utils;
 import com.zyw.horrarndoo.yizhi.constant.HeadConstant;
 import com.zyw.horrarndoo.yizhi.contract.personal.PersonalContract;
-import com.zyw.horrarndoo.yizhi.model.personal.PersonalModel;
+import com.zyw.horrarndoo.yizhi.model.personal.PersonalUpperModel;
 
 import java.io.File;
 
@@ -28,13 +28,11 @@ import static com.zyw.horrarndoo.yizhi.constant.HeadConstant.HEAD_IMAGE_NAME;
  * <p>
  */
 
-public class PersonalPresenter extends PersonalContract.PersonalPresenter {
+public class PersonalUpperPresenter extends PersonalContract.PersonalUpperPresenter {
     //请求相机
     private static final int REQUEST_CAMERA = 100;
     //请求相册
     private static final int REQUEST_PHOTO = 101;
-    //请求截图
-    private static final int REQUEST_CROP_PHOTO = 102;
     //请求访问外部存储
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 103;
     //请求写入外部存储
@@ -43,8 +41,8 @@ public class PersonalPresenter extends PersonalContract.PersonalPresenter {
     private File tempFile;
 
     @NonNull
-    public static PersonalPresenter newInstance() {
-        return new PersonalPresenter();
+    public static PersonalUpperPresenter newInstance() {
+        return new PersonalUpperPresenter();
     }
 
     @Override
@@ -68,7 +66,8 @@ public class PersonalPresenter extends PersonalContract.PersonalPresenter {
             //跳转到调用系统相机
             mIView.gotoSystemCamera(tempFile, REQUEST_CAMERA);
         }
-        mIView.dismissPopupView();
+        if (mIView.popupIsShowing())
+            mIView.dismissPopupView();
     }
 
     @Override
@@ -84,12 +83,14 @@ public class PersonalPresenter extends PersonalContract.PersonalPresenter {
             //跳转到相册
             mIView.gotoSystemPhoto(REQUEST_PHOTO);
         }
-        mIView.dismissPopupView();
+        if (mIView.popupIsShowing())
+            mIView.dismissPopupView();
     }
 
     @Override
     public void btnCancelClicked() {
-        mIView.dismissPopupView();
+        if (mIView.popupIsShowing())
+            mIView.dismissPopupView();
     }
 
     @Override
@@ -128,8 +129,8 @@ public class PersonalPresenter extends PersonalContract.PersonalPresenter {
     }
 
     @Override
-    public PersonalContract.IPersonalModel getModel() {
-        return PersonalModel.newInstance();
+    public PersonalContract.IPersonalUpperModel getModel() {
+        return PersonalUpperModel.newInstance();
     }
 
     @Override

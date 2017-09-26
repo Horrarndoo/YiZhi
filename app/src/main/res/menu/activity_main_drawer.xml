@@ -5,15 +5,15 @@
         <item
             android:id="@+id/group_item_publish"
             android:icon="@drawable/ic_vector_publish"
-            android:title="发布模块" />
+            android:title="发布模块"/>
         <item
             android:id="@+id/group_item_tv"
             android:icon="@drawable/ic_vector_publish"
-            android:title="全民TV" />
+            android:title="全民TV"/>
         <item
             android:id="@+id/group_item_map"
             android:icon="@drawable/ic_vector_publish"
-            android:title="高德地图" />
+            android:title="高德地图"/>
     </group>
 
     <item android:title="选项">
@@ -21,11 +21,11 @@
             <item
                 android:id="@+id/item_setting"
                 android:icon="@drawable/ic_vetor_setting"
-                android:title="设置" />
+                android:title="夜间模式"/>
             <item
                 android:id="@+id/item_about"
                 android:icon="@drawable/ic_vector_about"
-                android:title="关于" />
+                android:title="关于"/>
         </menu>
     </item>
 
