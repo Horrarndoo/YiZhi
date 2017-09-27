@@ -18,5 +18,5 @@
     <item
         android:id="@+id/menu_item_personal"
         android:icon="@drawable/ic_vector_bottom_personal"
-        android:title="消息" />
+        android:title="个人" />
 </menu>
