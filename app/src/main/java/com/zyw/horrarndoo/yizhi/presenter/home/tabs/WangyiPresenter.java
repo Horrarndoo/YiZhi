@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WangyiContract;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsListBean;
 import com.zyw.horrarndoo.yizhi.model.home.tabs.WangyiModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.WangyiDailyDetailActivity;
+
+import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
@@ -43,8 +46,15 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
             @Override
             public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
                 mCurrentIndex += 20;
-                if (mIView != null)
-                    mIView.updateContentList(wangyiNewsListBean.getNewsList());
+                if (mIView != null) {
+                    List<WangyiNewsItemBean> list = wangyiNewsListBean.getNewsList();
+                    for (int i = 0; i < list.size(); i++){
+                        //过滤掉无效的新闻
+                        if (StringUtils.isEmpty(list.get(i).getUrl()))
+                            list.remove(i);
+                    }
+                    mIView.updateContentList(list);
+                }
             }
         }, new Consumer<Throwable>() {
             @Override

@@ -6,13 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zyw.horrarndoo.sdk.base.BaseCompatFragment;
-import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.yizhi.R;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_CHILD_FRAGMENT_BACK;
 
 /**
  * Created by Horrarndoo on 2017/9/26.
@@ -29,18 +26,6 @@ public class PersonalLowerFragment extends BaseCompatFragment {
         PersonalLowerFragment fragment = new PersonalLowerFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void initData() {
-        super.initData();
-        RxBus.get().register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RxBus.get().unRegister(this);
     }
 
     @Override
@@ -66,7 +51,8 @@ public class PersonalLowerFragment extends BaseCompatFragment {
 
     @Override
     public boolean onBackPressedSupport() {
-        RxBus.get().send(RX_BUS_CODE_CHILD_FRAGMENT_BACK);
-        return true;
+        //不处理，直接丢给Activity onBackPressedSupport处理
+        //若此处要拦截回退逻辑到HomeFragment，直接使用RxBus处理
+        return false;
     }
 }

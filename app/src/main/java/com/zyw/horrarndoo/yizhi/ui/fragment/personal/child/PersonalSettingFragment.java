@@ -42,10 +42,4 @@ public class PersonalSettingFragment extends BaseCompatFragment{
             }
         });
     }
-
-    @Override
-    public boolean onBackPressedSupport() {
-        pop();
-        return true;
-    }
 }

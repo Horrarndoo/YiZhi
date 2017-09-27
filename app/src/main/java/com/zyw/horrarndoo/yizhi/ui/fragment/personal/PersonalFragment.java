@@ -7,16 +7,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.zyw.horrarndoo.sdk.base.BaseCompatFragment;
-import com.zyw.horrarndoo.sdk.rxbus.RxBus;
-import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.child.PersonalLowerFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.child.PersonalUpperFragment;
 
 import butterknife.BindView;
-import me.yokeyword.fragmentation.SupportActivity;
-
-import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_CHILD_FRAGMENT_BACK;
 
 /**
  * Created by Horrarndoo on 2017/9/23.
@@ -50,18 +45,6 @@ public class PersonalFragment extends BaseCompatFragment {
     }
 
     @Override
-    public void initData() {
-        super.initData();
-        RxBus.get().register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RxBus.get().unRegister(this);
-    }
-
-    @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         //Logger.e("onLazyInitView");
@@ -78,20 +61,5 @@ public class PersonalFragment extends BaseCompatFragment {
     private void loadFragment() {
         loadRootFragment(R.id.fl_personal_container_upper, PersonalUpperFragment.newInstance());
         loadRootFragment(R.id.fl_personal_container_lower, PersonalLowerFragment.newInstance());
-    }
-
-    @Subscribe(code = RX_BUS_CODE_CHILD_FRAGMENT_BACK)
-    public void onChildBackPressed() {
-        onBackPressedSupport();
-    }
-
-    @Override
-    public boolean onBackPressedSupport() {
-        if (getChildFragmentManager().getBackStackEntryCount() > 2) {
-            popChild();
-        } else {
-            ((SupportActivity)getActivity()).onBackPressedSupport();
-        }
-        return true;
     }
 }
