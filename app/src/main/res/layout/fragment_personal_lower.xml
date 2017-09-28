@@ -16,14 +16,43 @@
             android:id="@+id/tv_btn_settings"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:text="设置"
-            android:drawablePadding="16dp"
-            android:textSize="16sp"
             android:background="?attr/selectableItemBackground"
             android:drawableLeft="@drawable/ic_vetor_setting"
-            android:paddingLeft="16dp"
+            android:drawablePadding="16dp"
             android:drawableRight="@drawable/fragmentation_ic_right"
-            android:paddingRight="16dp"/>
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="设置"
+            android:textSize="16sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#f3f3f3"/>
+
+        <TextView
+            android:id="@+id/tv_btn_about"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_vector_about"
+            android:drawablePadding="16dp"
+            android:drawableRight="@drawable/fragmentation_ic_right"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="关于"
+            android:textSize="16sp"/>
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:text="声明：此项目仅做学习练手使用，不得用于商业用途"
+        android:textColor="@color/md_grey_500"/>
 </FrameLayout>
