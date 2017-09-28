@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -20,16 +24,18 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatActivity;
-import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
+import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
 import com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.contract.detail.BaseDetailContract;
 import com.zyw.horrarndoo.yizhi.ui.activity.pic.ImageBrowseActivity;
+import com.zyw.horrarndoo.yizhi.ui.widgets.WebViewLongClickedPopWindow;
 
 import butterknife.BindView;
 
+import static com.zyw.horrarndoo.yizhi.R.id.item_go_image_browse;
+import static com.zyw.horrarndoo.yizhi.R.id.item_save_image;
 import static com.zyw.horrarndoo.yizhi.constant.IntentKeyConstant.INTENT_KEY_IMAGE_URL;
 
 /**
@@ -37,7 +43,8 @@ import static com.zyw.horrarndoo.yizhi.constant.IntentKeyConstant.INTENT_KEY_IMA
  * <p>
  */
 
-public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBaseModel> extends
+public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetailPresenter, M
+        extends BaseDetailContract.IBaseDetailModel> extends
         BaseMVPCompatActivity<P, M> implements BaseDetailContract.IBaseDetailView {
 
     @BindView(R.id.tv_detail_title)
@@ -61,23 +68,90 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
     @BindView(R.id.pb_web)
     ProgressBar pvWeb;
 
+    private int downX, downY;
+    WebViewLongClickedPopWindow popWindow;
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         initTitleBar(toolbar, getToolbarTitle());
-        WebSettings settings = nswvDetailContent.getSettings();
-        settings.setBlockNetworkImage(false);
-        settings.setAppCacheEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setDatabaseEnabled(true);
-        if (NetworkConnectionUtils.isConnected(mContext)) {
-            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        } else {
-            settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
+        initWebSetting(nswvDetailContent.getSettings());
+        initWebView();
+
+        vNetworkError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDetail();
+            }
+        });
+
+        popWindow = new WebViewLongClickedPopWindow(BaseDetailActivity.this,
+                WebViewLongClickedPopWindow.IMAGE_VIEW_POPUPWINDOW, DisplayUtils.dp2px
+                (120), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        loadDetail();
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        if (nswvDetailContent.canGoBack()) {
+            //获取webView的浏览记录
+            WebBackForwardList mWebBackForwardList = nswvDetailContent.copyBackForwardList();
+            //这里的判断是为了让页面在有上一个页面的情况下，跳转到上一个html页面，而不是退出当前activity
+            if (mWebBackForwardList.getCurrentIndex() > 0) {
+                nswvDetailContent.goBack();
+                return;
+            }
         }
-        settings.setJavaScriptEnabled(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setSupportZoom(true);
+        super.onBackPressedSupport();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_detail;
+    }
+
+    @Override
+    public void showNetworkError() {
+        Logger.e("Network error.");
+        vNetworkError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showPopupWindow() {
+        popWindow.showAtLocation(nswvDetailContent, Gravity.TOP | Gravity.LEFT,
+                downX, downY + 10);
+    }
+
+    @Override
+    public void dismissPopupWindow() {
+        popWindow.dismiss();
+    }
+
+    @Override
+    public boolean popupWindowIsShowing() {
+        return popWindow.isShowing();
+    }
+
+    /**
+     * js接口
+     */
+    public class SupportJavascriptInterface {
+        private Context context;
+
+        public SupportJavascriptInterface(Context context) {
+            this.context = context;
+        }
+
+        @JavascriptInterface
+        public void openImage(String img) {
+            Intent intent = new Intent();
+            intent.putExtra(INTENT_KEY_IMAGE_URL, img);
+            intent.setClass(context, ImageBrowseActivity.class);
+            context.startActivity(intent);
+        }
+    }
+
+    protected void initWebView() {
         // 添加js交互接口类，并起别名 imagelistner
         nswvDetailContent.addJavascriptInterface(new SupportJavascriptInterface(this),
                 "imagelistner");
@@ -131,57 +205,105 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
             }
         });
 
-        vNetworkError.setOnClickListener(new View.OnClickListener() {
+        nswvDetailContent.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                loadDetail();
+            public boolean onLongClick(View v) {
+                WebView.HitTestResult result = ((WebView) v).getHitTestResult();
+                if (null == result)
+                    return false;
+                int type = result.getType();
+                String imgurl = result.getExtra();
+
+                switch (type) {
+                    case WebView.HitTestResult.UNKNOWN_TYPE:
+                        return false;
+                    case WebView.HitTestResult.PHONE_TYPE: // 处理拨号
+                        break;
+                    case WebView.HitTestResult.EMAIL_TYPE: // 处理Email
+                        break;
+                    case WebView.HitTestResult.GEO_TYPE:
+                        break;
+                    case WebView.HitTestResult.SRC_ANCHOR_TYPE: // 超链接
+                        break;
+                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
+                        break;
+                    case WebView.HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项
+                        imgurl = result.getExtra();
+                        //通过GestureDetector获取按下的位置，来定位PopWindow显示的位置
+                        popWindow.showAtLocation(v, Gravity.TOP | Gravity.LEFT,
+                                downX, downY + 10);
+                        break;
+                    default:
+                        break;
+                }
+
+                TextView tvGoImageBrowse = (TextView) popWindow.getView(item_go_image_browse);
+                TextView tvSaveImage = (TextView) popWindow.getView(R.id.item_save_image);
+                tvGoImageBrowse.setOnClickListener(new ItemOnClickListenerImp(imgurl));
+                tvSaveImage.setOnClickListener(new ItemOnClickListenerImp(imgurl));
+
+                return true;
             }
         });
-        loadDetail();
+
+        nswvDetailContent.setOnTouchListener(WebViewOnTouchListener);
     }
 
-    @Override
-    public void onBackPressedSupport() {
-        if (nswvDetailContent.canGoBack()) {
-            //获取webView的浏览记录
-            WebBackForwardList mWebBackForwardList = nswvDetailContent.copyBackForwardList();
-            //这里的判断是为了让页面在有上一个页面的情况下，跳转到上一个html页面，而不是退出当前activity
-            if (mWebBackForwardList.getCurrentIndex() > 0) {
-                nswvDetailContent.goBack();
-                return;
+    View.OnTouchListener WebViewOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            downX = (int) event.getX();
+            downY = (int) event.getY();
+            return false;
+        }
+    };
+
+    /**
+     * item点击事件实现类
+     */
+    public class ItemOnClickListenerImp implements View.OnClickListener {
+        public String imgUrl;
+
+        public ItemOnClickListenerImp(String imgUrl) {
+            this.imgUrl = imgUrl;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case item_go_image_browse:
+                    popWindow.dismiss();
+                    Intent intent = new Intent();
+                    intent.putExtra(INTENT_KEY_IMAGE_URL, imgUrl);
+                    intent.setClass(BaseDetailActivity.this, ImageBrowseActivity.class);
+                    startActivity(intent);
+                    break;
+                case item_save_image:
+                    mPresenter.saveImage(BaseDetailActivity.this, imgUrl);
+                    break;
             }
         }
-        super.onBackPressedSupport();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_detail;
-    }
-
-    @Override
-    public void showNetworkError() {
-        Logger.e("Network error.");
-        vNetworkError.setVisibility(View.VISIBLE);
     }
 
     /**
-     * js接口
+     * 初始化WebSetting
+     *
+     * @param settings WebSetting
      */
-    public class SupportJavascriptInterface {
-        private Context context;
-
-        public SupportJavascriptInterface(Context context) {
-            this.context = context;
+    protected void initWebSetting(WebSettings settings) {
+        settings.setBlockNetworkImage(false);
+        settings.setAppCacheEnabled(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        if (NetworkConnectionUtils.isConnected(mContext)) {
+            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        } else {
+            settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
         }
-
-        @android.webkit.JavascriptInterface
-        public void openImage(String img) {
-            Intent intent = new Intent();
-            intent.putExtra(INTENT_KEY_IMAGE_URL, img);
-            intent.setClass(context, ImageBrowseActivity.class);
-            context.startActivity(intent);
-        }
+        settings.setJavaScriptEnabled(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setSupportZoom(true);
     }
 
     /**

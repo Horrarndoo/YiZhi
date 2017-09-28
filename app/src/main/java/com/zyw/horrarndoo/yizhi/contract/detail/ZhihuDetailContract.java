@@ -1,8 +1,7 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
-import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyDetailBean;
+import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
 
 import io.reactivex.Observable;
 
@@ -13,14 +12,14 @@ import io.reactivex.Observable;
  */
 
 public interface ZhihuDetailContract {
-    abstract class ZhihuDetailPresenter extends BasePresenter<IZhihuDetailModel, IZhihuDetailView> {
+    abstract class ZhihuDetailPresenter extends BaseDetailPresenter<IZhihuDetailModel, IZhihuDetailView> {
         /**
          * 加载日报详情
          */
         public abstract void loadDailyDetail(String id);
     }
 
-    interface IZhihuDetailModel extends IBaseModel {
+    interface IZhihuDetailModel extends BaseDetailContract.IBaseDetailModel {
         /**
          * 获取日报详情
          *

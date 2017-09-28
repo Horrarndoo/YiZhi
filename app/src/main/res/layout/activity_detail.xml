@@ -102,7 +102,7 @@
             android:id="@+id/pb_web"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="3dp"
             android:progressDrawable="@drawable/web_progress_bar_bg"
             android:visibility="gone"/>
     </FrameLayout>

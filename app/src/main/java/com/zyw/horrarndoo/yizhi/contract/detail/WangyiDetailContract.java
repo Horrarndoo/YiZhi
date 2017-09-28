@@ -1,8 +1,7 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
-import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.yizhi.model.bean.wangyi.WangyiNewsDetailBean;
+import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -14,8 +13,8 @@ import okhttp3.ResponseBody;
  */
 
 public interface WangyiDetailContract {
-    abstract class WangyiDetailPresenter extends BasePresenter<IWangyiDetailModel,
-            IWangyiDetailView> {
+    abstract class WangyiDetailPresenter extends BaseDetailPresenter<IWangyiDetailModel,
+                    IWangyiDetailView> {
         /**
          * 加载新闻详情
          *
@@ -33,7 +32,7 @@ public interface WangyiDetailContract {
         public abstract void loadNewsDetailWithId(String id);
     }
 
-    interface IWangyiDetailModel extends IBaseModel {
+    interface IWangyiDetailModel extends BaseDetailContract.IBaseDetailModel {
         /**
          * 获取日报详情
          *
