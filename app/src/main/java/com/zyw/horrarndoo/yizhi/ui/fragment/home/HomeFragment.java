@@ -1,12 +1,13 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -110,7 +111,10 @@ public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresent
         fabDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "this is snackbar text", Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setData(Uri.parse("https://github.com/Horrarndoo/YiZhi"));
+                intent.setAction(Intent.ACTION_VIEW);
+                startActivity(intent); //启动浏览器
             }
         });
         toolbar.inflateMenu(R.menu.toolbar_menu);
