@@ -132,6 +132,14 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
         return popWindow.isShowing();
     }
 
+    @Override
+    public void gotoImageBrowse(String imgUrl) {
+        Intent intent = new Intent();
+        intent.putExtra(INTENT_KEY_IMAGE_URL, imgUrl);
+        intent.setClass(BaseDetailActivity.this, ImageBrowseActivity.class);
+        startActivity(intent);
+    }
+
     /**
      * js接口
      */
@@ -144,10 +152,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
         @JavascriptInterface
         public void openImage(String img) {
-            Intent intent = new Intent();
-            intent.putExtra(INTENT_KEY_IMAGE_URL, img);
-            intent.setClass(context, ImageBrowseActivity.class);
-            context.startActivity(intent);
+            gotoImageBrowse(img);
         }
     }
 
@@ -211,31 +216,9 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
                 WebView.HitTestResult result = ((WebView) v).getHitTestResult();
                 if (null == result)
                     return false;
-                int type = result.getType();
-                String imgurl = result.getExtra();
 
-                switch (type) {
-                    case WebView.HitTestResult.UNKNOWN_TYPE:
-                        return false;
-                    case WebView.HitTestResult.PHONE_TYPE: // 处理拨号
-                        break;
-                    case WebView.HitTestResult.EMAIL_TYPE: // 处理Email
-                        break;
-                    case WebView.HitTestResult.GEO_TYPE:
-                        break;
-                    case WebView.HitTestResult.SRC_ANCHOR_TYPE: // 超链接
-                        break;
-                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
-                        break;
-                    case WebView.HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项
-                        imgurl = result.getExtra();
-                        //通过GestureDetector获取按下的位置，来定位PopWindow显示的位置
-                        popWindow.showAtLocation(v, Gravity.TOP | Gravity.LEFT,
-                                downX, downY + 10);
-                        break;
-                    default:
-                        break;
-                }
+                mPresenter.imageLongClicked(result);
+                String imgurl = result.getExtra();
 
                 TextView tvGoImageBrowse = (TextView) popWindow.getView(item_go_image_browse);
                 TextView tvSaveImage = (TextView) popWindow.getView(R.id.item_save_image);
@@ -272,14 +255,10 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
         public void onClick(View v) {
             switch (v.getId()) {
                 case item_go_image_browse:
-                    popWindow.dismiss();
-                    Intent intent = new Intent();
-                    intent.putExtra(INTENT_KEY_IMAGE_URL, imgUrl);
-                    intent.setClass(BaseDetailActivity.this, ImageBrowseActivity.class);
-                    startActivity(intent);
+                    mPresenter.gotoImageBrowseClicked(imgUrl);
                     break;
                 case item_save_image:
-                    mPresenter.saveImage(BaseDetailActivity.this, imgUrl);
+                    mPresenter.saveImageClicked(BaseDetailActivity.this, imgUrl);
                     break;
             }
         }

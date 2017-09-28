@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.presenter.detail;
 
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
+import android.webkit.WebView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -18,8 +19,8 @@ public abstract class BaseDetailPresenter<M extends BaseDetailContract.IBaseDeta
         BaseDetailContract.IBaseDetailView> extends BaseDetailContract.BaseDetailPresenter<M, V> {
 
     @Override
-    public void saveImage(final FragmentActivity activity, final String imgUrl) {
-        if(mIView.popupWindowIsShowing())
+    public void saveImageClicked(final FragmentActivity activity, final String imgUrl) {
+        if (mIView.popupWindowIsShowing())
             mIView.dismissPopupWindow();
 
         Glide.with(activity).load(imgUrl).asBitmap().into(new SimpleTarget<Bitmap>() {
@@ -44,5 +45,43 @@ public abstract class BaseDetailPresenter<M extends BaseDetailContract.IBaseDeta
                 });
             }
         });
+    }
+
+    @Override
+    public void gotoImageBrowseClicked(String imgUrl) {
+        if (mIView == null)
+            return;
+        if (mIView.popupWindowIsShowing())
+            mIView.dismissPopupWindow();
+
+        mIView.gotoImageBrowse(imgUrl);
+    }
+
+    @Override
+    public void imageLongClicked(WebView.HitTestResult hitTestResult) {
+        if (null == hitTestResult)
+            return;
+
+        int type = hitTestResult.getType();
+        switch (type) {
+            case WebView.HitTestResult.UNKNOWN_TYPE:
+                return;
+            case WebView.HitTestResult.PHONE_TYPE: // 处理拨号
+                break;
+            case WebView.HitTestResult.EMAIL_TYPE: // 处理Email
+                break;
+            case WebView.HitTestResult.GEO_TYPE:
+                break;
+            case WebView.HitTestResult.SRC_ANCHOR_TYPE: // 超链接
+                break;
+            case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
+                break;
+            case WebView.HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项
+                if (mIView != null)
+                    mIView.showPopupWindow();
+                break;
+            default:
+                break;
+        }
     }
 }
