@@ -9,11 +9,13 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebBackForwardList;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
@@ -56,6 +58,8 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
     FrameLayout flNetView;
     @BindView(R.id.v_network_error)
     View vNetworkError;
+    @BindView(R.id.pb_web)
+    ProgressBar pvWeb;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -75,7 +79,8 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
         // 添加js交互接口类，并起别名 imagelistner
-        nswvDetailContent.addJavascriptInterface(new SupportJavascriptInterface(this), "imagelistner");
+        nswvDetailContent.addJavascriptInterface(new SupportJavascriptInterface(this),
+                "imagelistner");
         nswvDetailContent.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -111,6 +116,18 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
                         "    }  " +
                         "}" +
                         "})()");
+            }
+        });
+
+        nswvDetailContent.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress == 100) {
+                    pvWeb.setVisibility(View.GONE);//加载完网页进度条消失
+                } else {
+                    pvWeb.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
+                    pvWeb.setProgress(newProgress);//设置进度值
+                }
             }
         });
 

@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
-import com.zyw.horrarndoo.sdk.widgets.ZoomImageView;
 import com.zyw.horrarndoo.yizhi.R;
 
 import butterknife.BindView;
@@ -20,8 +20,8 @@ import static com.zyw.horrarndoo.yizhi.constant.IntentKeyConstant.INTENT_KEY_IMA
  */
 
 public class ImageBrowseActivity extends BaseCompatActivity {
-    @BindView(R.id.ziv_pic)
-    ZoomImageView zoomImageView;
+    @BindView(R.id.pv_pic)
+    PhotoView pvPic;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -44,8 +44,9 @@ public class ImageBrowseActivity extends BaseCompatActivity {
                 onBackPressedSupport();
             }
         });
+        pvPic.enable();
         Glide.with(ImageBrowseActivity.this).load(mImageUrl).fitCenter().crossFade().into
-                (zoomImageView);
+                (pvPic);
     }
 
     @Override

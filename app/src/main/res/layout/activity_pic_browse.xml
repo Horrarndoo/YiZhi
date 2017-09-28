@@ -20,8 +20,8 @@
         android:layout_height="match_parent"
         android:background="@android:color/black">
 
-        <com.zyw.horrarndoo.sdk.widgets.ZoomImageView
-            android:id="@+id/ziv_pic"
+        <com.bm.library.PhotoView
+            android:id="@+id/pv_pic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/header_icon"/>

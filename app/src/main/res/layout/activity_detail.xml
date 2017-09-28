@@ -97,5 +97,13 @@
             layout="@layout/sub_net_status"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <ProgressBar
+            android:id="@+id/pb_web"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progressDrawable="@drawable/web_progress_bar_bg"
+            android:visibility="gone"/>
     </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

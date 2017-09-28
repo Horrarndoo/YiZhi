@@ -55,4 +55,5 @@ ext {
     circleImageviewVersion = '2.1.0'
     BaseRecyclerViewAdapterHelperVersion = '2.9.22'
     SwtichButtonVersion = '1.4.6'
+    PhotoViewVersion = '1.4.1'
 }
