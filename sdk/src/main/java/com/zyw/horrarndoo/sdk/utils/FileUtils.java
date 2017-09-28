@@ -2,13 +2,17 @@ package com.zyw.horrarndoo.sdk.utils;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -81,16 +85,17 @@ public class FileUtils {
      * 兼容了file:///开头的 和 content://开头的情况
      */
     public static String getRealFilePathFromUri(final Context context, final Uri uri) {
-        if (null == uri) return null;
+        if (null == uri)
+            return null;
         final String scheme = uri.getScheme();
         String data = null;
         if (scheme == null) {
             data = uri.getPath();
-        }
-        else if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(scheme)) {
+        } else if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(scheme)) {
             data = uri.getPath();
         } else if (ContentResolver.SCHEME_CONTENT.equalsIgnoreCase(scheme)) {
-            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
+            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore
+                    .Images.ImageColumns.DATA}, null, null, null);
             if (null != cursor) {
                 if (cursor.moveToFirst()) {
                     int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
@@ -117,4 +122,54 @@ public class FileUtils {
         }
         return dirPath;
     }
+
+    /**
+     * 保存Bitmap到本机
+     *
+     * @param context            context
+     * @param fileName           bitmap文件名
+     * @param bmp                bitmap
+     * @param saveResultCallback 保存结果callback
+     */
+    public static void saveBitmap(final Context context, final String fileName, final Bitmap bmp,
+                                  final SaveResultCallback
+                                          saveResultCallback) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File appDir = new File(Environment.getExternalStorageDirectory(), "yizhi");
+                if (!appDir.exists()) {
+                    appDir.mkdir();
+                }
+                //                SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+                // 设置以当前时间格式为图片名称
+                String fileNameM = MD5Utils.getMD5("yizhi_pic" + fileName) + ".png";
+                File file = new File(appDir, fileNameM);
+                try {
+                    FileOutputStream fos = new FileOutputStream(file);
+                    bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    fos.flush();
+                    fos.close();
+                    saveResultCallback.onSavedSuccess();
+                } catch (FileNotFoundException e) {
+                    saveResultCallback.onSavedFailed();
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    saveResultCallback.onSavedFailed();
+                    e.printStackTrace();
+                }
+                //保存图片后发送广播通知更新数据库
+                Uri uri = Uri.fromFile(file);
+                context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+            }
+        }).start();
+    }
+
+    public interface SaveResultCallback {
+        void onSavedSuccess();
+
+        void onSavedFailed();
+    }
 }
+
+
