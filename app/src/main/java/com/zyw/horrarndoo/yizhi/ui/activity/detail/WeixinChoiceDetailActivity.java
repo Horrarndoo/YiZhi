@@ -54,7 +54,7 @@ public class WeixinChoiceDetailActivity extends BaseDetailActivity<WeixinDetailC
     @Override
     public void showWeixinChoiceDetail(String url) {
         flNetView.setVisibility(View.GONE);
-        wvDetailContent.loadUrl(url);
+        nswvDetailContent.loadUrl(url);
     }
 
     @Override

@@ -44,14 +44,14 @@
                     android:id="@+id/tv_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
                     android:layout_gravity="start|bottom"
                     android:layout_marginBottom="@dimen/dimen_30dp"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
                     android:paddingBottom="6dp"
-                    android:paddingTop="6dp"/>
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="6dp"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"/>
 
                 <TextView
                     android:id="@+id/tv_detail_copyright"
@@ -59,9 +59,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|bottom"
                     android:layout_marginBottom="3dp"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
                     android:paddingBottom="6dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:paddingTop="6dp"
                     android:textSize="12sp"/>
             </FrameLayout>
@@ -78,33 +78,24 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsv_scroller"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="vertical"
+        android:descendantFocusability="blocksDescendants"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
+        <com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView
+            android:id="@+id/nswv_detail_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants">
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollbars="vertical"/>
 
-            <com.tencent.smtt.sdk.WebView
-                android:id="@+id/wv_detail_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:isScrollContainer="false"
-                android:overScrollMode="never"
-                android:scrollbars="vertical"/>
-
-            <include
-                android:id="@+id/fl_net_view"
-                layout="@layout/sub_net_status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </FrameLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        <include
+            android:id="@+id/fl_net_view"
+            layout="@layout/sub_net_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

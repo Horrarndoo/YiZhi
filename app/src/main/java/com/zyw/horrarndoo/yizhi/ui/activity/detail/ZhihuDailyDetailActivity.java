@@ -54,7 +54,7 @@ public class ZhihuDailyDetailActivity extends BaseDetailActivity<ZhihuDetailCont
         tvDetailTitle.setText(bean.getTitle());
         tvDetailcopyright.setText(bean.getImage_source());
         String htmlData = HtmlUtils.createHtmlData(bean.getBody(), bean.getCss(), bean.getJs());
-        wvDetailContent.loadData(htmlData, HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
+        nswvDetailContent.loadData(htmlData, HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
     }
 
     @Override

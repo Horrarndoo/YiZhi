@@ -67,12 +67,12 @@ public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailCo
     public void showNewsDetail(WangyiNewsDetailBean bean) {
         flNetView.setVisibility(View.GONE);
         //tvDetailTitle.setText(bean.getTitle());
-        wvDetailContent.loadData(bean.getBody(), HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
+        nswvDetailContent.loadData(bean.getBody(), HtmlUtils.MIME_TYPE, HtmlUtils.ENCODING);
     }
 
     @Override
     public void showNewsDetail(String url) {
         flNetView.setVisibility(View.GONE);
-        wvDetailContent.loadUrl(url);
+        nswvDetailContent.loadUrl(url);
     }
 }

@@ -8,19 +8,20 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebBackForwardList;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
-import com.tencent.smtt.sdk.WebBackForwardList;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatActivity;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
+import com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.contract.detail.BaseDetailContract;
 import com.zyw.horrarndoo.yizhi.ui.activity.pic.ImageBrowseActivity;
@@ -49,8 +50,8 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
     AppBarLayout appBar;
     @BindView(R.id.tv_detail_copyright)
     TextView tvDetailcopyright;
-    @BindView(R.id.wv_detail_content)
-    WebView wvDetailContent;
+    @BindView(R.id.nswv_detail_content)
+    NestedScrollWebView nswvDetailContent;
     @BindView(R.id.fl_net_view)
     FrameLayout flNetView;
     @BindView(R.id.v_network_error)
@@ -59,7 +60,7 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
     @Override
     protected void initView(Bundle savedInstanceState) {
         initTitleBar(toolbar, getToolbarTitle());
-        WebSettings settings = wvDetailContent.getSettings();
+        WebSettings settings = nswvDetailContent.getSettings();
         settings.setBlockNetworkImage(false);
         settings.setAppCacheEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -74,8 +75,8 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
         // 添加js交互接口类，并起别名 imagelistner
-        wvDetailContent.addJavascriptInterface(new SupportJavascriptInterface(this), "imagelistner");
-        wvDetailContent.setWebViewClient(new WebViewClient() {
+        nswvDetailContent.addJavascriptInterface(new SupportJavascriptInterface(this), "imagelistner");
+        nswvDetailContent.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -124,12 +125,12 @@ public abstract class BaseDetailActivity<P extends BasePresenter, M extends IBas
 
     @Override
     public void onBackPressedSupport() {
-        if (wvDetailContent.canGoBack()) {
+        if (nswvDetailContent.canGoBack()) {
             //获取webView的浏览记录
-            WebBackForwardList mWebBackForwardList = wvDetailContent.copyBackForwardList();
+            WebBackForwardList mWebBackForwardList = nswvDetailContent.copyBackForwardList();
             //这里的判断是为了让页面在有上一个页面的情况下，跳转到上一个html页面，而不是退出当前activity
             if (mWebBackForwardList.getCurrentIndex() > 0) {
-                wvDetailContent.goBack();
+                nswvDetailContent.goBack();
                 return;
             }
         }
