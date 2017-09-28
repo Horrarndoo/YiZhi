@@ -5,7 +5,6 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.tencent.smtt.sdk.QbSdk;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
@@ -28,18 +27,6 @@ public class MyApplication extends GlobalApplication {
         app = this;
         //初始化屏幕宽高
         getScreenSize();
-
-        QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                //                Logger.d("onCoreInitFinished");
-            }
-
-            @Override
-            public void onViewInitFinished(boolean b) {
-                //                Logger.d("initX5Environment result : " + b);
-            }
-        });
     }
 
     public void getScreenSize() {

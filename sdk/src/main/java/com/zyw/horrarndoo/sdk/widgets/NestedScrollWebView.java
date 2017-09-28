@@ -12,8 +12,10 @@ import android.webkit.WebView;
 /**
  * Created by Horrarndoo on 2017/9/27.
  * <p>
+ * 继承原生WebView，目的是为了和AppBarLayout、CollapsingToolbarLayout等Android Design Support Library控件配合使用。
+ * <p>
+ * 避免AppBarLayout+NestSrollView+WebView嵌套导致的WebView高度判断异常导致WebView跳转后高度异常的问题;
  */
-
 public class NestedScrollWebView extends WebView implements NestedScrollingChild {
 
     public static final String TAG = NestedScrollWebView.class.getSimpleName();
@@ -48,10 +50,6 @@ public class NestedScrollWebView extends WebView implements NestedScrollingChild
         setNestedScrollingEnabled(true);
     }
 
-    private float downx;
-    private float downy;
-    private MotionEvent b;
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean result = false;
@@ -74,9 +72,6 @@ public class NestedScrollWebView extends WebView implements NestedScrollingChild
                 startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
                 result = super.onTouchEvent(event);
                 mChange = false;
-                downx = event.getX();
-                downy = event.getY();
-                b = MotionEvent.obtain(event);
                 break;
             case MotionEvent.ACTION_MOVE:
                 int deltaY = mLastMotionY - y;
@@ -108,9 +103,9 @@ public class NestedScrollWebView extends WebView implements NestedScrollingChild
                 } else {
                     if (!mChange) {
                         mChange = true;
-                        super.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0, 0, 0));
+                        super.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0,
+                                0, 0));
                     }
-
                 }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
@@ -124,7 +119,6 @@ public class NestedScrollWebView extends WebView implements NestedScrollingChild
     }
 
     // NestedScrollingChild
-
     @Override
     public void setNestedScrollingEnabled(boolean enabled) {
         mChildHelper.setNestedScrollingEnabled(enabled);
@@ -151,8 +145,10 @@ public class NestedScrollWebView extends WebView implements NestedScrollingChild
     }
 
     @Override
-    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow) {
-        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int
+            dyUnconsumed, int[] offsetInWindow) {
+        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed,
+                dyUnconsumed, offsetInWindow);
     }
 
     @Override
