@@ -28,13 +28,13 @@
             android:src="@mipmap/header_icon"/>
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_save_pic"
+        <ImageView
+            android:id="@+id/iv_save_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="@android:color/black"
+            android:padding="16dp"
             app:srcCompat="@drawable/ic_vector_pic_save"/>
     </FrameLayout>
 

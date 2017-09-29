@@ -57,10 +57,10 @@ public class ImageBrowseActivity extends BaseCompatActivity {
         return R.layout.activity_pic_browse;
     }
 
-    @OnClick(R.id.fab_save_pic)
+    @OnClick(R.id.iv_save_pic)
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fab_save_pic:
+            case R.id.iv_save_pic:
                 //将ImagelUrl MD5加密后作为文件名保存
                 saveImageToLocal(mImageUrl);
                 break;
