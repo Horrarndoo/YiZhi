@@ -1,12 +1,13 @@
 package com.zyw.horrarndoo.yizhi.ui.widgets;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 
 /**
@@ -59,7 +60,10 @@ public class WebViewLongClickedPopWindow extends PopupWindow {
         setContentView(this.itemLongClickedPopWindowView);
         setOutsideTouchable(true);
         setFocusable(true);
-        setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
+        setBackgroundDrawable(ResourcesUtils.getDrawable(R.drawable.shape_corner_bg));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            setElevation(DisplayUtils.dp2px(10));
+        }
     }
 
     //实例化
