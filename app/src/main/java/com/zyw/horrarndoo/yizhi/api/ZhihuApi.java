@@ -1,9 +1,8 @@
 package com.zyw.horrarndoo.yizhi.api;
 
 
-import com.zyw.horrarndoo.yizhi.model.bean.image.ImageResponse;
-import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyListBean;
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyListBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -21,7 +20,4 @@ public interface ZhihuApi {
 
     @GET("/api/4/news/{id}")
     Observable<ZhihuDailyDetailBean> getZhihuDailyDetail(@Path("id") String id);
-
-    @GET("http://lab.zuimeia.com/wallpaper/category/1/?page_size=1")
-    Observable<ImageResponse> getImage();
 }
