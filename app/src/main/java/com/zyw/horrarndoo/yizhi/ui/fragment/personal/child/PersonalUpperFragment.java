@@ -1,26 +1,18 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.personal.child;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
@@ -34,6 +26,7 @@ import com.zyw.horrarndoo.yizhi.contract.personal.PersonalContract;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
 import com.zyw.horrarndoo.yizhi.presenter.personal.PersonalUpperPresenter;
 import com.zyw.horrarndoo.yizhi.ui.activity.personal.HeadSettingActivity;
+import com.zyw.horrarndoo.yizhi.ui.widgets.PersonalPopupWindow;
 
 import java.io.File;
 
@@ -57,7 +50,7 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
     @BindView(R.id.civ_head)
     CircleImageView civHead;
 
-    PopupWindow popupWindow;
+    PersonalPopupWindow popupWindow;
 
     public static PersonalUpperFragment newInstance() {
         Bundle args = new Bundle();
@@ -116,52 +109,20 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
 
     @Override
     public void initPopupView() {
-        View rootView = LayoutInflater.from(mActivity).inflate(R.layout.layout_popupwindow, null);
-        TextView btnCarema = (TextView) rootView.findViewById(R.id.btn_camera);
-        TextView btnPhoto = (TextView) rootView.findViewById(R.id.btn_photo);
-        TextView btnCancel = (TextView) rootView.findViewById(R.id.btn_cancel);
-
-        popupWindow = new PopupWindow(rootView, ViewGroup.LayoutParams
-                .MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-
-        //设置点击空白处消失
-        popupWindow.setTouchable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setClippingEnabled(false);
-
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        int width = wm.getDefaultDisplay().getWidth();
-        int height = wm.getDefaultDisplay().getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmap.eraseColor(Color.parseColor("#88000000"));//填充颜色
-        popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
-
-        rootView.setOnClickListener(new View.OnClickListener() {
+        popupWindow = new PersonalPopupWindow(mActivity);
+        popupWindow.setOnItemClickListener(new PersonalPopupWindow.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                if (popupWindow.isShowing())
-                    popupWindow.dismiss();
-            }
-        });
-
-        btnCarema.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void onCaremaClicked() {
                 mPresenter.btnCameraClicked();
             }
-        });
 
-        btnPhoto.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
-            public void onClick(View v) {
+            public void onPhotoClicked() {
                 mPresenter.btnPhotoClicked();
             }
-        });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onCancelClicked() {
                 mPresenter.btnCancelClicked();
             }
         });
