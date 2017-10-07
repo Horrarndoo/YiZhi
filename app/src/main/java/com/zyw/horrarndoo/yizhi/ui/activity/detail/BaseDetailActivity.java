@@ -34,8 +34,6 @@ import com.zyw.horrarndoo.yizhi.ui.widgets.WebViewLongClickedPopWindow;
 
 import butterknife.BindView;
 
-import static com.zyw.horrarndoo.yizhi.R.id.item_go_image_browse;
-import static com.zyw.horrarndoo.yizhi.R.id.item_save_image;
 import static com.zyw.horrarndoo.yizhi.constant.IntentKeyConstant.INTENT_KEY_IMAGE_URL;
 
 /**
@@ -248,29 +246,6 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
             return false;
         }
     };
-
-    /**
-     * item点击事件实现类
-     */
-    public class ItemOnClickListenerImp implements View.OnClickListener {
-        public String imgUrl;
-
-        public ItemOnClickListenerImp(String imgUrl) {
-            this.imgUrl = imgUrl;
-        }
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case item_go_image_browse:
-                    mPresenter.gotoImageBrowseClicked(imgUrl);
-                    break;
-                case item_save_image:
-                    mPresenter.saveImageClicked(BaseDetailActivity.this, imgUrl);
-                    break;
-            }
-        }
-    }
 
     /**
      * 初始化WebSetting

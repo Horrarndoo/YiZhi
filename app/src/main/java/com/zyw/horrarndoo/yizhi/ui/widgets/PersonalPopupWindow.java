@@ -26,6 +26,8 @@ public class PersonalPopupWindow extends PopupWindow {
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
     private LinearLayout llPopupRoot;
+    private boolean isShowAniming;//show动画是否在执行中
+    private boolean isHideAniming;//hide动画是否在执行中
 
     public PersonalPopupWindow(Context context) {
         super(null, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
@@ -90,12 +92,18 @@ public class PersonalPopupWindow extends PopupWindow {
     @Override
     public void showAtLocation(View parent, int gravity, int x, int y) {
         super.showAtLocation(parent, gravity, x, y);
-        popupAnim(llPopupRoot, 0.0f, 1.0f, 300, true);
+        if (!isShowAniming) {
+            isShowAniming = true;
+            popupAnim(llPopupRoot, 0.0f, 1.0f, 300, true);
+        }
     }
 
     @Override
     public void dismiss() {
-        popupAnim(llPopupRoot, 1.0f, 0.0f, 300, false);
+        if (!isHideAniming) {
+            isHideAniming = true;
+            popupAnim(llPopupRoot, 1.0f, 0.0f, 300, false);
+        }
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -120,8 +128,7 @@ public class PersonalPopupWindow extends PopupWindow {
      * @param flag     true代表show，false代表hide
      */
     private void popupAnim(final View view, float start, final float end, int duration, final
-    boolean
-            flag) {
+    boolean flag) {
         ValueAnimator va = ValueAnimator.ofFloat(start, end).setDuration(duration);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -136,8 +143,13 @@ public class PersonalPopupWindow extends PopupWindow {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (!flag)
+
+                if (!flag) {
+                    isHideAniming = false;
                     PersonalPopupWindow.super.dismiss();
+                }else {
+                    isShowAniming = false;
+                }
             }
         });
         va.start();

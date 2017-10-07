@@ -54,6 +54,9 @@ public class WebViewLongClickedPopWindow extends PopupWindow {
     private LinearLayout llPopupRoot;
     private OnItemClickListener mOnItemClickListener;
 
+    private boolean isShowAniming;//show动画是否在执行中
+    private boolean isHideAniming;//hide动画是否在执行中
+
     /**
      * 构造函数 * @param context 上下文 * @param width 宽度 * @param height 高度 *
      */
@@ -124,12 +127,18 @@ public class WebViewLongClickedPopWindow extends PopupWindow {
     @Override
     public void showAtLocation(View parent, int gravity, int x, int y) {
         super.showAtLocation(parent, gravity, x, y);
-        popupAnim(llPopupRoot.getRootView(), 0.0f, 1.0f, 150, true);
+        if (!isShowAniming) {
+            isShowAniming = true;
+            popupAnim(llPopupRoot.getRootView(), 0.0f, 1.0f, 150, true);
+        }
     }
 
     @Override
     public void dismiss() {
-        popupAnim(llPopupRoot.getRootView(), 1.0f, 0.0f, 150, false);
+        if (!isHideAniming) {
+            isHideAniming = true;
+            popupAnim(llPopupRoot.getRootView(), 1.0f, 0.0f, 150, false);
+        }
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -169,8 +178,13 @@ public class WebViewLongClickedPopWindow extends PopupWindow {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (!flag)
+
+                if (!flag) {
+                    isHideAniming = false;
                     WebViewLongClickedPopWindow.super.dismiss();
+                }else {
+                    isShowAniming = false;
+                }
             }
         });
         va.start();
