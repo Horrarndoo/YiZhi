@@ -162,7 +162,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param view 变化跳转Activity的view
      * @param clz  要跳转的Activity
      */
-    public void startActivityCompat(View view, Class<?> clz) {
+    public void startActivityWithAnimation(View view, Class<?> clz) {
         ActivityCompat.startActivity(this, new Intent(this, clz), ActivityOptionsCompat
                 .makeSceneTransitionAnimation(this, view, TRANSLATE_VIEW).toBundle());
         startActivity(new Intent(this, clz));

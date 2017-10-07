@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/rl_pic_browse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/black"
-                android:fitsSystemWindows="true"
-                android:orientation="vertical">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/cl_pic_browse"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:background="@android:color/black"
+                                                 android:fitsSystemWindows="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true"/>
 
-    <FrameLayout
-        android:layout_below="@id/toolbar"
+    <com.bm.library.PhotoView
+        android:id="@+id/pv_pic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black">
+        android:src="@mipmap/header_icon"/>
 
-        <com.bm.library.PhotoView
-            android:id="@+id/pv_pic"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/header_icon"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_save_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
+        app:rippleColor="@android:color/black"
+        app:backgroundTint="@android:color/black"
+        app:srcCompat="@drawable/ic_vector_pic_save"/>
 
-
-        <ImageView
-            android:id="@+id/iv_save_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:padding="16dp"
-            app:srcCompat="@drawable/ic_vector_pic_save"/>
-    </FrameLayout>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
