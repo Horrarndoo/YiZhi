@@ -69,7 +69,8 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
     ProgressBar pvWeb;
 
     private int downX, downY;
-    WebViewLongClickedPopWindow popWindow;
+    private WebViewLongClickedPopWindow popWindow;
+    private String mImgurl;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -87,6 +88,18 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
         popWindow = new WebViewLongClickedPopWindow(BaseDetailActivity.this,
                 WebViewLongClickedPopWindow.IMAGE_VIEW_POPUPWINDOW, DisplayUtils.dp2px
                 (120), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        popWindow.setOnItemClickListener(new WebViewLongClickedPopWindow.OnItemClickListener() {
+            @Override
+            public void onShowPicClicked() {
+                mPresenter.gotoImageBrowseClicked(mImgurl);
+            }
+
+            @Override
+            public void onSavePicClicked() {
+                mPresenter.saveImageClicked(BaseDetailActivity.this, mImgurl);
+            }
+        });
 
         loadDetail();
     }
@@ -218,12 +231,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
                     return false;
 
                 mPresenter.imageLongClicked(result);
-                String imgurl = result.getExtra();
-
-                TextView tvGoImageBrowse = (TextView) popWindow.getView(item_go_image_browse);
-                TextView tvSaveImage = (TextView) popWindow.getView(R.id.item_save_image);
-                tvGoImageBrowse.setOnClickListener(new ItemOnClickListenerImp(imgurl));
-                tvSaveImage.setOnClickListener(new ItemOnClickListenerImp(imgurl));
+                mImgurl = result.getExtra();
 
                 return true;
             }
