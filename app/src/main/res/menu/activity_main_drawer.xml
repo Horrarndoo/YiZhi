@@ -3,17 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/group_item_publish"
+            android:id="@+id/group_item_test1"
             android:icon="@drawable/ic_vector_publish"
-            android:title="发布模块"/>
+            android:title="测试item1"/>
         <item
-            android:id="@+id/group_item_tv"
+            android:id="@+id/group_item_test2"
             android:icon="@drawable/ic_vector_publish"
-            android:title="全民TV"/>
+            android:title="测试item2"/>
         <item
-            android:id="@+id/group_item_map"
+            android:id="@+id/group_item_test3"
             android:icon="@drawable/ic_vector_publish"
-            android:title="高德地图"/>
+            android:title="测试item3"/>
     </group>
 
     <item android:title="选项">

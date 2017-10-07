@@ -25,8 +25,8 @@ import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.HomeFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.information.InformationFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.message.MessageFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.gankio.GankIoFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.douban.DoubanFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.PersonalFragment;
 
 import java.io.File;
@@ -84,8 +84,8 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
     protected void initView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
-            mFragments[SECOND] = InformationFragment.newInstance();
-            mFragments[THIRD] = MessageFragment.newInstance();
+            mFragments[SECOND] = GankIoFragment.newInstance();
+            mFragments[THIRD] = DoubanFragment.newInstance();
             mFragments[FOURTH] = PersonalFragment.newInstance();
 
             loadMultipleRootFragment(R.id.fl_container, FIRST,
@@ -99,8 +99,8 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             // 这里我们需要拿到mFragments的引用,也可以通过getSupportFragmentManager.getFragments()
             // 自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findFragment(HomeFragment.class);
-            mFragments[SECOND] = findFragment(InformationFragment.class);
-            mFragments[THIRD] = findFragment(MessageFragment.class);
+            mFragments[SECOND] = findFragment(GankIoFragment.class);
+            mFragments[THIRD] = findFragment(DoubanFragment.class);
             mFragments[FOURTH] = findFragment(PersonalFragment.class);
         }
 
@@ -132,10 +132,10 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
                     case R.id.menu_item_home:
                         showHideFragment(mFragments[FIRST]);
                         break;
-                    case R.id.menu_item_information:
+                    case R.id.menu_item_gank_io:
                         showHideFragment(mFragments[SECOND]);
                         break;
-                    case R.id.menu_item_message:
+                    case R.id.menu_item_douban:
                         showHideFragment(mFragments[THIRD]);
                         break;
                     case R.id.menu_item_personal:
@@ -153,14 +153,14 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.group_item_publish:
-                        ToastUtils.showToast("publish is clicked");
+                    case R.id.group_item_test1:
+                        ToastUtils.showToast("group item test1 is clicked");
                         break;
-                    case R.id.group_item_tv:
-                        ToastUtils.showToast("tv is clicked");
+                    case R.id.group_item_test2:
+                        ToastUtils.showToast("group item test2 is clicked");
                         break;
-                    case R.id.group_item_map:
-                        ToastUtils.showToast("map is clicked");
+                    case R.id.group_item_test3:
+                        ToastUtils.showToast("group item test3 is clicked");
                         break;
                     case R.id.item_setting:
                         SpUtils.setNightModel(mContext, !SpUtils.getNightModel(mContext));

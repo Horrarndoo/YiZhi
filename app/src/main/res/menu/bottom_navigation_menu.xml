@@ -6,14 +6,14 @@
         android:title="主页" />
 
     <item
-        android:id="@+id/menu_item_information"
+        android:id="@+id/menu_item_gank_io"
         android:icon="@drawable/ic_vector_bottom_information"
-        android:title="资讯" />
+        android:title="干货" />
 
     <item
-        android:id="@+id/menu_item_message"
+        android:id="@+id/menu_item_douban"
         android:icon="@drawable/ic_vector_bottom_message"
-        android:title="消息" />
+        android:title="豆瓣" />
 
     <item
         android:id="@+id/menu_item_personal"

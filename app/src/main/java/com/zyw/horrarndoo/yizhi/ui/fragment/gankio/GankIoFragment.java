@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.message;
+package com.zyw.horrarndoo.yizhi.ui.fragment.gankio;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,17 +14,17 @@ import com.zyw.horrarndoo.yizhi.R;
  * <p>
  */
 
-public class MessageFragment extends BaseMVPCompatFragment {
-    public static MessageFragment newInstance() {
+public class GankIoFragment extends BaseMVPCompatFragment {
+    public static GankIoFragment newInstance() {
         Bundle args = new Bundle();
-        MessageFragment fragment = new MessageFragment();
+        GankIoFragment fragment = new GankIoFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_message;
+        return R.layout.fragment_gank_io;
     }
 
     @Override

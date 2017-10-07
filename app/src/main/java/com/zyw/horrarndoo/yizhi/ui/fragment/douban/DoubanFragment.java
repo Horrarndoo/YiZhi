@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.information;
+package com.zyw.horrarndoo.yizhi.ui.fragment.douban;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,17 +14,17 @@ import com.zyw.horrarndoo.yizhi.R;
  * <p>
  */
 
-public class InformationFragment extends BaseMVPCompatFragment {
-    public static InformationFragment newInstance() {
+public class DoubanFragment extends BaseMVPCompatFragment {
+    public static DoubanFragment newInstance() {
         Bundle args = new Bundle();
-        InformationFragment fragment = new InformationFragment();
+        DoubanFragment fragment = new DoubanFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_information;
+        return R.layout.fragment_douban;
     }
 
     @Override

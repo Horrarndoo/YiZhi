@@ -1,8 +1,10 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.personal.child;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -16,6 +18,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -46,10 +49,11 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE
  * <p>
  */
 
-public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContract.PersonalUpperPresenter,
+public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContract
+        .PersonalUpperPresenter,
 
         PersonalContract.IPersonalUpperModel> implements PersonalContract.IPersonalUpperView {
-    
+
     @BindView(R.id.civ_head)
     CircleImageView civHead;
 
@@ -61,7 +65,7 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
         fragment.setArguments(args);
         return fragment;
     }
-    
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_personal_upper;
@@ -123,7 +127,14 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
         //设置点击空白处消失
         popupWindow.setTouchable(true);
         popupWindow.setOutsideTouchable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
+        popupWindow.setClippingEnabled(false);
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        int width = wm.getDefaultDisplay().getWidth();
+        int height = wm.getDefaultDisplay().getHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.eraseColor(Color.parseColor("#88000000"));//填充颜色
+        popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
