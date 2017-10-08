@@ -8,9 +8,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBar">false</item>
-        <!--<item name="android:windowIsTranslucent">true</item>-->
         <item name="windowActionModeOverlay">true</item>
-        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
     </style>
 
     <style name="TextViewTitle" parent="TextAppearance.AppCompat.Title">

@@ -17,8 +17,6 @@ import com.zyw.horrarndoo.sdk.widgets.WaitPorgressDialog;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
-import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by Horrarndoo on 2017/9/26.
@@ -79,12 +77,6 @@ public abstract class BaseCompatFragment extends SupportFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public FragmentAnimator onCreateFragmentAnimator() {
-        //fragment切换使用默认Vertical动画
-        return new DefaultVerticalAnimator();
     }
 
     @LayoutRes

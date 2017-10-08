@@ -21,6 +21,8 @@ import com.zyw.horrarndoo.sdk.widgets.WaitPorgressDialog;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by Horrarndoo on 2017/9/7.
@@ -44,6 +46,12 @@ public abstract class BaseCompatActivity extends SupportActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        //fragment切换使用默认Vertical动画
+        return new DefaultVerticalAnimator();
     }
 
     private void init(Bundle savedInstanceState) {
