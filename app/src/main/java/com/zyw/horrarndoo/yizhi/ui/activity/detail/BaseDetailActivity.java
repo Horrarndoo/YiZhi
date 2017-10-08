@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatActivity;
+import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
 import com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView;
@@ -145,10 +146,10 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
     @Override
     public void gotoImageBrowse(String imgUrl) {
+        Logger.e("gotoImageBrowse");
         Intent intent = new Intent();
         intent.putExtra(INTENT_KEY_IMAGE_URL, imgUrl);
-        intent.setClass(BaseDetailActivity.this, ImageBrowseActivity.class);
-        startActivity(intent);
+        startActivity(ImageBrowseActivity.class, intent);
     }
 
     /**
@@ -162,8 +163,13 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
         }
 
         @JavascriptInterface
-        public void openImage(String img) {
-            gotoImageBrowse(img);
+        public void openImage(final String img) {
+            AppUtils.runOnUIThread(new Runnable() {
+                @Override
+                public void run() {
+                    gotoImageBrowse(img);
+                }
+            });
         }
     }
 

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -34,7 +32,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
     protected GlobalApplication mApplication;
     protected WaitPorgressDialog mWaitPorgressDialog;
     protected Context mContext;//全局上下文对象
-    private static final String TRANSLATE_VIEW = "translate_view";
+    protected boolean isTransAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
         initView(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
     }
-    
+
     public void reload() {
         Intent intent = getIntent();
         overridePendingTransition(0, 0);
@@ -84,6 +82,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
         mContext = AppUtils.getContext();
         mApplication = (GlobalApplication) getApplication();
         mWaitPorgressDialog = new WaitPorgressDialog(this);
+        isTransAnim = true;
     }
 
     /**
@@ -130,6 +129,23 @@ public abstract class BaseCompatActivity extends SupportActivity {
      */
     public void startActivity(Class<?> clz) {
         startActivity(new Intent(this, clz));
+        if (isTransAnim)
+            overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
+                    .activity_start_zoom_out);
+    }
+
+    /**
+     * [页面跳转]
+     *
+     * @param clz    要跳转的Activity
+     * @param intent intent
+     */
+    public void startActivity(Class<?> clz, Intent intent) {
+        intent.setClass(this, clz);
+        startActivity(intent);
+        if (isTransAnim)
+            overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
+                    .activity_start_zoom_out);
     }
 
     /**
@@ -145,6 +161,9 @@ public abstract class BaseCompatActivity extends SupportActivity {
             intent.putExtras(bundle);
         }
         startActivity(intent);
+        if (isTransAnim)
+            overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
+                    .activity_start_zoom_out);
     }
 
     /**
@@ -162,18 +181,17 @@ public abstract class BaseCompatActivity extends SupportActivity {
             intent.putExtras(bundle);
         }
         startActivityForResult(intent, requestCode);
+        if (isTransAnim)
+            overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
+                    .activity_start_zoom_out);
     }
 
-    /**
-     * [页面跳转]
-     *
-     * @param view 变化跳转Activity的view
-     * @param clz  要跳转的Activity
-     */
-    public void startActivityWithAnimation(View view, Class<?> clz) {
-        ActivityCompat.startActivity(this, new Intent(this, clz), ActivityOptionsCompat
-                .makeSceneTransitionAnimation(this, view, TRANSLATE_VIEW).toBundle());
-        startActivity(new Intent(this, clz));
+    @Override
+    public void finish() {
+        super.finish();
+        if (isTransAnim)
+            overridePendingTransition(R.anim.activity_finish_zoom_in, R.anim
+                    .activity_start_zoom_out);
     }
 
     /**
@@ -193,7 +211,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
                 .getCurrentFocus().getWindowToken(), 0);
     }
 
-    protected void initTitleBar(Toolbar toolbar, String title){
+    protected void initTitleBar(Toolbar toolbar, String title) {
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -205,5 +223,20 @@ public abstract class BaseCompatActivity extends SupportActivity {
                 onBackPressedSupport();
             }
         });
+    }
+
+    /**
+     * 是否使用overridePendingTransition过度动画
+     * @return 是否使用overridePendingTransition过度动画，默认使用
+     */
+    protected boolean isTransAnim() {
+        return isTransAnim;
+    }
+
+    /**
+     * 设置是否使用overridePendingTransition过度动画
+     */
+    protected void setIsTransAnim(boolean b){
+        isTransAnim = b;
     }
 }

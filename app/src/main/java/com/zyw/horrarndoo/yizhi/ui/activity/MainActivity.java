@@ -228,6 +228,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         } else {
             //如果已经到root fragment了，2秒内点击2次退出
             if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+                setIsTransAnim(false);
                 finish();
             } else {
                 TOUCH_TIME = System.currentTimeMillis();

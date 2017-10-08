@@ -1,6 +1,5 @@
 package com.zyw.horrarndoo.sdk.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
@@ -98,28 +97,16 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
 
     @Override
     public void startNewActivity(@NonNull Class<?> clz) {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, clz);
-        startActivity(intent);
+        ((BaseCompatActivity) mActivity).startActivity(clz);
     }
 
     @Override
     public void startNewActivity(@NonNull Class<?> clz, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, clz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
+        ((BaseCompatActivity) mActivity).startActivity(clz, bundle);
     }
 
     @Override
     public void startNewActivityForResult(@NonNull Class<?> clz, Bundle bundle, int requestCode) {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, clz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivityForResult(intent, requestCode);
+        ((BaseCompatActivity) mActivity).startActivityForResult(clz, bundle, requestCode);
     }
 }

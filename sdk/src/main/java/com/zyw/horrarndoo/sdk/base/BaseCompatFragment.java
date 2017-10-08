@@ -46,7 +46,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
         if (getLayoutView() != null) {
             return getLayoutView();
         } else {
-//            return inflater.inflate(getLayoutId(), null);
+            //            return inflater.inflate(getLayoutId(), null);
             return inflater.inflate(getLayoutId(), container, false);
         }
     }
