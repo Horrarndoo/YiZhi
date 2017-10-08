@@ -21,7 +21,8 @@
         </provider>
 
         <activity
-            android:name=".ui.activity.FlashActivity">
+            android:name=".ui.activity.FlashActivity"
+            android:theme="@style/FlashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

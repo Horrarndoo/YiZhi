@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:id="@+id/bitmap_flash"
+            android:src="@mipmap/bg_flash">
+        </bitmap>
+    </item>
+</layer-list>

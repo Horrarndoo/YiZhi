@@ -1,27 +1,26 @@
 package com.zyw.horrarndoo.yizhi.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
-import com.zyw.horrarndoo.yizhi.R;
 
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
-public class FlashActivity extends BaseCompatActivity {
-
+public class FlashActivity extends Activity {
     private boolean mIsCancle;
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Observable.timer(500, TimeUnit.MILLISECONDS)
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long l) throws Exception {
                         if (!mIsCancle) {
-                            startActivity(MainActivity.class);
+                            startActivity(new Intent(FlashActivity.this, MainActivity.class));
                             finish();
                         }
                     }
@@ -29,12 +28,8 @@ public class FlashActivity extends BaseCompatActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_flash;
-    }
-
-    @Override
-    public void onBackPressedSupport() {
+    public void onBackPressed() {
+        super.onBackPressed();
         mIsCancle = true;
         finish();
     }
