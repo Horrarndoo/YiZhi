@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.gankio;
+package com.zyw.horrarndoo.yizhi.ui.fragment.douban;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,17 +14,17 @@ import com.zyw.horrarndoo.yizhi.R;
  * <p>
  */
 
-public class GankIoFragment extends BaseMVPCompatFragment {
-    public static GankIoFragment newInstance() {
+public class DoubanRootFragment extends BaseMVPCompatFragment {
+    public static DoubanRootFragment newInstance() {
         Bundle args = new Bundle();
-        GankIoFragment fragment = new GankIoFragment();
+        DoubanRootFragment fragment = new DoubanRootFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_gank_io;
+        return R.layout.fragment_douban;
     }
 
     @Override

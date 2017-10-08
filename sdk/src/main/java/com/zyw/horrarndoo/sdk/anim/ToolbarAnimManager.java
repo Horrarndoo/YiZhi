@@ -44,13 +44,13 @@ public class ToolbarAnimManager {
                 tvTitle = (TextView) child;
         }
 
-        assert ibIcon != null;
+        if(ibIcon != null)
         animNavigationIcon(context, ibIcon);
 
-        assert tvTitle != null;
+        if(tvTitle != null)
         animTitle(context, tvTitle);
 
-        assert amvTheme != null;
+        if(amvTheme != null)
         animMenu(context, amvTheme);
     }
 

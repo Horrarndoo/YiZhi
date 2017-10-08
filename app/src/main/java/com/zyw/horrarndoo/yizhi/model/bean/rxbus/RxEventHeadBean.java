@@ -5,12 +5,13 @@ import android.net.Uri;
 /**
  * Created by Horrarndoo on 2017/9/26.
  * <p>
+ * RxBus传递头像uri bean
  */
 
 public class RxEventHeadBean {
     private Uri uri;
 
-    public RxEventHeadBean( Uri uri) {
+    public RxEventHeadBean(Uri uri) {
         this.uri = uri;
     }
 

@@ -50,7 +50,7 @@ ext {
     glideokhttpVersion = '1.3.1'
     photoviewVersion = '1.2.4'
     butterknifeVersion = '8.8.1'
-    fragmentationVersion = '0.10.4'
+    fragmentationVersion = '1.1.6'
     loggerVersion = '1.15'
     circleImageviewVersion = '2.1.0'
     BaseRecyclerViewAdapterHelperVersion = '2.9.22'

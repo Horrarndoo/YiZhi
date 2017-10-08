@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs;
+package com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,12 +45,12 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_tabs_weixin;
+        return R.layout.fragment_home_weixin;
     }
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle);
+        mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle_home);
         mWeixinAdapter.setOnLoadMoreListener(this, rvWexin);
         mWeixinAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -69,7 +69,11 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
                 mPresenter.loadLatestList();
             }
         });
+    }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
         mPresenter.loadLatestList();//第一次显示时请求最新的list
     }
 

@@ -48,19 +48,20 @@ public abstract class BaseCompatFragment extends SupportFragment {
         if (getLayoutView() != null) {
             return getLayoutView();
         } else {
-            return inflater.inflate(getLayoutId(), null);
+//            return inflater.inflate(getLayoutId(), null);
+            return inflater.inflate(getLayoutId(), container, false);
         }
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         TAG = getClass().getSimpleName();
         binder = ButterKnife.bind(this, view);
         getBundle(getArguments());
         initData();
         initUI(view, savedInstanceState);
-        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -81,7 +82,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     }
 
     @Override
-    protected FragmentAnimator onCreateFragmentAnimator() {
+    public FragmentAnimator onCreateFragmentAnimator() {
         //fragment切换使用默认Vertical动画
         return new DefaultVerticalAnimator();
     }

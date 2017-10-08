@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.home;
+package com.zyw.horrarndoo.yizhi.ui.fragment.home.child;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,11 +24,11 @@ import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
-import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
+import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
 import com.zyw.horrarndoo.yizhi.presenter.home.MainPresenter;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WangyiFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.WeixinFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs.ZhihuFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WangyiFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WeixinFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.ZhihuFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,13 +37,11 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by Horrarndoo on 2017/9/7.
+ * Created by Horrarndoo on 2017/10/8.
  * <p>
- * 主页fragment
  */
 
-public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresenter, MainContract
-        .IMainModel> implements MainContract.IMainView {
+public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMainPresenter, HomeMainContract.IHomeMainModel> implements HomeMainContract.IHomeMainView {
 
     @BindView(R.id.app_bar)
     AppBarLayout appBar;
@@ -83,7 +81,7 @@ public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresent
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_home_;
     }
 
     @Override
@@ -170,13 +168,6 @@ public class HomeFragment extends BaseMVPCompatFragment<MainContract.MainPresent
         for (int i = 0; i < tabs.length; i++) {
             tlTabs.getTabAt(i).setText(tabs[i]);
         }
-    }
-
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        //Logger.e("onLazyInitView");
-        // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 
     /**

@@ -1,22 +1,16 @@
 package com.zyw.horrarndoo.sdk.helper;
 
 
-import com.zyw.horrarndoo.sdk.data.DataResponse;
-
-import org.reactivestreams.Publisher;
-
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -36,27 +30,6 @@ public class RxHelper {
             public ObservableSource<T> apply(Observable<T> upstream) {
                 return upstream.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
-    }
-
-    /**
-     * 处理服务器返回
-     */
-    public <T> FlowableTransformer<DataResponse<T>, T> handleResult() {
-        return new FlowableTransformer<DataResponse<T>, T>() {
-            @Override
-            public Publisher<T> apply(Flowable<DataResponse<T>> upstream) {
-                return upstream.flatMap(new Function<DataResponse<T>, Publisher<T>>() {
-                    @Override
-                    public Publisher<T> apply(DataResponse<T> tDataResponse) throws Exception {
-                        if (tDataResponse.getCode() == 200) {
-                            return createFlowable(tDataResponse.getNewslist());
-                        } else {
-                            return Flowable.error(new Throwable("服务器返回error"));
-                        }
-                    }
-                });
             }
         };
     }

@@ -24,10 +24,11 @@ import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
 import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
-import com.zyw.horrarndoo.yizhi.ui.fragment.home.HomeFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.gankio.GankIoFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.douban.DoubanFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.personal.PersonalFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.douban.DoubanRootFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.gankio.GankIoRootFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.HomeRootFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.HomeFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.personal.PersonalRootFragment;
 
 import java.io.File;
 
@@ -69,24 +70,24 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
     @Override
     protected void initData() {
         super.initData();
-//        Logger.e("RxBus.get().register(this)");
+        //        Logger.e("RxBus.get().register(this)");
         RxBus.get().register(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        Logger.e("RxBus.get().unRegister(this)");
+        //        Logger.e("RxBus.get().unRegister(this)");
         RxBus.get().unRegister(this);
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            mFragments[FIRST] = HomeFragment.newInstance();
-            mFragments[SECOND] = GankIoFragment.newInstance();
-            mFragments[THIRD] = DoubanFragment.newInstance();
-            mFragments[FOURTH] = PersonalFragment.newInstance();
+            mFragments[FIRST] = HomeRootFragment.newInstance();
+            mFragments[SECOND] = GankIoRootFragment.newInstance();
+            mFragments[THIRD] = DoubanRootFragment.newInstance();
+            mFragments[FOURTH] = PersonalRootFragment.newInstance();
 
             loadMultipleRootFragment(R.id.fl_container, FIRST,
                     mFragments[FIRST],
@@ -98,10 +99,10 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
 
             // 这里我们需要拿到mFragments的引用,也可以通过getSupportFragmentManager.getFragments()
             // 自行进行判断查找(效率更高些),用下面的方法查找更方便些
-            mFragments[FIRST] = findFragment(HomeFragment.class);
-            mFragments[SECOND] = findFragment(GankIoFragment.class);
-            mFragments[THIRD] = findFragment(DoubanFragment.class);
-            mFragments[FOURTH] = findFragment(PersonalFragment.class);
+            mFragments[FIRST] = findFragment(HomeRootFragment.class);
+            mFragments[SECOND] = findFragment(GankIoRootFragment.class);
+            mFragments[THIRD] = findFragment(DoubanRootFragment.class);
+            mFragments[FOURTH] = findFragment(PersonalRootFragment.class);
         }
 
         mivMenu = (MovingImageView) nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);

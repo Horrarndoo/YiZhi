@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.ui.fragment.home.tabs;
+package com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,12 +44,12 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_tabs_wangyi;
+        return R.layout.fragment_home_wangyi;
     }
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle);
+        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle_home);
         mWangyiAdapter.setOnLoadMoreListener(this, rvWangyi);
         mWangyiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -68,7 +68,11 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
                 mPresenter.loadLatestList();
             }
         });
+    }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
         mPresenter.loadLatestList();//第一次显示时请求最新的list
     }
 

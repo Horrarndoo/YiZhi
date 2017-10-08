@@ -10,17 +10,17 @@ import com.zyw.horrarndoo.sdk.base.IBaseModel;
  * 主页Contract
  */
 
-public interface MainContract {
+public interface HomeMainContract {
     //主页接口
-    abstract class MainPresenter extends BasePresenter<IMainModel, IMainView> {
+    abstract class HomeMainPresenter extends BasePresenter<IHomeMainModel, IHomeMainView> {
         public abstract void getTabList();
     }
 
-    interface IMainModel extends IBaseModel {
+    interface IHomeMainModel extends IBaseModel {
         String[] getTabs();
     }
 
-    interface IMainView extends IBaseFragment {
+    interface IHomeMainView extends IBaseFragment {
         void showTabList(String[] tabs);
     }
 }

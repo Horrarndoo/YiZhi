@@ -18,7 +18,7 @@ import butterknife.BindView;
  * <p>
  */
 
-public class PersonalFragment extends BaseCompatFragment {
+public class PersonalRootFragment extends BaseCompatFragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -27,9 +27,9 @@ public class PersonalFragment extends BaseCompatFragment {
     @BindView(R.id.fl_personal_container_lower)
     FrameLayout flContainerLower;
 
-    public static PersonalFragment newInstance() {
+    public static PersonalRootFragment newInstance() {
         Bundle args = new Bundle();
-        PersonalFragment fragment = new PersonalFragment();
+        PersonalRootFragment fragment = new PersonalRootFragment();
         fragment.setArguments(args);
         return fragment;
     }

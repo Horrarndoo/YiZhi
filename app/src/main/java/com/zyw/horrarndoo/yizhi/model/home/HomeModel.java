@@ -3,7 +3,7 @@ package com.zyw.horrarndoo.yizhi.model.home;
 import android.support.annotation.NonNull;
 
 import com.zyw.horrarndoo.sdk.base.BaseModel;
-import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
+import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
 
 /**
  * Created by Horrarndoo on 2017/9/11.
@@ -11,7 +11,7 @@ import com.zyw.horrarndoo.yizhi.contract.home.MainContract;
  * 主页model
  */
 
-public class HomeModel extends BaseModel implements MainContract.IMainModel {
+public class HomeModel extends BaseModel implements HomeMainContract.IHomeMainModel {
 
     @NonNull
     public static HomeModel newInstance() {
