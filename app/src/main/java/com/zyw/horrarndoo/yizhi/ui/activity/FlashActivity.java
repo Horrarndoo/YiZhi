@@ -1,24 +1,60 @@
 package com.zyw.horrarndoo.yizhi.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.helper.RxHelper;
+import com.zyw.horrarndoo.yizhi.R;
 
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 
-public class FlashActivity extends Activity {
+public class FlashActivity extends BaseCompatActivity {
+    @BindView(R.id.ll_skip)
+    LinearLayout llSkip;
+    @BindView(R.id.tv_count_down)
+    TextView tvCountDown;
+
     private boolean mIsCancle;
+    private int mTime = 3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Observable.timer(500, TimeUnit.MILLISECONDS)
-                .subscribe(new Consumer<Long>() {
+    protected void initView(Bundle savedInstanceState) {
+        Observable.interval(1, TimeUnit.SECONDS)
+                .take(3)//计时次数
+                .map(new Function<Long, Long>() {
                     @Override
-                    public void accept(Long l) throws Exception {
+                    public Long apply(Long aLong) throws Exception {
+                        return mTime - aLong;
+                    }
+                })
+                .compose(RxHelper.<Long>rxSchedulerHelper())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(Long value) {
+                        tvCountDown.setText(String.valueOf(value));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
                         if (!mIsCancle) {
                             startActivity(new Intent(FlashActivity.this, MainActivity.class));
                             finish();
@@ -28,9 +64,25 @@ public class FlashActivity extends Activity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    protected int getLayoutId() {
+        return R.layout.activity_flash;
+    }
+
+    @Override
+    public void onBackPressedSupport() {
         mIsCancle = true;
+        setIsTransAnim(false);
         finish();
+    }
+
+    @OnClick(R.id.ll_skip)
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.ll_skip:
+                mIsCancle = true;
+                startActivity(new Intent(FlashActivity.this, MainActivity.class));
+                finish();
+                break;
+        }
     }
 }
