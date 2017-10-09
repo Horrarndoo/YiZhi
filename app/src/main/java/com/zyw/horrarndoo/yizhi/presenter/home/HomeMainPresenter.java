@@ -3,18 +3,18 @@ package com.zyw.horrarndoo.yizhi.presenter.home;
 import android.support.annotation.NonNull;
 
 import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
-import com.zyw.horrarndoo.yizhi.model.home.HomeModel;
+import com.zyw.horrarndoo.yizhi.model.home.HomeMainModel;
 
 /**
  * Created by Horrarndoo on 2017/9/11.
  * <p>
  */
 
-public class MainPresenter extends HomeMainContract.HomeMainPresenter {
+public class HomeMainPresenter extends HomeMainContract.HomeMainPresenter {
 
     @NonNull
-    public static MainPresenter newInstance() {
-        return new MainPresenter();
+    public static HomeMainPresenter newInstance() {
+        return new HomeMainPresenter();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MainPresenter extends HomeMainContract.HomeMainPresenter {
 
     @Override
     public HomeMainContract.IHomeMainModel getModel() {
-        return HomeModel.newInstance();
+        return HomeMainModel.newInstance();
     }
 
     @Override

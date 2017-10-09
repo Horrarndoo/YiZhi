@@ -11,11 +11,11 @@ import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
  * 主页model
  */
 
-public class HomeModel extends BaseModel implements HomeMainContract.IHomeMainModel {
+public class HomeMainModel extends BaseModel implements HomeMainContract.IHomeMainModel {
 
     @NonNull
-    public static HomeModel newInstance() {
-        return new HomeModel();
+    public static HomeMainModel newInstance() {
+        return new HomeMainModel();
     }
 
     @Override

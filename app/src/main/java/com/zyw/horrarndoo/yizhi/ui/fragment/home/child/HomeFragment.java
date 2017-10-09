@@ -25,7 +25,7 @@ import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
-import com.zyw.horrarndoo.yizhi.presenter.home.MainPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.home.HomeMainPresenter;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WangyiFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WeixinFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.ZhihuFragment;
@@ -137,7 +137,7 @@ public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMai
     @NonNull
     @Override
     public BasePresenter initPresenter() {
-        return MainPresenter.newInstance();
+        return HomeMainPresenter.newInstance();
     }
 
     @Override
