@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.R;
@@ -26,12 +27,12 @@ public class FlashActivity extends BaseCompatActivity {
     TextView tvCountDown;
 
     private boolean mIsCancle;
-    private int mTime = 3;
+    private int mTime = 2;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        Observable.interval(1, TimeUnit.SECONDS)
-                .take(3)//计时次数
+        Observable.interval(1, TimeUnit.SECONDS)//interval每隔1秒执行一次，倒计时2次，相当于倒计时3秒
+                .take(2)//计时次数
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
@@ -46,6 +47,7 @@ public class FlashActivity extends BaseCompatActivity {
 
                     @Override
                     public void onNext(Long value) {
+                        Logger.e("value = " + value);
                         tvCountDown.setText(String.valueOf(value));
                     }
 
@@ -76,8 +78,8 @@ public class FlashActivity extends BaseCompatActivity {
     }
 
     @OnClick(R.id.ll_skip)
-    public void onClick(View v){
-        switch (v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.ll_skip:
                 mIsCancle = true;
                 startActivity(new Intent(FlashActivity.this, MainActivity.class));
