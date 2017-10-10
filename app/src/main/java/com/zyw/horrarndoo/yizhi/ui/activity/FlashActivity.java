@@ -27,12 +27,12 @@ public class FlashActivity extends BaseCompatActivity {
     TextView tvCountDown;
 
     private boolean mIsCancle;
-    private int mTime = 2;
+    private int mTime = 3;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        Observable.interval(1, TimeUnit.SECONDS)//interval每隔1秒执行一次，倒计时2次，相当于倒计时3秒
-                .take(2)//计时次数
+        Observable.interval(1, TimeUnit.SECONDS)
+                .take(3)//计时次数
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
