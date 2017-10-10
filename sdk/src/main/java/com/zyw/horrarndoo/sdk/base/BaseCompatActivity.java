@@ -190,8 +190,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
     public void finish() {
         super.finish();
         if (isTransAnim)
-            overridePendingTransition(R.anim.activity_finish_zoom_in, R.anim
-                    .activity_start_zoom_out);
+            overridePendingTransition(R.anim.activity_finish_trans_in, R.anim
+                    .activity_finish_trans_out);
     }
 
     /**
