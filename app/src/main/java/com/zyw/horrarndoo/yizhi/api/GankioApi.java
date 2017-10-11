@@ -23,8 +23,8 @@ public interface GankioApi {
      * eg: http://gank.io/api/data/Android/10/1
      */
     @GET("/api/data/{type}/{pre_page}/{page}")
-    Observable<GankIoDataBean> getGankIoData(@Path("type") String id, @Path("page") int page,
-                                             @Path("pre_page") int pre_page);
+    Observable<GankIoDataBean> getGankIoData(@Path("type") String type, @Path("pre_page") int
+            pre_page, @Path("page") int page);
 
     /**
      * 每日数据： http://gank.io/api/day/年/月/日

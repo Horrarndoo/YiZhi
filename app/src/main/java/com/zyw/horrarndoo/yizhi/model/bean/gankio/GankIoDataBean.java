@@ -27,9 +27,9 @@ public class GankIoDataBean implements Serializable {
      */
 
     @SerializedName("results")
-    private List<ResultBean> results;
+    private List<GankIoDataResultBean> results;
 
-    public static class ResultBean implements Serializable {
+    public static class GankIoDataResultBean implements Serializable {
 
         @SerializedName("_id")
         private String _id;
@@ -112,7 +112,7 @@ public class GankIoDataBean implements Serializable {
         return error;
     }
 
-    public List<ResultBean> getResults() {
+    public List<GankIoDataResultBean> getResults() {
         return results;
     }
 

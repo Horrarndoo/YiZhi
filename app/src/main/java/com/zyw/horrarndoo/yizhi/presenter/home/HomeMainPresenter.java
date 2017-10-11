@@ -32,6 +32,5 @@ public class HomeMainPresenter extends HomeMainContract.HomeMainPresenter {
 
     @Override
     public void onStart() {
-        getTabList();
     }
 }

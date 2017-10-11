@@ -34,59 +34,59 @@ public class GankIoDayBean implements Serializable {
          */
 
         @SerializedName("Android")
-        private List<GankIoDailyBean> Android;
+        private List<GankIoDayItemBean> Android;
 
         @SerializedName("iOS")
-        private List<GankIoDailyBean> iOS;
+        private List<GankIoDayItemBean> iOS;
 
         @SerializedName("前端")
-        private List<GankIoDailyBean> front;
+        private List<GankIoDayItemBean> front;
 
         @SerializedName("App")
-        private List<GankIoDailyBean> app;
+        private List<GankIoDayItemBean> app;
 
         @SerializedName("休息视频")
-        private List<GankIoDailyBean> restMovie;
+        private List<GankIoDayItemBean> restMovie;
 
         @SerializedName("拓展资源")
-        private List<GankIoDailyBean> resource;
+        private List<GankIoDayItemBean> resource;
 
         @SerializedName("瞎推荐")
-        private List<GankIoDailyBean> recommend;
+        private List<GankIoDayItemBean> recommend;
 
         @SerializedName("福利")
-        private List<GankIoDailyBean> welfare;
+        private List<GankIoDayItemBean> welfare;
 
 
-        public List<GankIoDailyBean> getAndroid() {
+        public List<GankIoDayItemBean> getAndroid() {
             return Android;
         }
 
-        public List<GankIoDailyBean> getiOS() {
+        public List<GankIoDayItemBean> getiOS() {
             return iOS;
         }
 
-        public List<GankIoDailyBean> getRestMovie() {
+        public List<GankIoDayItemBean> getRestMovie() {
             return restMovie;
         }
 
-        public List<GankIoDailyBean> getResource() {
+        public List<GankIoDayItemBean> getResource() {
             return resource;
         }
 
-        public List<GankIoDailyBean> getRecommend() {
+        public List<GankIoDayItemBean> getRecommend() {
             return recommend;
         }
 
-        public List<GankIoDailyBean> getWelfare() {
+        public List<GankIoDayItemBean> getWelfare() {
             return welfare;
         }
 
-        public List<GankIoDailyBean> getFront() {
+        public List<GankIoDayItemBean> getFront() {
             return front;
         }
 
-        public List<GankIoDailyBean> getApp() {
+        public List<GankIoDayItemBean> getApp() {
             return app;
         }
     }
@@ -101,5 +101,14 @@ public class GankIoDayBean implements Serializable {
 
     public List<String> getCategory() {
         return category;
+    }
+
+    @Override
+    public String toString() {
+        return "GankIoDayBean{" +
+                "error=" + error +
+                ", results=" + results +
+                ", category=" + category +
+                '}';
     }
 }

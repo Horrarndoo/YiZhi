@@ -89,7 +89,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             mFragments[THIRD] = DoubanRootFragment.newInstance();
             mFragments[FOURTH] = PersonalRootFragment.newInstance();
 
-            loadMultipleRootFragment(R.id.fl_container, FIRST,
+            loadMultipleRootFragment(R.id.fl_container, SECOND,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],

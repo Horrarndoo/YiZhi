@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Horrarndoo on 2017/10/7.
+ * Created by Horrarndoo on 2017/10/11.
  * <p>
  */
 
-public class GankIoDailyBean {
+public class GankIoDayItemBean {
     // 存储单独设置的值，用来显示title
     @SerializedName("type_title")
     private String type_title;
@@ -133,5 +133,23 @@ public class GankIoDailyBean {
 
     public String getImage_url() {
         return image_url;
+    }
+
+    @Override
+    public String toString() {
+        return "GankIoDayResultBean{" +
+                "type_title='" + type_title + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", _id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                ", source='" + source + '\'' +
+                ", images=" + images +
+                '}';
     }
 }

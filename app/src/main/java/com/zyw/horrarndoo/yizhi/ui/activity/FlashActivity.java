@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.R;
@@ -27,12 +26,12 @@ public class FlashActivity extends BaseCompatActivity {
     TextView tvCountDown;
 
     private boolean mIsCancle;
-    private int mTime = 3;
+    private int mTime = 1;//方便测试，直接略过启动页面
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         Observable.interval(1, TimeUnit.SECONDS)
-                .take(3)//计时次数
+                .take(1)//计时次数
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {

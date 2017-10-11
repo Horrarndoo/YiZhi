@@ -80,6 +80,12 @@ public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMai
     }
 
     @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        mPresenter.getTabList();
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_home_;
     }
