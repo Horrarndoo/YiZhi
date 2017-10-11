@@ -35,7 +35,7 @@
 
     <!-- 填充 -->
     <solid
-        android:color="@color/theme_black_7f"/><!-- 填充的颜色 -->
+        android:color="@color/shape_count_down_bg"/><!-- 填充的颜色 -->
 
     <!-- 描边 -->
     <!--<stroke-->

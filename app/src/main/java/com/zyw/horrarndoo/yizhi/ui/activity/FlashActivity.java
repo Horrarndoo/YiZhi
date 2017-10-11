@@ -36,7 +36,7 @@ public class FlashActivity extends BaseCompatActivity {
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
-                        return mTime - aLong;
+                        return mTime - aLong;// 3-0 3-2 3-1
                     }
                 })
                 .compose(RxHelper.<Long>rxSchedulerHelper())
@@ -47,7 +47,7 @@ public class FlashActivity extends BaseCompatActivity {
 
                     @Override
                     public void onNext(Long value) {
-                        Logger.e("value = " + value);
+//                        Logger.e("value = " + value);
                         tvCountDown.setText(String.valueOf(value));
                     }
 

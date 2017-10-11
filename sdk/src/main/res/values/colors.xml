@@ -63,4 +63,6 @@
     <color name="indoor_temp">#ffffff</color>
     <color name="power_time">#4a2317</color>
     <color name="light_grey2">#AAAAAA</color>
+
+    <color name="shape_count_down_bg">#88000000</color>
 </resources>
