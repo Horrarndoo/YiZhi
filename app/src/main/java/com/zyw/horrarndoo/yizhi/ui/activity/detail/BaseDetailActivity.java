@@ -1,7 +1,6 @@
 package com.zyw.horrarndoo.yizhi.ui.activity.detail;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -27,6 +26,7 @@ import com.zyw.horrarndoo.sdk.base.BaseMVPCompatActivity;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
+import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.contract.detail.BaseDetailContract;
@@ -35,7 +35,7 @@ import com.zyw.horrarndoo.yizhi.ui.widgets.WebViewLongClickedPopWindow;
 
 import butterknife.BindView;
 
-import static com.zyw.horrarndoo.yizhi.constant.IntentKeyConstant.INTENT_KEY_IMAGE_URL;
+import static com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant.ARG_KEY_IMAGE_BROWSE_URL;
 
 /**
  * Created by Horrarndoo on 2017/9/20.
@@ -146,10 +146,12 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
     @Override
     public void gotoImageBrowse(String imgUrl) {
-        Logger.e("gotoImageBrowse");
-        Intent intent = new Intent();
-        intent.putExtra(INTENT_KEY_IMAGE_URL, imgUrl);
-        startActivity(ImageBrowseActivity.class, intent);
+        if(StringUtils.isEmpty(imgUrl))
+            return;
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_KEY_IMAGE_BROWSE_URL, imgUrl);
+        startActivity(ImageBrowseActivity.class, bundle);
     }
 
     /**

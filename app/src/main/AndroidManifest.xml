@@ -36,6 +36,8 @@
 
         <activity android:name=".ui.activity.detail.WeixinChoiceDetailActivity"/>
 
+        <activity android:name=".ui.activity.detail.GankIoDetailActivity"/>
+
         <activity android:name=".ui.activity.AboutActivity"/>
 
         <activity android:name=".ui.activity.personal.HeadSettingActivity"/>

@@ -10,10 +10,14 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by Horrarndoo on 2017/8/31.
@@ -121,6 +125,87 @@ public class FileUtils {
             dir.mkdirs();
         }
         return dirPath;
+    }
+
+    public static void copyFile(File sourcefile, File targetFile) {
+        FileInputStream input = null;
+        BufferedInputStream inbuff = null;
+        FileOutputStream out = null;
+        BufferedOutputStream outbuff = null;
+
+        try {
+
+            input = new FileInputStream(sourcefile);
+            inbuff = new BufferedInputStream(input);
+
+            out = new FileOutputStream(targetFile);
+            outbuff = new BufferedOutputStream(out);
+
+            byte[] b = new byte[1024 * 5];
+            int len = 0;
+            while ((len = inbuff.read(b)) != -1) {
+                outbuff.write(b, 0, len);
+            }
+            outbuff.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                if (inbuff != null)
+                    inbuff.close();
+                if (outbuff != null)
+                    outbuff.close();
+                if (out != null)
+                    out.close();
+                if (input != null)
+                    input.close();
+            } catch (Exception ex) {
+
+            }
+        }
+    }
+
+    /**
+     * 保存文件到本机
+     *
+     * @param context            context
+     * @param fileName           文件名
+     * @param file               file
+     * @param saveResultCallback 保存结果callback
+     */
+    public static void saveFile(final Context context, final String fileName, final File file,
+                                final SaveResultCallback saveResultCallback) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File appDir = new File(Environment.getExternalStorageDirectory(), "yizhi");
+                if (!appDir.exists()) {
+                    appDir.mkdir();
+                }
+                String fileNameM = MD5Utils.getMD5("yizhi_pic" + fileName) + ".gif";
+                File savefile = new File(appDir, fileNameM);
+                try {
+                    InputStream is = new FileInputStream(file);
+                    FileOutputStream fos = new FileOutputStream(savefile);
+                    byte[] buffer = new byte[400000];
+                    int count = 0;
+                    while ((count = is.read(buffer)) > 0) {
+                        fos.write(buffer, 0, count);
+                    }
+                    fos.close();
+                    is.close();
+                    saveResultCallback.onSavedSuccess();
+                } catch (FileNotFoundException e) {
+                    saveResultCallback.onSavedFailed();
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    saveResultCallback.onSavedFailed();
+                    e.printStackTrace();
+                }
+                //保存图片后发送广播通知更新数据库
+                Uri uri = Uri.fromFile(savefile);
+                context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+            }
+        }).start();
     }
 
     /**

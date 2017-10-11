@@ -26,10 +26,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:elevation="0dp"
-        app:borderWidth="0dp"
-        app:rippleColor="@android:color/black"
         app:backgroundTint="@android:color/black"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:rippleColor="@android:color/black"
         app:srcCompat="@drawable/ic_vector_pic_save"/>
+
+    <ProgressBar
+        android:id="@+id/pb_pic_browse"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"/>
 
 </android.support.design.widget.CoordinatorLayout>

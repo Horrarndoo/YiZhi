@@ -81,6 +81,7 @@ dependencies {
     //SwitchButton
     compile "com.kyleduo.switchbutton:library:$rootProject.SwtichButtonVersion"
 
+    //PhotoView
     compile "com.bm.photoview:library:$rootProject.PhotoViewVersion"
 
     //permissions

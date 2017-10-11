@@ -6,6 +6,8 @@ package com.zyw.horrarndoo.yizhi.constant;
  */
 
 public class BundleKeyConstant {
+    public static final String ARG_KEY_IMAGE_BROWSE_URL = "arg_key_image_browse_url";
+
     public static final String ARG_KEY_ZHIHU_DETAIL_ID = "arg_key_zhihu_detail_id";
     public static final String ARG_KEY_ZHIHU_DETAIL_TITLE = "arg_key_zhihu_detail_title";
 
@@ -19,4 +21,7 @@ public class BundleKeyConstant {
     public static final String ARG_KEY_WEIXIN_DETAIL_TITLE = "arg_key_weixini_detail_title";
     public static final String ARG_KEY_WEIXIN_DETAIL_IMAGE_URL = "arg_key_weixin_detail_image_url";
     public static final String ARG_KEY_WEIXIN_DETAIL_COPYRIGHT = "arg_key_weixin_detail_copyright";
+
+    public static final String ARG_KEY_GANKIO_DETAIL_URL = "arg_key_gankio_detail_url";
+    public static final String ARG_KEY_GANKIO_DETAIL_TITLE = "arg_key_gankio_detail_title";
 }
