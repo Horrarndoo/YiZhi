@@ -181,8 +181,10 @@ public class FileUtils {
                 if (!appDir.exists()) {
                     appDir.mkdir();
                 }
-                String fileNameM = MD5Utils.getMD5("yizhi_pic" + fileName) + ".gif";
-                File savefile = new File(appDir, fileNameM);
+                String rFileName = fileName.substring(0, fileName.lastIndexOf("."));
+                String fileFormat = fileName.substring(fileName.lastIndexOf("."));
+                String saveFileName = MD5Utils.getMD5("yizhi_pic" + rFileName) + fileFormat;
+                File savefile = new File(appDir, saveFileName);
                 try {
                     InputStream is = new FileInputStream(file);
                     FileOutputStream fos = new FileOutputStream(savefile);
