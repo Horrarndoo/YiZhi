@@ -17,11 +17,30 @@ import java.util.List;
  */
 
 public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBean, BaseViewHolder> {
+    private List<GankIoDayItemBean> mlist;
 
     public GankIoDayAdapter(@Nullable List<GankIoDayItemBean> data) {
         super(data);
+        mlist = data;
+
         addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL, R.layout.item_gank_io_day_normal);
         addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_REFESH, R.layout.item_gank_io_day_refesh);
+    }
+
+    public void addItem(GankIoDayItemBean bean, int position) {
+        mlist.add(position, bean);
+        notifyItemInserted(position);
+    }
+
+    public void removeItem(GankIoDayItemBean bean) {
+        int position = mlist.indexOf(bean);
+        mlist.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void removeItem(int position) {
+        mlist.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override

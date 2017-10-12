@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoDayContract;
-import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayBean;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayItemBean;
 import com.zyw.horrarndoo.yizhi.model.gankio.tabs.GankIoDayModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.GankIoDetailActivity;
@@ -27,6 +26,10 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
     private String mMonth = "11";
     private String mDay = "24";
 
+    private int mAndroidPages = 0;
+    private int mIOSPages = 0;
+    private List<GankIoDayItemBean> mList = new ArrayList<>();
+
     @NonNull
     public static GankIoDayPresenter newInstance() {
         return new GankIoDayPresenter();
@@ -36,31 +39,18 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
     public void loadLatestList() {
         if (mIModel == null || mIView == null)
             return;
+
         //GankIo每日数据大部分时间返回空值，这里直接写死一个日期数据
-        mRxManager.register(mIModel.getGankIoDayList(mYear, mMonth, mDay).subscribe(new Consumer<GankIoDayBean>() {
-            @Override
-            public void accept(GankIoDayBean gankIoDayBean) throws Exception {
-                if (mIView == null)
-                    return;
-                List<GankIoDayItemBean> list = new ArrayList<>();
-                GankIoDayItemBean itemAndroidBean = gankIoDayBean.getResults().getAndroid().get(0);
-                GankIoDayItemBean itemIOSBean = gankIoDayBean.getResults().getiOS().get(0);
-                GankIoDayItemBean itemFrontBean = gankIoDayBean.getResults().getFront().get(0);
-                GankIoDayItemBean itemWelfareBean = gankIoDayBean.getResults().getWelfare().get(0);
-                GankIoDayItemBean itemRestMovieBean = gankIoDayBean.getResults().getRestMovie().get(0);
-                itemAndroidBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
-                itemIOSBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
-                itemFrontBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
-                itemWelfareBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
-                itemRestMovieBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
-                list.add(itemAndroidBean);
-                list.add(itemIOSBean);
-                list.add(itemFrontBean);
-                list.add(itemWelfareBean);
-                list.add(itemRestMovieBean);
-                mIView.updateContentList(list);
-            }
-        }));
+        mRxManager.register(mIModel.getGankIoDayList(mYear, mMonth, mDay)
+                .subscribe(new Consumer<List<GankIoDayItemBean>>() {
+                    @Override
+                    public void accept(List<GankIoDayItemBean> list) throws Exception {
+                        if (mIView == null)
+                            return;
+                        mList = list;
+                        mIView.updateContentList(mList);
+                    }
+                }));
     }
 
     @Override
@@ -73,10 +63,10 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
         Logger.e(item.toString());
 
         Bundle bundle = new Bundle();
-        if(item.getType().equals("福利")){
-            bundle.putString(BundleKeyConstant.ARG_KEY_IMAGE_BROWSE_URL,item.getUrl());
+        if (item.getType().equals("福利")) {
+            bundle.putString(BundleKeyConstant.ARG_KEY_IMAGE_BROWSE_URL, item.getUrl());
             mIView.startNewActivity(ImageBrowseActivity.class, bundle);
-        }else {
+        } else {
             bundle.putString(BundleKeyConstant.ARG_KEY_GANKIO_DETAIL_URL, item.getUrl());
             bundle.putString(BundleKeyConstant.ARG_KEY_GANKIO_DETAIL_TITLE, item.getDesc());
             mIView.startNewActivity(GankIoDetailActivity.class, bundle);
@@ -85,7 +75,21 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
 
     @Override
     public void onMoreClick(int position, GankIoDayItemBean item) {
-//        Logger.e(item.toString());
+        //        Logger.e(item.toString());
+    }
+
+    @Override
+    public void onRefeshClick(int position, GankIoDayItemBean item) {
+        if (mIModel == null || mIView == null)
+            return;
+
+        if (item.getType().equals("Android")) {
+            mAndroidPages++;
+            mIView.itemNotifyChanged(mIModel.getGankIoDayAndroid(mAndroidPages % 5), position);
+        } else {
+            mIOSPages++;
+            mIView.itemNotifyChanged(mIModel.getGankIoDayIOS(mIOSPages % 2), position);
+        }
     }
 
     @Override

@@ -50,29 +50,6 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mGankIoDayAdapter = new GankIoDayAdapter(null);
-        mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (GankIoDayItemBean) adapter.getItem(position));
-            }
-        });
-        mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (view.getId())
-                {
-                    case R.id.ll_more:
-                        mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
-                        break;
-                    case R.id.ll_refesh:
-                        break;
-                }
-            }
-        });
-        rvGankIoDay.setAdapter(mGankIoDayAdapter);
-        rvGankIoDay.setLayoutManager(new LinearLayoutManager(mContext));
-
         errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
                 (ViewGroup) rvGankIoDay.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +75,39 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
     @Override
     public void updateContentList(List<GankIoDayItemBean> list) {
         Logger.e(list.toString());
-        mGankIoDayAdapter.addData(list);
+        if(mGankIoDayAdapter == null){
+            mGankIoDayAdapter = new GankIoDayAdapter(list);
+            mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    mPresenter.onItemClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                }
+            });
+            mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                @Override
+                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                    switch (view.getId())
+                    {
+                        case R.id.ll_more:
+                            mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                            break;
+                        case R.id.ll_refesh:
+                            mPresenter.onRefeshClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                            break;
+                    }
+                }
+            });
+            rvGankIoDay.setAdapter(mGankIoDayAdapter);
+            rvGankIoDay.setLayoutManager(new LinearLayoutManager(mContext));
+        }else{
+            mGankIoDayAdapter.addData(list);
+        }
+    }
+
+    @Override
+    public void itemNotifyChanged(GankIoDayItemBean bean, int position) {
+        mGankIoDayAdapter.removeItem(position);
+        mGankIoDayAdapter.addItem(bean, position);
     }
 
     @Override
