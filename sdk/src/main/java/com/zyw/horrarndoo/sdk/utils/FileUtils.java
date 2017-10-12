@@ -188,7 +188,7 @@ public class FileUtils {
                 try {
                     InputStream is = new FileInputStream(file);
                     FileOutputStream fos = new FileOutputStream(savefile);
-                    byte[] buffer = new byte[400000];
+                    byte[] buffer = new byte[1024 * 1024];//1M缓冲区
                     int count = 0;
                     while ((count = is.read(buffer)) > 0) {
                         fos.write(buffer, 0, count);
