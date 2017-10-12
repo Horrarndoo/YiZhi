@@ -4,15 +4,7 @@
                                                  android:id="@+id/cl_pic_browse"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
-                                                 android:background="@android:color/black"
-                                                 android:fitsSystemWindows="true">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/black"
-        android:fitsSystemWindows="true"/>
+                                                 android:background="@android:color/black">
 
     <com.bm.library.PhotoView
         android:id="@+id/pv_pic"
@@ -38,4 +30,10 @@
         android:layout_height="60dp"
         android:layout_gravity="center"/>
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"/>
 </android.support.design.widget.CoordinatorLayout>
