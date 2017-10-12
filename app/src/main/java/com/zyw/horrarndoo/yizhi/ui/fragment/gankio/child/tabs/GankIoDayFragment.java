@@ -50,7 +50,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mGankIoDayAdapter = new GankIoDayAdapter(R.layout.item_gank_io_day);
+        mGankIoDayAdapter = new GankIoDayAdapter(null);
         mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -60,7 +60,14 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
         mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                switch (view.getId())
+                {
+                    case R.id.ll_more:
+                        mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                        break;
+                    case R.id.ll_refesh:
+                        break;
+                }
             }
         });
         rvGankIoDay.setAdapter(mGankIoDayAdapter);

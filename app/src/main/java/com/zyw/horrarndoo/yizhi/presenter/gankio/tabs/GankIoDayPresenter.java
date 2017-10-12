@@ -43,11 +43,21 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
                 if (mIView == null)
                     return;
                 List<GankIoDayItemBean> list = new ArrayList<>();
-                list.add(gankIoDayBean.getResults().getAndroid().get(0));
-                list.add(gankIoDayBean.getResults().getiOS().get(0));
-                list.add(gankIoDayBean.getResults().getFront().get(0));
-                list.add(gankIoDayBean.getResults().getWelfare().get(0));
-                list.add(gankIoDayBean.getResults().getRestMovie().get(0));
+                GankIoDayItemBean itemAndroidBean = gankIoDayBean.getResults().getAndroid().get(0);
+                GankIoDayItemBean itemIOSBean = gankIoDayBean.getResults().getiOS().get(0);
+                GankIoDayItemBean itemFrontBean = gankIoDayBean.getResults().getFront().get(0);
+                GankIoDayItemBean itemWelfareBean = gankIoDayBean.getResults().getWelfare().get(0);
+                GankIoDayItemBean itemRestMovieBean = gankIoDayBean.getResults().getRestMovie().get(0);
+                itemAndroidBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
+                itemIOSBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
+                itemFrontBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
+                itemWelfareBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
+                itemRestMovieBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
+                list.add(itemAndroidBean);
+                list.add(itemIOSBean);
+                list.add(itemFrontBean);
+                list.add(itemWelfareBean);
+                list.add(itemRestMovieBean);
                 mIView.updateContentList(list);
             }
         }));

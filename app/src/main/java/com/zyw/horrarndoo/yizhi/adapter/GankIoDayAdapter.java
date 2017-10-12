@@ -1,10 +1,10 @@
 package com.zyw.horrarndoo.yizhi.adapter;
 
-import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayItemBean;
@@ -16,18 +16,12 @@ import java.util.List;
  * <p>
  */
 
-public class GankIoDayAdapter extends BaseCompatAdapter<GankIoDayItemBean, BaseViewHolder> {
-
-    public GankIoDayAdapter(@LayoutRes int layoutResId, @Nullable List<GankIoDayItemBean> data) {
-        super(layoutResId, data);
-    }
+public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBean, BaseViewHolder> {
 
     public GankIoDayAdapter(@Nullable List<GankIoDayItemBean> data) {
         super(data);
-    }
-
-    public GankIoDayAdapter(@LayoutRes int layoutResId) {
-        super(layoutResId);
+        addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL, R.layout.item_gank_io_day_normal);
+        addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_REFESH, R.layout.item_gank_io_day_refesh);
     }
 
     @Override
@@ -53,7 +47,16 @@ public class GankIoDayAdapter extends BaseCompatAdapter<GankIoDayItemBean, BaseV
             helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_video);
         }
 
-        helper.addOnClickListener(R.id.ll_more);
+        switch (helper.getItemViewType()) {
+            case GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL:
+                helper.addOnClickListener(R.id.ll_more);
+                break;
+            case GankIoDayItemBean.CLICK_ITEM_DAY_REFESH:
+                helper.addOnClickListener(R.id.ll_more).addOnClickListener(R.id.ll_refesh);
+                break;
+            default:
+                break;
+        }
 
         //GankIo 返回数据中，很多没有images，这里不用GankIo的图，直接写死
         //        if(item.getImages() == null)

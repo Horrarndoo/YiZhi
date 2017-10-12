@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.model.bean.gankio;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -7,9 +8,14 @@ import java.util.List;
 /**
  * Created by Horrarndoo on 2017/10/11.
  * <p>
+ * GnakIo每日数据item Bean
  */
 
-public class GankIoDayItemBean {
+public class GankIoDayItemBean implements MultiItemEntity{
+    public static final int CLICK_ITEM_DAY_NORMAL = 1;
+    public static final int CLICK_ITEM_DAY_REFESH = 2;
+    public int itemType = 1;
+
     // 存储单独设置的值，用来显示title
     @SerializedName("type_title")
     private String type_title;
@@ -151,5 +157,10 @@ public class GankIoDayItemBean {
                 ", source='" + source + '\'' +
                 ", images=" + images +
                 '}';
+    }
+
+    @Override
+    public int getItemType() {
+        return itemType;
     }
 }
