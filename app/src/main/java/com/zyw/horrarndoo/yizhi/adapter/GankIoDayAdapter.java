@@ -18,6 +18,22 @@ import java.util.List;
 
 public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBean, BaseViewHolder> {
     private List<GankIoDayItemBean> mlist;
+    private int mAndroidIndex = 0;
+    private int mIOSIndex = 0;
+
+    //GankIo没有返回ImageList，这里使用固定的图片资源模拟刷新item效果
+    private int[] mResAndroid = {
+            R.mipmap.gank_io_day_item_android1,
+            R.mipmap.gank_io_day_item_android2,
+            R.mipmap.gank_io_day_item_android3,
+            R.mipmap.gank_io_day_item_android4,
+            R.mipmap.gank_io_day_item_android5,
+            R.mipmap.gank_io_day_item_android6};
+
+    private int[] mResIOS = {
+            R.mipmap.gank_io_day_item_ios1,
+            R.mipmap.gank_io_day_item_ios2,
+            R.mipmap.gank_io_day_item_ios3};
 
     public GankIoDayAdapter(@Nullable List<GankIoDayItemBean> data) {
         super(data);
@@ -43,6 +59,16 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         notifyItemRemoved(position);
     }
 
+    public void refeshItem(GankIoDayItemBean bean, int position) {
+        if (bean.getType().equals("Android")) {
+            mAndroidIndex++;
+        } else {
+            mIOSIndex++;
+        }
+        removeItem(position);
+        addItem(bean, position);
+    }
+
     @Override
     protected void convert(BaseViewHolder helper, GankIoDayItemBean item) {
         helper.setText(R.id.tv_type_item_title, item.getType());
@@ -54,10 +80,10 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
                     .id.iv_item_title));
         } else if (item.getType().equals("Android")) {
             helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_android);
-            helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_android);
+            helper.setImageResource(R.id.iv_item_title, mResAndroid[mAndroidIndex % 6]);
         } else if (item.getType().equals("iOS")) {
             helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_ios);
-            helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_ios);
+            helper.setImageResource(R.id.iv_item_title, mResIOS[mIOSIndex % 3]);
         } else if (item.getType().equals("前端")) {
             helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_front);
             helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_web);

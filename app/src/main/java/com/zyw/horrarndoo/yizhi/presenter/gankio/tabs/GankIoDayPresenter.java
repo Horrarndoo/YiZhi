@@ -85,10 +85,10 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
 
         if (item.getType().equals("Android")) {
             mAndroidPages++;
-            mIView.itemNotifyChanged(mIModel.getGankIoDayAndroid(mAndroidPages % 5), position);
+            mIView.itemNotifyChanged(mIModel.getGankIoDayAndroid(mAndroidPages % 6), position);
         } else {
             mIOSPages++;
-            mIView.itemNotifyChanged(mIModel.getGankIoDayIOS(mIOSPages % 2), position);
+            mIView.itemNotifyChanged(mIModel.getGankIoDayIOS(mIOSPages % 3), position);
         }
     }
 

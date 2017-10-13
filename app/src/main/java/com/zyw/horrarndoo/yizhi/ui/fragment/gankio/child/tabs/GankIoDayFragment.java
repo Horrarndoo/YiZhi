@@ -76,29 +76,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
     public void updateContentList(List<GankIoDayItemBean> list) {
         Logger.e(list.toString());
         if(mGankIoDayAdapter == null){
-            mGankIoDayAdapter = new GankIoDayAdapter(list);
-            mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                    mPresenter.onItemClick(position, (GankIoDayItemBean) adapter.getItem(position));
-                }
-            });
-            mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-                @Override
-                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                    switch (view.getId())
-                    {
-                        case R.id.ll_more:
-                            mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
-                            break;
-                        case R.id.ll_refesh:
-                            mPresenter.onRefeshClick(position, (GankIoDayItemBean) adapter.getItem(position));
-                            break;
-                    }
-                }
-            });
-            rvGankIoDay.setAdapter(mGankIoDayAdapter);
-            rvGankIoDay.setLayoutManager(new LinearLayoutManager(mContext));
+            initRecycleView(list);
         }else{
             mGankIoDayAdapter.addData(list);
         }
@@ -106,8 +84,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void itemNotifyChanged(GankIoDayItemBean bean, int position) {
-        mGankIoDayAdapter.removeItem(position);
-        mGankIoDayAdapter.addItem(bean, position);
+        mGankIoDayAdapter.refeshItem(bean, position);
     }
 
     @Override
@@ -116,7 +93,6 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void showNetworkError() {
-        //Logger.e("Network error.");
         mGankIoDayAdapter.setEmptyView(errorView);
     }
 
@@ -126,5 +102,31 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void showNoMoreData() {
+    }
+
+    private void initRecycleView(List<GankIoDayItemBean> list){
+        mGankIoDayAdapter = new GankIoDayAdapter(list);
+        mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mPresenter.onItemClick(position, (GankIoDayItemBean) adapter.getItem(position));
+            }
+        });
+        mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId())
+                {
+                    case R.id.ll_more:
+                        mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                        break;
+                    case R.id.ll_refesh:
+                        mPresenter.onRefeshClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                        break;
+                }
+            }
+        });
+        rvGankIoDay.setAdapter(mGankIoDayAdapter);
+        rvGankIoDay.setLayoutManager(new LinearLayoutManager(mContext));
     }
 }
