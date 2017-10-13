@@ -116,7 +116,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     }
 
     private void initRecycleView(List<GankIoCustomItemBean> list){
-        mGankIoCustomAdapter = new GankIoCustomAdapter(R.layout.item_gank_io_custom, list);
+        mGankIoCustomAdapter = new GankIoCustomAdapter(list);
         mGankIoCustomAdapter.setOnLoadMoreListener(this, rvGankIoCustom);
         mGankIoCustomAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

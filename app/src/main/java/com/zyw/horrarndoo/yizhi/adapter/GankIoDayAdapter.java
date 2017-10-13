@@ -39,8 +39,8 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         super(data);
         mlist = data;
 
-        addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL, R.layout.item_gank_io_day_normal);
-        addItemType(GankIoDayItemBean.CLICK_ITEM_DAY_REFESH, R.layout.item_gank_io_day_refesh);
+        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL, R.layout.item_gank_io_day_normal);
+        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH, R.layout.item_gank_io_day_refesh);
     }
 
     public void addItem(GankIoDayItemBean bean, int position) {
@@ -101,10 +101,10 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         }
 
         switch (helper.getItemViewType()) {
-            case GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL:
+            case GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL:
                 helper.addOnClickListener(R.id.ll_more);
                 break;
-            case GankIoDayItemBean.CLICK_ITEM_DAY_REFESH:
+            case GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH:
                 helper.addOnClickListener(R.id.ll_more).addOnClickListener(R.id.ll_refesh);
                 break;
             default:

@@ -51,11 +51,11 @@ public class GankIoDayModel extends BaseModel implements GankIoDayContract.IGank
                 GankIoDayItemBean itemWelfareBean = gankIoDayBean.getResults().getWelfare().get(0);
                 GankIoDayItemBean itemRestMovieBean = gankIoDayBean.getResults().getRestMovie()
                         .get(0);
-                itemAndroidBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
-                itemIOSBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
-                itemFrontBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
-                itemWelfareBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
-                itemRestMovieBean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_NORMAL;
+                itemAndroidBean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH;
+                itemIOSBean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH;
+                itemFrontBean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL;
+                itemWelfareBean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL;
+                itemRestMovieBean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL;
                 list.add(itemAndroidBean);
                 list.add(itemIOSBean);
                 list.add(itemFrontBean);
@@ -71,7 +71,7 @@ public class GankIoDayModel extends BaseModel implements GankIoDayContract.IGank
         if (mGankIoDayBean == null)
             return null;
         GankIoDayItemBean bean = mGankIoDayBean.getResults().getAndroid().get(page);
-        bean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
+        bean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH;
         return bean;
     }
 
@@ -80,7 +80,7 @@ public class GankIoDayModel extends BaseModel implements GankIoDayContract.IGank
         if (mGankIoDayBean == null)
             return null;
         GankIoDayItemBean bean = mGankIoDayBean.getResults().getiOS().get(page);
-        bean.itemType = GankIoDayItemBean.CLICK_ITEM_DAY_REFESH;
+        bean.itemType = GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH;
         return bean;
     }
 

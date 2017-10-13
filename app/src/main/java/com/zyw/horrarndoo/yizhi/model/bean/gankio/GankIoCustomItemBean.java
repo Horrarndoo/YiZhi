@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.model.bean.gankio;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -9,7 +10,21 @@ import java.util.List;
  * Created by Horrarndoo on 2017/10/7.
  * <p>
  */
-public class GankIoCustomItemBean implements Serializable {
+public class GankIoCustomItemBean implements Serializable, MultiItemEntity {
+    /**
+     * 普通布局，带略缩图
+     */
+    public static final int GANK_IO_DAY_ITEM_CUSTOM_NORMAL = 1;
+    /**
+     * 图片布局，福利
+     */
+    public static final int GANK_IO_DAY_ITEM_CUSTOM_IMAGE = 2;
+    /**
+     * 无图布局
+     */
+    public static final int GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE = 3;
+    public int itemType = 1;
+
     @SerializedName("_id")
     private String _id;
     @SerializedName("createdAt")
@@ -84,5 +99,10 @@ public class GankIoCustomItemBean implements Serializable {
 
     public List<String> getImages() {
         return images;
+    }
+
+    @Override
+    public int getItemType() {
+        return itemType;
     }
 }

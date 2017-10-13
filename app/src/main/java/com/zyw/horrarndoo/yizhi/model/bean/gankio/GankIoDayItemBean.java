@@ -12,8 +12,8 @@ import java.util.List;
  */
 
 public class GankIoDayItemBean implements MultiItemEntity{
-    public static final int CLICK_ITEM_DAY_NORMAL = 1;
-    public static final int CLICK_ITEM_DAY_REFESH = 2;
+    public static final int GANK_IO_DAY_ITEM_DAY_NORMAL = 1;
+    public static final int GANK_IO_DAY_ITEM_DAY_REFESH = 2;
     public int itemType = 1;
 
     // 存储单独设置的值，用来显示title

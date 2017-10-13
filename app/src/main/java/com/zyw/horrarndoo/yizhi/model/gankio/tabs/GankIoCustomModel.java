@@ -11,11 +11,13 @@ import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.DBUtils;
 import com.zyw.horrarndoo.yizhi.api.GankioApi;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoCustomContract;
+import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomListBean;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Function;
 
 /**
  * Created by Horrarndoo on 2017/10/13.
@@ -34,8 +36,25 @@ public class GankIoCustomModel extends BaseModel implements GankIoCustomContract
     public Observable<GankIoCustomListBean> getCustomGankIoList(String type, int prePage, int
             page) {
         return RetrofitCreateHelper.createApi(GankioApi.class, GankioApi.HOST)
-                .getGankIoCustomList(type, prePage, page).compose(RxHelper
-                        .<GankIoCustomListBean>rxSchedulerHelper());
+                .getGankIoCustomList(type, prePage, page)
+                .map(new Function<GankIoCustomListBean, GankIoCustomListBean>() {
+                    @Override
+                    public GankIoCustomListBean apply(GankIoCustomListBean gankIoCustomListBean)
+                            throws Exception {
+                        for (GankIoCustomItemBean bean : gankIoCustomListBean.getResults()){
+                            if(bean.getType().equals("福利")){
+                                bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_IMAGE;
+                            }else if (bean.getImages() != null) {
+                                if (bean.getImages().size() > 0)
+                                bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE;
+                            }else {
+                                bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NORMAL;
+                            }
+                        }
+                        return gankIoCustomListBean;
+                    }
+                })
+                .compose(RxHelper.<GankIoCustomListBean>rxSchedulerHelper());
     }
 
     @Override
