@@ -49,7 +49,7 @@ public class WeixinAdapter extends BaseCompatAdapter<WeixinChoiceItemBean, BaseV
             }
         }
         helper.setText(R.id.tv_item_title, item.getTitle());
-        helper.setText(R.id.tv_item_source, item.getSource());
+        helper.setText(R.id.tv_item_who, item.getSource());
         Glide.with(mContext).load(item.getFirstImg()).crossFade().into((ImageView) helper.getView(R
                 .id.iv_item_image));
     }

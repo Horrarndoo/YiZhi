@@ -74,22 +74,30 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         helper.setText(R.id.tv_type_item_title, item.getType());
         helper.setText(R.id.tv_item_title, item.getDesc());
 
-        if (item.getType().equals("福利")) {
-            helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_welfare);
-            Glide.with(mContext).load(item.getUrl()).crossFade().into((ImageView) helper.getView(R
-                    .id.iv_item_title));
-        } else if (item.getType().equals("Android")) {
-            helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_android);
-            helper.setImageResource(R.id.iv_item_title, mResAndroid[mAndroidIndex % 6]);
-        } else if (item.getType().equals("iOS")) {
-            helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_ios);
-            helper.setImageResource(R.id.iv_item_title, mResIOS[mIOSIndex % 3]);
-        } else if (item.getType().equals("前端")) {
-            helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_front);
-            helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_web);
-        } else if (item.getType().equals("休息视频")) {
-            helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_video);
-            helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_video);
+        switch (item.getType()) {
+            case "福利":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable
+                        .ic_vector_title_welfare);
+                Glide.with(mContext).load(item.getUrl()).crossFade().into((ImageView) helper
+                        .getView(R.id.iv_item_title));
+                break;
+            case "Android":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable
+                        .ic_vector_title_android);
+                helper.setImageResource(R.id.iv_item_title, mResAndroid[mAndroidIndex % 6]);
+                break;
+            case "iOS":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_ios);
+                helper.setImageResource(R.id.iv_item_title, mResIOS[mIOSIndex % 3]);
+                break;
+            case "前端":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_front);
+                helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_web);
+                break;
+            case "休息视频":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_video);
+                helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_video);
+                break;
         }
 
         switch (helper.getItemViewType()) {
