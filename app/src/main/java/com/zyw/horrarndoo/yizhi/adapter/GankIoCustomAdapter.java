@@ -11,6 +11,7 @@ import com.zyw.horrarndoo.sdk.config.DBConfig;
 import com.zyw.horrarndoo.sdk.config.ItemState;
 import com.zyw.horrarndoo.sdk.utils.DBUtils;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
+import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomItemBean;
 
@@ -47,9 +48,16 @@ public class GankIoCustomAdapter extends BaseCompatAdapter<GankIoCustomItemBean,
                 helper.setTextColor(R.id.tv_item_title, Color.BLACK);
             }
         }
+
         helper.setText(R.id.tv_item_title, item.getDesc());
-        helper.setText(R.id.tv_item_source, item.getSource());
+        if(StringUtils.isEmpty(item.getWho())){
+            helper.setText(R.id.tv_item_source, item.getSource());
+        }else{
+            helper.setText(R.id.tv_item_source, item.getWho());
+        }
+        helper.setText(R.id.tv_item_type, item.getType());
         helper.setText(R.id.tv_item_time, item.getCreatedAt().substring(0, 10));
+
         if (item.getImages() != null) {
             if (item.getImages().size() > 0)
                 Glide.with(mContext).load(item.getImages().get(0)).crossFade().into((ImageView)

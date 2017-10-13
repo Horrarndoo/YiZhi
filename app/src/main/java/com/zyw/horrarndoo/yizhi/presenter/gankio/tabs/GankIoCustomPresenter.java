@@ -31,6 +31,7 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
             return;
 
         mCurrentPage = 1;
+        //一次加载20条数据
         mRxManager.register(mIModel.getCustomGankIoList(mIView.getCustomType(), 10, mCurrentPage)
                 .subscribe(new Consumer<GankIoCustomListBean>() {
                     @Override
@@ -60,7 +61,8 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
     public void loadMoreList() {
         if (!isLoading) {
             isLoading = true;
-            mRxManager.register(mIModel.getCustomGankIoList(mIView.getCustomType(), 10,
+            //一次加载20条数据
+            mRxManager.register(mIModel.getCustomGankIoList(mIView.getCustomType(), 20,
                     mCurrentPage).subscribe(new Consumer<GankIoCustomListBean>() {
                 @Override
                 public void accept(GankIoCustomListBean gankIoCustomListBean) throws
@@ -97,23 +99,23 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
     public void onItemClick(final int position, GankIoCustomItemBean item) {
         mRxManager.register(mIModel.recordItemIsRead(item.getType() + item.get_id()).subscribe
                 (new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean aBoolean) throws Exception {
-                if (mIView == null)
-                    return;
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (mIView == null)
+                            return;
 
-                if (aBoolean) {
-                    mIView.itemNotifyChanged(position);
-                } else {
-                    Logger.e("写入点击状态值失败");
-                }
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
-            }
-        }));
+                        if (aBoolean) {
+                            mIView.itemNotifyChanged(position);
+                        } else {
+                            Logger.e("写入点击状态值失败");
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }));
     }
 
     @Override
