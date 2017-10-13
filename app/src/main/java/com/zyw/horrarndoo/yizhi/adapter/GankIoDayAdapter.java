@@ -98,6 +98,15 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
                 helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_title_video);
                 helper.setImageResource(R.id.iv_item_title, R.mipmap.gank_io_day_item_video);
                 break;
+            case "瞎推荐":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_item_tuijian);
+                break;
+            case "拓展资源":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_item_tuozhan);
+                break;
+            case "App":
+                helper.setImageResource(R.id.iv_type_item_title, R.drawable.ic_vector_item_app);
+                break;
         }
 
         switch (helper.getItemViewType()) {

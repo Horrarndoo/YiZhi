@@ -1,6 +1,7 @@
 package com.zyw.horrarndoo.yizhi.model.gankio.tabs;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.sdk.config.DBConfig;
@@ -41,14 +42,17 @@ public class GankIoCustomModel extends BaseModel implements GankIoCustomContract
                     @Override
                     public GankIoCustomListBean apply(GankIoCustomListBean gankIoCustomListBean)
                             throws Exception {
-                        for (GankIoCustomItemBean bean : gankIoCustomListBean.getResults()){
-                            if(bean.getType().equals("福利")){
+                        for (GankIoCustomItemBean bean : gankIoCustomListBean.getResults()) {
+                            if (bean.getType().equals("福利")) {
                                 bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_IMAGE;
-                            }else if (bean.getImages() != null) {
-                                if (bean.getImages().size() > 0)
-                                bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE;
-                            }else {
-                                bean.itemType = GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NORMAL;
+                            } else if (bean.getImages() != null) {
+                                if (bean.getImages().size() > 0 && !TextUtils.isEmpty(bean
+                                        .getImages().get(0)))
+                                    bean.itemType = GankIoCustomItemBean
+                                            .GANK_IO_DAY_ITEM_CUSTOM_NORMAL;
+                            } else {
+                                bean.itemType = GankIoCustomItemBean
+                                        .GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE;
                             }
                         }
                         return gankIoCustomListBean;

@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.adapter;
 
 import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +15,7 @@ import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomItemBean;
+import com.zyw.horrarndoo.yizhi.ui.widgets.RvLoadMoreView;
 
 import java.util.List;
 
@@ -24,10 +26,14 @@ import java.util.List;
 
 public class GankIoCustomAdapter extends BaseMultiItemQuickAdapter<GankIoCustomItemBean,
         BaseViewHolder> {
-    private String mImageSize = "?imageView2/0/w/200";
+    private String mImageSize = "?imageView2/0/w/100";
 
     public GankIoCustomAdapter(@Nullable List<GankIoCustomItemBean> data) {
         super(data);
+
+        setLoadMoreView(new RvLoadMoreView());
+        setEnableLoadMore(true);
+        openLoadAnimation();
 
         addItemType(GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NORMAL, R.layout
                 .item_gank_io_custom_normal);
@@ -51,10 +57,8 @@ public class GankIoCustomAdapter extends BaseMultiItemQuickAdapter<GankIoCustomI
                 helper.setText(R.id.tv_item_title, item.getDesc());
                 initTitleColor(helper, item);
                 if (item.getImages() != null) {
-                    if (item.getImages().size() > 0)
-                        //                Glide.with(mContext).load(item.getImages().get(0) +
-                        // mImageSize)
-                        Glide.with(mContext).load(item.getImages().get(0))
+                    if (item.getImages().size() > 0 && !TextUtils.isEmpty(item.getImages().get(0)))
+                        Glide.with(mContext).load(item.getImages().get(0) + mImageSize)
                                 .asBitmap()
                                 .into((ImageView) helper.getView(R.id.iv_item_image));
                 }
@@ -62,7 +66,7 @@ public class GankIoCustomAdapter extends BaseMultiItemQuickAdapter<GankIoCustomI
             case GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_IMAGE:
                 Glide.with(mContext)
                         .load(item.getUrl())
-                        .crossFade()
+                        .crossFade(500)
                         .into((ImageView) helper.getView(R.id.iv_item_image));
                 break;
             case GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE:

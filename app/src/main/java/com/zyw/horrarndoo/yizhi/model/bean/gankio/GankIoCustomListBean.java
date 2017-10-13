@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.model.bean.gankio;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * <p>
  */
 
-public class GankIoCustomListBean {
+public class GankIoCustomListBean implements Serializable {
     @SerializedName("error")
     private boolean error;
 
