@@ -1,6 +1,6 @@
 package com.zyw.horrarndoo.yizhi.api;
 
-import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDataBean;
+import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomListBean;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayBean;
 
 import io.reactivex.Observable;
@@ -23,7 +23,7 @@ public interface GankioApi {
      * eg: http://gank.io/api/data/Android/10/1
      */
     @GET("/api/data/{type}/{pre_page}/{page}")
-    Observable<GankIoDataBean> getGankIoData(@Path("type") String type, @Path("pre_page") int
+    Observable<GankIoCustomListBean> getGankIoCustomList(@Path("type") String type, @Path("pre_page") int
             pre_page, @Path("page") int page);
 
     /**

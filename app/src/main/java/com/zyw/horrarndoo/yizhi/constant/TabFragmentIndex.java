@@ -12,6 +12,6 @@ public class TabFragmentIndex {
     public final static int TAB_WEIXIN_INDEX = 2;
 
     public final static int TAB_GANK_DAY_INDEX = 0;
-    public final static int TAB_GANK_WELFARE_INDEX = 1;
-    public final static int TAB_GANK_CUSTOM_INDEX = 2;
+    public final static int TAB_GANK_CUSTOM_INDEX = 1;
+    public final static int TAB_GANK_WELFARE_INDEX = 2;
 }

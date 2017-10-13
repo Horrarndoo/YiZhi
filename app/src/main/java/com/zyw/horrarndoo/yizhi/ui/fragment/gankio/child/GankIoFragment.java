@@ -85,11 +85,11 @@ public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.Gan
                 case TabFragmentIndex.TAB_GANK_DAY_INDEX:
                     fragments.add(GankIoDayFragment.newInstance());
                     break;
-                case TabFragmentIndex.TAB_GANK_WELFARE_INDEX:
-                    fragments.add(GankIoWelfareFragment.newInstance());
-                    break;
                 case TabFragmentIndex.TAB_GANK_CUSTOM_INDEX:
                     fragments.add(GankIoCustomFragment.newInstance());
+                    break;
+                case TabFragmentIndex.TAB_GANK_WELFARE_INDEX:
+                    fragments.add(GankIoWelfareFragment.newInstance());
                     break;
                 default:
                     fragments.add(GankIoDayFragment.newInstance());

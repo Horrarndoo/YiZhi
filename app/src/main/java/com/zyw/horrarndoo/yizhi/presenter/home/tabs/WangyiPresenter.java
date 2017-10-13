@@ -45,7 +45,6 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
         mRxManager.register(mIModel.getNewsList(mCurrentIndex).subscribe(new Consumer<WangyiNewsListBean>() {
             @Override
             public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
-                mCurrentIndex += 20;
                 if (mIView != null) {
                     List<WangyiNewsItemBean> list = wangyiNewsListBean.getNewsList();
                     for (int i = 0; i < list.size(); i++){
@@ -53,6 +52,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
                         if (StringUtils.isEmpty(list.get(i).getUrl()))
                             list.remove(i);
                     }
+                    mCurrentIndex += 20;
                     mIView.updateContentList(list);
                 }
             }
@@ -75,10 +75,10 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
                 @Override
                 public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
                     isLoading = false;
-                    mCurrentIndex += 20;
                     if (mIView == null)
                         return;
                     if (wangyiNewsListBean.getNewsList().size() > 0) {
+                        mCurrentIndex += 20;
                         mIView.updateContentList(wangyiNewsListBean.getNewsList());
                     } else {
                         mIView.showNoMoreData();

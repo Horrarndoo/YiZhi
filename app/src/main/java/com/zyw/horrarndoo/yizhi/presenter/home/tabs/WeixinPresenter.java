@@ -39,11 +39,11 @@ public class WeixinPresenter extends WeixinContract.WeixinPresenter {
                 .JU_HE_APP_KEY).subscribe(new Consumer<WeixinChoiceListBean>() {
             @Override
             public void accept(WeixinChoiceListBean wangyiNewsListBean) throws Exception {
-                mCurrentPage++;
                 if (mIView == null)
                     return;
 
                 if (wangyiNewsListBean.getError_code().equals("0")) {
+                    mCurrentPage++;
                     mIView.updateContentList(wangyiNewsListBean.getResult().getList());
                 } else {
                     mIView.showNetworkError();
@@ -71,12 +71,12 @@ public class WeixinPresenter extends WeixinContract.WeixinPresenter {
                         @Override
                         public void accept(WeixinChoiceListBean wangyiNewsListBean) throws
                                 Exception {
-                            mCurrentPage++;
                             isLoading = false;
                             if (mIView == null)
                                 return;
 
                             if (wangyiNewsListBean.getError_code().equals("0")) {
+                                mCurrentPage++;
                                 mIView.updateContentList(wangyiNewsListBean.getResult().getList());
                             } else {
                                 mIView.showLoadMoreError();

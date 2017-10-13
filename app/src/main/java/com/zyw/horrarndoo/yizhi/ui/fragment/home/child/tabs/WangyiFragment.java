@@ -100,7 +100,7 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public void showLoadMoreError() {
-        mWangyiAdapter.loadMoreFail();
+        mWangyiAdapter.setEmptyView(errorView);
     }
 
     @Override

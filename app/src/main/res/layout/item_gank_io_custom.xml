@@ -7,9 +7,8 @@
                                     android:layout_marginBottom="8dp"
                                     android:layout_marginEnd="8dp"
                                     android:layout_marginStart="8dp"
-                                    android:layout_marginTop="3dp"
                                     android:foreground="@drawable/item_touch_bg"
-                                    app:cardCornerRadius="2dp"
+                                    app:cardCornerRadius="8dp"
                                     app:cardElevation="2dp"
                                     app:contentPadding="8dp">
 

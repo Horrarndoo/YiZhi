@@ -17,6 +17,6 @@ public class GankIoMainModel implements GankIoMainContract.IGankIoMainModel {
 
     @Override
     public String[] getTabs() {
-        return new String[]{"每日推荐", "福利", "干货定制"};
+        return new String[]{"每日推荐", "干货定制", "福利"};
     }
 }

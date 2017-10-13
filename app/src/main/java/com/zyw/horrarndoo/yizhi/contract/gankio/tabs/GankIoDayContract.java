@@ -32,16 +32,6 @@ public interface GankIoDayContract {
     }
 
     interface IGankIoDayModel extends BaseTabsContract.IBaseTabsModel {
-        //        /**
-        //         * 请求GankIo每日数据list
-        //         *
-        //         * @param type    type 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
-        //         * @param prePage 请求个数： 数字，大于0
-        //         * @param page    请求第几页：数字，大于0
-        //         * @return Observable
-        //         */
-        //        Observable<GankIoDataBean> getGankIoDayList(String type, int prePage, int page);
-
         /**
          * 请求GankIo每日数据list
          *
