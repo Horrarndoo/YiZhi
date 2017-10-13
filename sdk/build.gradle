@@ -84,6 +84,8 @@ dependencies {
     //PhotoView
     compile "com.bm.photoview:library:$rootProject.PhotoViewVersion"
 
+    compile "com.cocosw:bottomsheet:$rootProject.BottomSheetVersion"
+
     //permissions
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
 }

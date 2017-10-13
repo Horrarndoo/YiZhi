@@ -7,4 +7,24 @@
 
     <color name="bg">#F0F0F0</color>
     <color name="txt_color">#48495F</color>
+
+    <!--正文文字颜色-->
+    <color name="colorContent">#ff333333</color>
+    <!--tab标签栏文字的颜色-->
+    <color name="colorTabText">#585858</color>
+
+    <!--选择分类按下颜色-->
+    <color name="colorChoosePress">#DDD</color>
+
+    <color name="colorTitle">#666</color>
+    <!--首页item文字颜色-->
+    <color name="colorSubtitle">#999</color>
+
+    <color name="colorWhite">#ffffffff</color>
+
+    <!--分割线-->
+    <color name="colorLine">#EBEBEB</color>
+
+    <!--页面背景的颜色-->
+    <color name="colorPageBg">#f2f4f5</color>
 </resources>

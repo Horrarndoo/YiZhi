@@ -56,4 +56,5 @@ ext {
     BaseRecyclerViewAdapterHelperVersion = '2.9.22'
     SwtichButtonVersion = '1.4.6'
     PhotoViewVersion = '1.4.1'
+    BottomSheetVersion = '1.3.0@aar'
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_gank_all"
+        android:icon="@drawable/ic_vector_item_all"
+        android:title="全部"/>
+    <item
+        android:id="@+id/item_gank_app"
+        android:icon="@drawable/ic_vector_item_app"
+        android:title="App"/>
+    <item
+        android:id="@+id/item_gank_android"
+        android:icon="@drawable/ic_vector_title_android"
+        android:title="Android"/>
+    <item
+        android:id="@+id/item_gank_ios"
+        android:icon="@drawable/ic_vector_title_ios"
+        android:title="iOS"/>
+    <item
+        android:id="@+id/item_gank_front"
+        android:icon="@drawable/ic_vector_title_front"
+        android:title="前端"/>
+    <item
+        android:id="@+id/item_gank_video"
+        android:icon="@drawable/ic_vector_title_video"
+        android:title="休息视频"/>
+    <item
+        android:id="@+id/item_gank_tuozhan"
+        android:icon="@drawable/ic_vector_item_tuozhan"
+        android:title="拓展资源"/>
+</menu>

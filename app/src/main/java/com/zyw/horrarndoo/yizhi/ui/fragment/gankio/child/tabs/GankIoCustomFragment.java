@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.gankio.child.tabs;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cocosw.bottomsheet.BottomSheet;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.GankIoCustomAdapter;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoCustomContract;
@@ -34,6 +37,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     @BindView(R.id.rv_gankio_custom)
     RecyclerView rvGankIoCustom;
 
+    private View headView;
     private String mCustomType = "all";
     private GankIoCustomAdapter mGankIoCustomAdapter;
 
@@ -76,9 +80,9 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     @Override
     public void updateContentList(List<GankIoCustomItemBean> list) {
         Logger.e(list.toString());
-        if(mGankIoCustomAdapter == null){
+        if (mGankIoCustomAdapter == null) {
             initRecycleView(list);
-        }else{
+        } else {
             mGankIoCustomAdapter.addData(list);
         }
     }
@@ -115,7 +119,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         mPresenter.loadMoreList();
     }
 
-    private void initRecycleView(List<GankIoCustomItemBean> list){
+    private void initRecycleView(List<GankIoCustomItemBean> list) {
         mGankIoCustomAdapter = new GankIoCustomAdapter(list);
         mGankIoCustomAdapter.setOnLoadMoreListener(this, rvGankIoCustom);
         mGankIoCustomAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -124,7 +128,54 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
                 mPresenter.onItemClick(position, (GankIoCustomItemBean) adapter.getItem(position));
             }
         });
+
+        if (headView == null) {
+            headView = ResourcesUtils.inflate(R.layout.sub_gank_io_custom_head);
+        }
+        mGankIoCustomAdapter.addHeaderView(headView);
+        initHeadView(headView);
         rvGankIoCustom.setAdapter(mGankIoCustomAdapter);
         rvGankIoCustom.setLayoutManager(new LinearLayoutManager(mContext));
+    }
+
+    private void initHeadView(View headView) {
+        headView.findViewById(R.id.ll_choose_catalogue).setOnClickListener(new View
+                .OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BottomSheet.Builder(getActivity(), R.style.BottomSheet_StyleDialog)
+                        .title("选择分类")
+                        .sheet(R.menu.gank_io_custom_bottom_sheet)
+                        .listener(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case R.id.item_gank_all:
+                                        mCustomType = "all";
+                                        break;
+                                    case R.id.item_gank_app:
+                                        mCustomType = "App";
+                                        break;
+                                    case R.id.item_gank_android:
+                                        mCustomType = "Android";
+                                        break;
+                                    case R.id.item_gank_ios:
+                                        mCustomType = "iOS";
+                                        break;
+                                    case R.id.item_gank_front:
+                                        mCustomType = "前端";
+                                        break;
+                                    case R.id.item_gank_video:
+                                        mCustomType = "休息视频";
+                                        break;
+                                    case R.id.item_gank_tuozhan:
+                                        mCustomType = "拓展资源";
+                                        break;
+                                }
+                                showToast(mCustomType);
+                            }
+                        }).show();
+            }
+        });
     }
 }
