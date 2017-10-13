@@ -1,12 +1,16 @@
 package com.zyw.horrarndoo.yizhi.presenter.gankio.tabs;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoCustomContract;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomListBean;
 import com.zyw.horrarndoo.yizhi.model.gankio.tabs.GankIoCustomModel;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.GankIoDetailActivity;
+import com.zyw.horrarndoo.yizhi.ui.activity.pic.ImageBrowseActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -116,6 +120,16 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
                         throwable.printStackTrace();
                     }
                 }));
+
+        Bundle bundle = new Bundle();
+        if (item.getType().equals("福利")) {
+            bundle.putString(BundleKeyConstant.ARG_KEY_IMAGE_BROWSE_URL, item.getUrl());
+            mIView.startNewActivity(ImageBrowseActivity.class, bundle);
+        } else {
+            bundle.putString(BundleKeyConstant.ARG_KEY_GANKIO_DETAIL_URL, item.getUrl());
+            bundle.putString(BundleKeyConstant.ARG_KEY_GANKIO_DETAIL_TITLE, item.getDesc());
+            mIView.startNewActivity(GankIoDetailActivity.class, bundle);
+        }
     }
 
     @Override
