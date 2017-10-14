@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="7dp">
+        android:paddingBottom="10dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -37,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="5dp"
         android:background="@drawable/select_gank_custom"
         android:gravity="center"
         android:orientation="horizontal"

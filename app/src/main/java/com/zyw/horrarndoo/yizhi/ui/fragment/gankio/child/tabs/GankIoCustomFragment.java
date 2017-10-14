@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cocosw.bottomsheet.BottomSheet;
@@ -130,7 +131,9 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         mGankIoCustomAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (GankIoCustomItemBean) adapter.getItem(position));
+                //由于有headview click position需要+1 adapter.getItem返回的是数据list的position，所以不用+1
+                mPresenter.onItemClick(position + 1, (GankIoCustomItemBean) adapter.getItem
+                        (position));
             }
         });
 
@@ -144,6 +147,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     }
 
     private void initHeadView(View headView) {
+        final TextView tvHeadName = (TextView) headView.findViewById(R.id.tv_type_name);
         headView.findViewById(R.id.ll_choose_catalogue).setOnClickListener(new View
                 .OnClickListener() {
             @Override
@@ -157,27 +161,34 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
                                 switch (which) {
                                     case R.id.item_gank_all:
                                         mCustomType = "all";
+                                        tvHeadName.setText("全部");
                                         break;
                                     case R.id.item_gank_app:
                                         mCustomType = "App";
+                                        tvHeadName.setText("App");
                                         break;
                                     case R.id.item_gank_android:
                                         mCustomType = "Android";
+                                        tvHeadName.setText("Android");
                                         break;
                                     case R.id.item_gank_ios:
                                         mCustomType = "iOS";
+                                        tvHeadName.setText("iOS");
                                         break;
                                     case R.id.item_gank_front:
                                         mCustomType = "前端";
+                                        tvHeadName.setText("前端");
                                         break;
                                     case R.id.item_gank_video:
                                         mCustomType = "休息视频";
+                                        tvHeadName.setText("休息视频");
                                         break;
                                     case R.id.item_gank_tuozhan:
                                         mCustomType = "拓展资源";
+                                        tvHeadName.setText("拓展资源");
                                         break;
                                 }
-                                showToast(mCustomType);
+                                mPresenter.customTypeChange(mCustomType);
                             }
                         }).show();
             }

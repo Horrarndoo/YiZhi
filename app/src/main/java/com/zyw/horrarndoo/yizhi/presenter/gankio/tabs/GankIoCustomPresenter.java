@@ -132,6 +132,39 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
         }
     }
 
+
+    @Override
+    public void customTypeChange(String customType) {
+        if (mIModel == null || mIView == null)
+            return;
+
+        mCurrentPage = 1;
+        //一次加载20条数据
+        mRxManager.register(mIModel.getCustomGankIoList(customType, 10, mCurrentPage)
+                .subscribe(new Consumer<GankIoCustomListBean>() {
+                    @Override
+                    public void accept(GankIoCustomListBean gankIoCustomListBean) throws Exception {
+                        if (mIView == null)
+                            return;
+
+                        if (gankIoCustomListBean.isError()) {
+                            mIView.showNetworkError();
+                        } else {
+                            mCurrentPage++;
+                            mIView.refeshCustomList(gankIoCustomListBean.getResults());
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (mIView != null) {
+                            mIView.showToast("Network error.");
+                            mIView.showNetworkError();
+                        }
+                    }
+                }));
+    }
+
     @Override
     public GankIoCustomContract.IGankIoCustomModel getModel() {
         return GankIoCustomModel.newInstance();
