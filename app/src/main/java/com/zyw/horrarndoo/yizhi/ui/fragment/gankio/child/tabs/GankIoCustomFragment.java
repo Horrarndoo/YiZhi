@@ -88,6 +88,11 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     }
 
     @Override
+    public void refeshCustomList(List<GankIoCustomItemBean> list) {
+        mGankIoCustomAdapter.replaceData(list);
+    }
+
+    @Override
     public void itemNotifyChanged(int position) {
         mGankIoCustomAdapter.notifyItemChanged(position);
     }
@@ -131,9 +136,9 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
         if (headView == null) {
             headView = ResourcesUtils.inflate(R.layout.sub_gank_io_custom_head);
+            initHeadView(headView);
         }
         mGankIoCustomAdapter.addHeaderView(headView);
-        initHeadView(headView);
         rvGankIoCustom.setAdapter(mGankIoCustomAdapter);
         rvGankIoCustom.setLayoutManager(new LinearLayoutManager(mContext));
     }

@@ -39,8 +39,10 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         super(data);
         mlist = data;
 
-        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL, R.layout.item_gank_io_day_normal);
-        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH, R.layout.item_gank_io_day_refesh);
+        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_NORMAL, R.layout
+                .item_gank_io_day_normal);
+        addItemType(GankIoDayItemBean.GANK_IO_DAY_ITEM_DAY_REFESH, R.layout
+                .item_gank_io_day_refesh);
     }
 
     public void addItem(GankIoDayItemBean bean, int position) {
@@ -59,14 +61,19 @@ public class GankIoDayAdapter extends BaseMultiItemQuickAdapter<GankIoDayItemBea
         notifyItemRemoved(position);
     }
 
-    public void refeshItem(GankIoDayItemBean bean, int position) {
+    /**
+     * 由于bean中没有图片，这里更新固定图片数组index，模拟刷新图片
+     *
+     * @param position position
+     * @param bean     bean
+     */
+    public void refeshItem(int position, GankIoDayItemBean bean) {
         if (bean.getType().equals("Android")) {
             mAndroidIndex++;
         } else {
             mIOSIndex++;
         }
-        removeItem(position);
-        addItem(bean, position);
+        setData(position, bean);
     }
 
     @Override

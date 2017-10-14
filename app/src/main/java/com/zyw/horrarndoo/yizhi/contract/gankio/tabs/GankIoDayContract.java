@@ -66,6 +66,6 @@ public interface GankIoDayContract {
          * @param bean     GankIoDayItemBean
          * @param position position
          */
-        void itemNotifyChanged(GankIoDayItemBean bean, int position);
+        void itemNotifyChanged(int position, GankIoDayItemBean bean);
     }
 }

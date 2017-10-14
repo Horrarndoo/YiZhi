@@ -3,6 +3,8 @@ package com.zyw.horrarndoo.yizhi.contract.gankio.tabs;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoCustomListBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 
 /**
@@ -34,5 +36,11 @@ public interface GankIoCustomContract {
          * @return 定制消息类型 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
          */
         String getCustomType();
+
+        /**
+         * 根据定制类型清空list并且刷新定制list
+         * @param list 定制list
+         */
+        void refeshCustomList(List<GankIoCustomItemBean> list);
     }
 }

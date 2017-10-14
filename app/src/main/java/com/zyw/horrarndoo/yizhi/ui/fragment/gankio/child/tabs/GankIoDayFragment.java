@@ -75,16 +75,16 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
     @Override
     public void updateContentList(List<GankIoDayItemBean> list) {
         Logger.e(list.toString());
-        if(mGankIoDayAdapter == null){
+        if (mGankIoDayAdapter == null) {
             initRecycleView(list);
-        }else{
+        } else {
             mGankIoDayAdapter.addData(list);
         }
     }
 
     @Override
-    public void itemNotifyChanged(GankIoDayItemBean bean, int position) {
-        mGankIoDayAdapter.refeshItem(bean, position);
+    public void itemNotifyChanged(int position, GankIoDayItemBean bean) {
+        mGankIoDayAdapter.refeshItem(position, bean);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
     public void showNoMoreData() {
     }
 
-    private void initRecycleView(List<GankIoDayItemBean> list){
+    private void initRecycleView(List<GankIoDayItemBean> list) {
         mGankIoDayAdapter = new GankIoDayAdapter(list);
         mGankIoDayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -112,16 +112,18 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
                 mPresenter.onItemClick(position, (GankIoDayItemBean) adapter.getItem(position));
             }
         });
-        mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        mGankIoDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter
+                .OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (view.getId())
-                {
+                switch (view.getId()) {
                     case R.id.ll_more:
-                        mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                        mPresenter.onMoreClick(position, (GankIoDayItemBean) adapter.getItem
+                                (position));
                         break;
                     case R.id.ll_refesh:
-                        mPresenter.onRefeshClick(position, (GankIoDayItemBean) adapter.getItem(position));
+                        mPresenter.onRefeshClick(position, (GankIoDayItemBean) adapter.getItem
+                                (position));
                         break;
                 }
             }
