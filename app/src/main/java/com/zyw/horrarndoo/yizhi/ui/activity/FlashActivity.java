@@ -66,6 +66,7 @@ public class FlashActivity extends BaseCompatActivity {
         RxPermissions rxPermission = new RxPermissions(FlashActivity.this);
         //请求权限全部结果
         rxPermission.request(
+                Manifest.permission.CAMERA,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -94,6 +95,7 @@ public class FlashActivity extends BaseCompatActivity {
         //                Manifest.permission.SEND_SMS)
         //注：魅族pro6s-7.0-flyme6权限没有像类似6.0以上手机一样正常的提示dialog获取运行时权限，而是直接默认给了权限。魅族pro6s动态获取权限不会回调下面的方法
         //        rxPermission.requestEach(
+        //                Manifest.permission.CAMERA,
         //                Manifest.permission.READ_PHONE_STATE,
         //                Manifest.permission.WRITE_EXTERNAL_STORAGE,
         //                Manifest.permission.READ_EXTERNAL_STORAGE,

@@ -99,7 +99,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
     @Override
     public void updateContentList(List<GankIoCustomItemBean> list) {
-        Logger.e(list.toString());
+        //Logger.e(list.toString());
         if (mGankIoCustomAdapter == null) {
             initRecycleView(list);
         } else {

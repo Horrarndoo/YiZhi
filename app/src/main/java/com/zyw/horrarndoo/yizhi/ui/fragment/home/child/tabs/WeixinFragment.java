@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.yizhi.R;
@@ -85,7 +84,7 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public void updateContentList(List<WeixinChoiceItemBean> list) {
-        Logger.e(list.toString());
+        //Logger.e(list.toString());
         mWeixinAdapter.addData(list);
     }
 
