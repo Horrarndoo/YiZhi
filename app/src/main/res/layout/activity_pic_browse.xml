@@ -4,6 +4,7 @@
                                                  android:id="@+id/cl_pic_browse"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
                                                  android:background="@android:color/black">
 
     <com.bm.library.PhotoView
@@ -35,6 +36,5 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:fitsSystemWindows="true"
         app:navigationIcon="@mipmap/ic_arrow_back_white"/>
 </android.support.design.widget.CoordinatorLayout>

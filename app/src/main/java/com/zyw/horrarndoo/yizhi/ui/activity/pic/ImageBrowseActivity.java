@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.ui.activity.pic;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -58,6 +59,7 @@ public class ImageBrowseActivity extends BaseCompatActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         initTitleBar(toolbar,"");
+        StatusBarUtils.setBarColor(this, Color.BLACK);
         pvPic.enable();
         if (mImageUrl.contains("gif")) {
             loadGif();
