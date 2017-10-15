@@ -35,6 +35,7 @@ public class FlashActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        //注：魅族pro6s-7.0-flyme6权限没有像类似6.0以上手机一样正常的提示dialog获取运行时权限，而是直接默认给了权限
         requestPermissions();
     }
 
@@ -65,7 +66,6 @@ public class FlashActivity extends BaseCompatActivity {
         RxPermissions rxPermission = new RxPermissions(FlashActivity.this);
         //请求权限全部结果
         rxPermission.request(
-                Manifest.permission.CAMERA,//模拟器无法获取CAMERA权限
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -76,6 +76,7 @@ public class FlashActivity extends BaseCompatActivity {
                         if (!granted) {
                             ToastUtils.showToast("App未能获取全部需要的相关权限，部分功能可能不能正常使用.");
                         }
+                        //不管是否获取全部权限，进入主页面
                         initCountDown();
                     }
                 });
@@ -91,8 +92,8 @@ public class FlashActivity extends BaseCompatActivity {
         //                Manifest.permission.CAMERA,
         //                Manifest.permission.CALL_PHONE,
         //                Manifest.permission.SEND_SMS)
+        //注：魅族pro6s-7.0-flyme6权限没有像类似6.0以上手机一样正常的提示dialog获取运行时权限，而是直接默认给了权限。魅族pro6s动态获取权限不会回调下面的方法
         //        rxPermission.requestEach(
-        //                Manifest.permission.CAMERA,
         //                Manifest.permission.READ_PHONE_STATE,
         //                Manifest.permission.WRITE_EXTERNAL_STORAGE,
         //                Manifest.permission.READ_EXTERNAL_STORAGE,
