@@ -141,7 +141,8 @@ public class PersonalUpperPresenter extends PersonalContract.PersonalUpperPresen
         if (headUri != null) {
             String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
             Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-            mIView.showHead(bitMap);
+            if (bitMap != null)
+                mIView.showHead(bitMap);
         }
     }
 }

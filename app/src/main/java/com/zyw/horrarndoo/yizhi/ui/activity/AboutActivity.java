@@ -24,16 +24,8 @@ public class AboutActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        toolbar.setTitle("关于");
+        initTitleBar(toolbar, "关于");
         toolbar.setTitleTextColor(ResourcesUtils.getColor(R.color.md_white));
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(com.zyw.horrarndoo.sdk.R.mipmap.ic_arrow_back_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressedSupport();
-            }
-        });
     }
 
     @OnClick(R.id.cv_author)

@@ -33,7 +33,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.zyw.horrarndoo.yizhi.constant.HeadConstant.HEAD_IMAGE_NAME;
 import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE_URI;
 
 /**
@@ -42,9 +41,7 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE
  */
 
 public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContract
-        .PersonalUpperPresenter,
-
-        PersonalContract.IPersonalUpperModel> implements PersonalContract.IPersonalUpperView {
+        .PersonalUpperPresenter, PersonalContract.IPersonalUpperModel> implements PersonalContract.IPersonalUpperView {
 
     @BindView(R.id.civ_head)
     CircleImageView civHead;
@@ -85,16 +82,6 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        //此处实际应用中替换成服务器拉取图片
-        Uri headUri = Uri.fromFile(new File(mActivity.getCacheDir(), HEAD_IMAGE_NAME + ".jpg"));
-        if (headUri != null) {
-            String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
-            Bitmap bitmap = BitmapFactory.decodeFile(cropImagePath);
-            if (bitmap != null) {
-                civHead.setImageBitmap(bitmap);
-            }
-        }
-
         initPopupView();
     }
 
@@ -215,6 +202,7 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
         }
         String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), uri);
         Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-        civHead.setImageBitmap(bitMap);
+        if (bitMap != null)
+            civHead.setImageBitmap(bitMap);
     }
 }

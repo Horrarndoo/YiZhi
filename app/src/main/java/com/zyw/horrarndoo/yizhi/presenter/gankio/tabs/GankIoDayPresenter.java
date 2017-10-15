@@ -3,7 +3,6 @@ package com.zyw.horrarndoo.yizhi.presenter.gankio.tabs;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoDayContract;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayItemBean;
@@ -60,7 +59,7 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
 
     @Override
     public void onItemClick(int position, GankIoDayItemBean item) {
-        Logger.e(item.toString());
+        //Logger.e(item.toString());
 
         Bundle bundle = new Bundle();
         if (item.getType().equals("福利")) {

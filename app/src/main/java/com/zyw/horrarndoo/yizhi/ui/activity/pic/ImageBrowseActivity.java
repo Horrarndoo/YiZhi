@@ -17,6 +17,7 @@ import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
+import com.zyw.horrarndoo.sdk.utils.StatusBarUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 
@@ -56,14 +57,7 @@ public class ImageBrowseActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressedSupport();
-            }
-        });
-
+        initTitleBar(toolbar,"");
         pvPic.enable();
         if (mImageUrl.contains("gif")) {
             loadGif();

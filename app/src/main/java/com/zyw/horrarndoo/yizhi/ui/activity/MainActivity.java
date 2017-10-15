@@ -261,6 +261,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         }
         String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), uri);
         Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-        civHead.setImageBitmap(bitMap);
+        if (bitMap != null)
+            civHead.setImageBitmap(bitMap);
     }
 }
