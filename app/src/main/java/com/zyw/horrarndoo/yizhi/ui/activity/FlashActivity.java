@@ -65,7 +65,7 @@ public class FlashActivity extends BaseCompatActivity {
         RxPermissions rxPermission = new RxPermissions(FlashActivity.this);
         //请求权限全部结果
         rxPermission.request(
-                Manifest.permission.CAMERA,
+                Manifest.permission.CAMERA,//模拟器无法获取CAMERA权限
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
