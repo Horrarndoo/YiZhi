@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,7 +16,9 @@ import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.adapter.FragmentAdapter;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.constant.RxBusCode;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.gankio.GankIoMainContract;
 import com.zyw.horrarndoo.yizhi.presenter.gankio.GankIoMainPresenter;
@@ -45,6 +48,8 @@ public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.Gan
     TabLayout tlTabs;
     @BindView(R.id.vp_fragment)
     ViewPager vpFragment;
+    @BindView(R.id.fab_classify)
+    FloatingActionButton fabClassify;
 
     private List<Fragment> fragments;
 
@@ -56,12 +61,63 @@ public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.Gan
     }
 
     @Override
+    public void initData() {
+        super.initData();
+        //        Logger.e("RxBus.get().register(this)");
+        RxBus.get().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //        Logger.e("RxBus.get().unRegister(this)");
+        RxBus.get().unRegister(this);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_gank_io_;
     }
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (vpFragment.getCurrentItem() == 1) {
+                    if (verticalOffset == 0) {
+                        fabClassify.show();
+                    } else {
+                        fabClassify.hide();
+                    }
+                }
+            }
+        });
+        fabClassify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK);
+            }
+        });
+        vpFragment.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                fabClassify.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 1) {
+                    fabClassify.setVisibility(View.VISIBLE);
+                } else {
+                    fabClassify.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
     @NonNull

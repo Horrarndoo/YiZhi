@@ -36,6 +36,7 @@ import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.yokeyword.fragmentation.SupportFragment;
 
+import static com.zyw.horrarndoo.yizhi.constant.HeadConstant.HEAD_IMAGE_NAME;
 import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE_URI;
 
 /**
@@ -109,12 +110,17 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         civHead = (CircleImageView) nvMenu.getHeaderView(0).findViewById(R.id.civ_head);
 
         //此处实际应用中替换成服务器拉取图片
-        Uri headUri = Uri.fromFile(new File(getCacheDir(), "yizhi_head_image" + ".jpg"));
+        Uri headUri = Uri.fromFile(new File(getCacheDir(), HEAD_IMAGE_NAME + ".jpg"));
         if (headUri != null) {
             String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
-            Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-            civHead.setImageBitmap(bitMap);
+            try {
+                Bitmap bitmap = BitmapFactory.decodeFile(cropImagePath);
+                civHead.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
 
         civHead.setOnClickListener(new View.OnClickListener() {
             @Override

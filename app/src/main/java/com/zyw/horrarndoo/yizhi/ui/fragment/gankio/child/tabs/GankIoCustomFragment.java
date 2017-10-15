@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +15,8 @@ import com.cocosw.bottomsheet.BottomSheet;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.rxbus.RxBus;
+import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.GankIoCustomAdapter;
@@ -26,6 +27,8 @@ import com.zyw.horrarndoo.yizhi.presenter.gankio.tabs.GankIoCustomPresenter;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK;
 
 /**
  * Created by Horrarndoo on 2017/10/7.
@@ -38,9 +41,6 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
     @BindView(R.id.rv_gankio_custom)
     RecyclerView rvGankIoCustom;
-    @BindView(R.id.fab_classify)
-    FloatingActionButton fabClassify;
-
 
     private View headView;
     private String mCustomType = "all";
@@ -52,6 +52,21 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void initData() {
+        super.initData();
+        //        Logger.e("RxBus.get().register(this)");
+        RxBus.get().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //        Logger.e("RxBus.get().unRegister(this)");
+        RxBus.get().unRegister(this);
+    }
+
 
     @Override
     public int getLayoutId() {
@@ -66,17 +81,6 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
             @Override
             public void onClick(View v) {
                 mPresenter.loadLatestList();
-            }
-        });
-        rvGankIoCustom.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0) {
-                    fabClassify.hide();
-                } else {
-                    fabClassify.show();
-                }
             }
         });
     }
@@ -176,45 +180,58 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
         @Override
         public void onClick(View v) {
-            new BottomSheet.Builder(getActivity(), R.style.BottomSheet_StyleDialog)
-                    .title("选择分类")
-                    .sheet(R.menu.gank_io_custom_bottom_sheet)
-                    .listener(new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
-                                case R.id.item_gank_all:
-                                    mCustomType = "all";
-                                    tvHeadName.setText("全部");
-                                    break;
-                                case R.id.item_gank_app:
-                                    mCustomType = "App";
-                                    tvHeadName.setText("App");
-                                    break;
-                                case R.id.item_gank_android:
-                                    mCustomType = "Android";
-                                    tvHeadName.setText("Android");
-                                    break;
-                                case R.id.item_gank_ios:
-                                    mCustomType = "iOS";
-                                    tvHeadName.setText("iOS");
-                                    break;
-                                case R.id.item_gank_front:
-                                    mCustomType = "前端";
-                                    tvHeadName.setText("前端");
-                                    break;
-                                case R.id.item_gank_video:
-                                    mCustomType = "休息视频";
-                                    tvHeadName.setText("休息视频");
-                                    break;
-                                case R.id.item_gank_tuozhan:
-                                    mCustomType = "拓展资源";
-                                    tvHeadName.setText("拓展资源");
-                                    break;
-                            }
-                            mPresenter.customTypeChange(mCustomType);
-                        }
-                    }).show();
+            showBottomSheet(tvHeadName);
         }
+    }
+
+    private void showBottomSheet(final TextView tvHeadName){
+        new BottomSheet.Builder(getActivity(), R.style.BottomSheet_StyleDialog)
+                .title("选择分类")
+                .sheet(R.menu.gank_io_custom_bottom_sheet)
+                .listener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case R.id.item_gank_all:
+                                mCustomType = "all";
+                                tvHeadName.setText("全部");
+                                break;
+                            case R.id.item_gank_app:
+                                mCustomType = "App";
+                                tvHeadName.setText("App");
+                                break;
+                            case R.id.item_gank_android:
+                                mCustomType = "Android";
+                                tvHeadName.setText("Android");
+                                break;
+                            case R.id.item_gank_ios:
+                                mCustomType = "iOS";
+                                tvHeadName.setText("iOS");
+                                break;
+                            case R.id.item_gank_front:
+                                mCustomType = "前端";
+                                tvHeadName.setText("前端");
+                                break;
+                            case R.id.item_gank_video:
+                                mCustomType = "休息视频";
+                                tvHeadName.setText("休息视频");
+                                break;
+                            case R.id.item_gank_tuozhan:
+                                mCustomType = "拓展资源";
+                                tvHeadName.setText("拓展资源");
+                                break;
+                        }
+                        mPresenter.customTypeChange(mCustomType);
+                    }
+                }).show();
+    }
+
+    /**
+     * parent fab click
+     */
+    @Subscribe(code = RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK)
+    public void rxBusEvent() {
+        Logger.e("fab click.");
+        showBottomSheet((TextView) headView.findViewById(R.id.tv_type_name));
     }
 }

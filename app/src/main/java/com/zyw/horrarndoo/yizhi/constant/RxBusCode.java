@@ -8,5 +8,5 @@ package com.zyw.horrarndoo.yizhi.constant;
 public class RxBusCode {
     public final static int RX_BUS_CODE_HEAD_IMAGE_URI = 10001;
 
-    public final static int RX_BUS_CODE_CHILD_FRAGMENT_BACK = 10002;
+    public final static int RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK = 10002;
 }

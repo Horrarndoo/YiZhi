@@ -90,9 +90,15 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
         Uri headUri = Uri.fromFile(new File(mActivity.getCacheDir(), HEAD_IMAGE_NAME + ".jpg"));
         if (headUri != null) {
             String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), headUri);
-            Bitmap bitmap = BitmapFactory.decodeFile(cropImagePath);
-            civHead.setImageBitmap(bitmap);
+            try {
+                Bitmap bitmap = BitmapFactory.decodeFile(cropImagePath);
+                civHead.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
         }
+
         initPopupView();
     }
 

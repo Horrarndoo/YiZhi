@@ -17,7 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        ndk { abiFilters "armeabi" }
+        ndk { abiFilters "armeabi", "x86_64" }
     }
     buildTypes {
         debug {
