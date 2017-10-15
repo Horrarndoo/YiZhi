@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.yizhi.R;
@@ -74,7 +73,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
 
     @Override
     public void updateContentList(List<GankIoDayItemBean> list) {
-        Logger.e(list.toString());
+        // Logger.e(list.toString());
         if (mGankIoDayAdapter == null) {
             initRecycleView(list);
         } else {

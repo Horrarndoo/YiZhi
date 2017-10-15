@@ -165,14 +165,14 @@ public class FileUtils {
     }
 
     /**
-     * 保存文件到本机
+     * 保存图片到本机
      *
      * @param context            context
      * @param fileName           文件名
      * @param file               file
      * @param saveResultCallback 保存结果callback
      */
-    public static void saveFile(final Context context, final String fileName, final File file,
+    public static void saveImage(final Context context, final String fileName, final File file,
                                 final SaveResultCallback saveResultCallback) {
         new Thread(new Runnable() {
             @Override
@@ -181,9 +181,14 @@ public class FileUtils {
                 if (!appDir.exists()) {
                     appDir.mkdir();
                 }
-                String rFileName = fileName.substring(0, fileName.lastIndexOf("."));
-                String fileFormat = fileName.substring(fileName.lastIndexOf("."));
-                String saveFileName = MD5Utils.getMD5("yizhi_pic" + rFileName) + fileFormat;
+                String saveFileName = "yizhi_pic";
+                if (fileName.contains(".png") || fileName.contains(".gif")) {
+                    String fileFormat = fileName.substring(fileName.lastIndexOf("."));
+                    saveFileName = MD5Utils.getMD5("yizhi_pic" + fileName) + fileFormat;
+                } else {
+                    saveFileName = MD5Utils.getMD5("yizhi_pic" + fileName) + ".png";
+                }
+                saveFileName = saveFileName.substring(20);//取前20位作为SaveName
                 File savefile = new File(appDir, saveFileName);
                 try {
                     InputStream is = new FileInputStream(file);
@@ -230,8 +235,9 @@ public class FileUtils {
                 }
                 //                SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
                 // 设置以当前时间格式为图片名称
-                String fileNameM = MD5Utils.getMD5("yizhi_pic" + fileName) + ".png";
-                File file = new File(appDir, fileNameM);
+                String saveFileName = MD5Utils.getMD5("yizhi_pic" + fileName) + ".png";
+                saveFileName = saveFileName.substring(20);//取前20位作为SaveName
+                File file = new File(appDir, saveFileName);
                 try {
                     FileOutputStream fos = new FileOutputStream(file);
                     bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);

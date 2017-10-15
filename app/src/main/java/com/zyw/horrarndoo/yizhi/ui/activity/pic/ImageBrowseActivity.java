@@ -89,7 +89,7 @@ public class ImageBrowseActivity extends BaseCompatActivity {
     }
 
     /**
-     * 保存gif到本地s
+     * 保存图片到本地
      *
      * @param fileName 文件名
      */
@@ -106,7 +106,7 @@ public class ImageBrowseActivity extends BaseCompatActivity {
         }).compose(RxHelper.<File>rxSchedulerHelper()).subscribe(new Consumer<File>() {
             @Override
             public void accept(File file) throws Exception {
-                saveFile(fileName, file);
+                saveImage(fileName, file);
             }
         });
     }
@@ -149,13 +149,13 @@ public class ImageBrowseActivity extends BaseCompatActivity {
     }
 
     /**
-     * 保存文件，并且回调提示
+     * 保存图片，并且回调提示
      *
      * @param fileName 文件名
      * @param file     文件file
      */
-    private void saveFile(String fileName, File file) {
-        FileUtils.saveFile(ImageBrowseActivity.this, fileName, file, new FileUtils
+    private void saveImage(String fileName, File file) {
+        FileUtils.saveImage(ImageBrowseActivity.this, fileName, file, new FileUtils
                 .SaveResultCallback() {
             @Override
             public void onSavedSuccess() {

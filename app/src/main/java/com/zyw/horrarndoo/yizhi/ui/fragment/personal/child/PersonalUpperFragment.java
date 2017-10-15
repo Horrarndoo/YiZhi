@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.personal.child;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,6 @@ import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
-import com.zyw.horrarndoo.yizhi.BuildConfig;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.contract.personal.PersonalContract;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
@@ -180,10 +179,14 @@ public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContrac
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //设置7.0中共享文件，分享路径定义在xml/file_paths.xml
-            intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(mActivity, BuildConfig.APPLICATION_ID + "" +
-                    ".fileProvider", tempFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+            //            intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            //            Uri contentUri = FileProvider.getUriForFile(mActivity, BuildConfig.APPLICATION_ID + "" +
+            //                    ".fileProvider", tempFile);
+            //            intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+            ContentValues contentValues = new ContentValues(1);
+            contentValues.put(MediaStore.Images.Media.DATA, tempFile.getAbsolutePath());
+            Uri uri = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         } else {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
         }
