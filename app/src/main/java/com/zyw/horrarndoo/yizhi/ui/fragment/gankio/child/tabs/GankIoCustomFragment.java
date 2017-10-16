@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cocosw.bottomsheet.BottomSheet;
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
@@ -131,7 +130,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
     @Override
     public void showLoadMoreError() {
-        mGankIoCustomAdapter.setEmptyView(errorView);
+        mGankIoCustomAdapter.loadMoreFail();
     }
 
     @Override
@@ -239,12 +238,12 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
      */
     @Subscribe(code = RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK)
     public void rxBusEvent() {
-        Logger.e("fab click.");
+        //Logger.e("fab click.");
         showBottomSheet((TextView) headView.findViewById(R.id.tv_type_name));
     }
 
     /**
-     * parent fab click
+     * day页面查看更多事件触发
      */
     @Subscribe(code = RX_BUS_CODE_GANKIO_CUSTOM_TYPE)
     public void rxBusEvent(String customType) {

@@ -77,8 +77,13 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
     @Override
     public void onMoreClick(int position, GankIoDayItemBean item) {
         //        Logger.e(item.toString());
-        RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_CUSTOM_TYPE, item.getType());
-        RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_SELECT_TO_CHILD, 1);
+        if (item.getType().equals("福利")) {//更多福利直接跳到福利界面
+            RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_WELFARE_TYPE);
+            RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_SELECT_TO_CHILD, 2);
+        } else {//跳到custom界面
+            RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_CUSTOM_TYPE, item.getType());
+            RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_SELECT_TO_CHILD, 1);
+        }
     }
 
     @Override

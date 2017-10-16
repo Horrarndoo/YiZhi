@@ -22,8 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:layout_margin="5dp"
-            app:srcCompat="@drawable/ic_vector_image_load_before"/>
+            android:layout_margin="5dp"/>
 
         <include layout="@layout/sub_item_gank_io_custom_bottom"/>
     </LinearLayout>

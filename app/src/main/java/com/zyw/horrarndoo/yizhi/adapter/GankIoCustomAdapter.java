@@ -66,7 +66,9 @@ public class GankIoCustomAdapter extends BaseMultiItemQuickAdapter<GankIoCustomI
             case GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_IMAGE:
                 Glide.with(mContext)
                         .load(item.getUrl())
-                        .crossFade(500)
+                        .asBitmap()
+                        .centerCrop()
+                        .placeholder(R.mipmap.img_default_meizi)
                         .into((ImageView) helper.getView(R.id.iv_item_image));
                 break;
             case GankIoCustomItemBean.GANK_IO_DAY_ITEM_CUSTOM_NO_IMAGE:

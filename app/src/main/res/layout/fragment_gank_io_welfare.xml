@@ -4,9 +4,13 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_gankio_welfare"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="福利"
-        android:textSize="30sp"/>
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"/>
 </LinearLayout>
