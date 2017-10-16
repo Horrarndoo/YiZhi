@@ -36,7 +36,7 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
 
         mCurrentPage = 1;
         //一次加载20条数据
-        mRxManager.register(mIModel.getCustomGankIoList(mIView.getCustomType(), 10, mCurrentPage)
+        mRxManager.register(mIModel.getCustomGankIoList(mIView.getCustomType(), 20, mCurrentPage)
                 .subscribe(new Consumer<GankIoCustomListBean>() {
                     @Override
                     public void accept(GankIoCustomListBean gankIoCustomListBean) throws Exception {

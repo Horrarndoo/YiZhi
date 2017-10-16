@@ -26,7 +26,7 @@ import java.util.List;
 
 public class GankIoCustomAdapter extends BaseMultiItemQuickAdapter<GankIoCustomItemBean,
         BaseViewHolder> {
-    private String mImageSize = "?imageView2/0/w/100";
+    private String mImageSize = "?imageView2/0/w/200";
 
     public GankIoCustomAdapter(@Nullable List<GankIoCustomItemBean> data) {
         super(data);
