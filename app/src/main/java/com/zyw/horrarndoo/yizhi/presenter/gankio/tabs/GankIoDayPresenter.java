@@ -3,7 +3,9 @@ package com.zyw.horrarndoo.yizhi.presenter.gankio.tabs;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
+import com.zyw.horrarndoo.yizhi.constant.RxBusCode;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoDayContract;
 import com.zyw.horrarndoo.yizhi.model.bean.gankio.GankIoDayItemBean;
 import com.zyw.horrarndoo.yizhi.model.gankio.tabs.GankIoDayModel;
@@ -75,6 +77,8 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
     @Override
     public void onMoreClick(int position, GankIoDayItemBean item) {
         //        Logger.e(item.toString());
+        RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_CUSTOM_TYPE, item.getType());
+        RxBus.get().send(RxBusCode.RX_BUS_CODE_GANKIO_SELECT_TO_CHILD, 1);
     }
 
     @Override

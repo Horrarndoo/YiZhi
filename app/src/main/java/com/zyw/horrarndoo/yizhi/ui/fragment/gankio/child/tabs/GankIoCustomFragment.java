@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_CUSTOM_TYPE;
 import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_PARENT_FAB_CLICK;
 
 /**
@@ -109,7 +110,13 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
     @Override
     public void refeshCustomList(List<GankIoCustomItemBean> list) {
-        mGankIoCustomAdapter.replaceData(list);
+        if (mGankIoCustomAdapter == null) {
+            initRecycleView(list);
+        } else {
+            mGankIoCustomAdapter.replaceData(list);
+        }
+
+        initHeadView();
     }
 
     @Override
@@ -155,20 +162,21 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
                         (position));
             }
         });
-
-        if (headView == null) {
-            headView = ResourcesUtils.inflate(R.layout.sub_gank_io_custom_head);
-            initHeadView(headView);
-        }
+        initHeadView();
         mGankIoCustomAdapter.addHeaderView(headView);
         rvGankIoCustom.setAdapter(mGankIoCustomAdapter);
         rvGankIoCustom.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
-    private void initHeadView(View headView) {
+    private void initHeadView() {
+        if (headView == null) {
+            headView = ResourcesUtils.inflate(R.layout.sub_gank_io_custom_head);
+        }
+
         final TextView tvHeadName = (TextView) headView.findViewById(R.id.tv_type_name);
         headView.findViewById(R.id.ll_choose_catalogue).setOnClickListener(new
                 CatalogueClickListenerImp(tvHeadName));
+        tvHeadName.setText(mCustomType);
     }
 
     public class CatalogueClickListenerImp implements View.OnClickListener {
@@ -184,7 +192,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         }
     }
 
-    private void showBottomSheet(final TextView tvHeadName){
+    private void showBottomSheet(final TextView tvHeadName) {
         new BottomSheet.Builder(getActivity(), R.style.BottomSheet_StyleDialog)
                 .title("选择分类")
                 .sheet(R.menu.gank_io_custom_bottom_sheet)
@@ -233,5 +241,15 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     public void rxBusEvent() {
         Logger.e("fab click.");
         showBottomSheet((TextView) headView.findViewById(R.id.tv_type_name));
+    }
+
+    /**
+     * parent fab click
+     */
+    @Subscribe(code = RX_BUS_CODE_GANKIO_CUSTOM_TYPE)
+    public void rxBusEvent(String customType) {
+        //Logger.e("customType = " + customType);
+        mCustomType = customType;
+        mPresenter.customTypeChange(mCustomType);
     }
 }

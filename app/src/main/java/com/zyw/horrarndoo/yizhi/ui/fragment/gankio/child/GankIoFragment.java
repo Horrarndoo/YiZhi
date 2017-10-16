@@ -17,6 +17,7 @@ import com.zyw.horrarndoo.sdk.adapter.FragmentAdapter;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
+import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.RxBusCode;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
@@ -31,6 +32,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_SELECT_TO_CHILD;
 
 /**
  * Created by Horrarndoo on 2017/9/23.
@@ -101,7 +104,8 @@ public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.Gan
         });
         vpFragment.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int
+                    positionOffsetPixels) {
                 fabClassify.setVisibility(View.GONE);
             }
 
@@ -167,5 +171,15 @@ public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.Gan
     public void onAttach(Context context) {
         super.onAttach(context);
         fragments = new ArrayList<>();
+    }
+
+    /**
+     * 切换tabs
+     */
+    @Subscribe(code = RX_BUS_CODE_GANKIO_SELECT_TO_CHILD)
+    public void rxBusEvent(Integer index) {
+        Logger.e("index = " + index);
+        tlTabs.setVerticalScrollbarPosition(index);
+        vpFragment.setCurrentItem(index);
     }
 }

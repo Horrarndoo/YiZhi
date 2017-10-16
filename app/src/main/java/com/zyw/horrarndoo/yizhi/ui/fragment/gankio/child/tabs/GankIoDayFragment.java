@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.GankIoDayAdapter;
 import com.zyw.horrarndoo.yizhi.contract.gankio.tabs.GankIoDayContract;
@@ -40,6 +41,20 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
         GankIoDayFragment fragment = new GankIoDayFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        //        Logger.e("RxBus.get().register(this)");
+        RxBus.get().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //        Logger.e("RxBus.get().unRegister(this)");
+        RxBus.get().unRegister(this);
     }
 
     @Override
