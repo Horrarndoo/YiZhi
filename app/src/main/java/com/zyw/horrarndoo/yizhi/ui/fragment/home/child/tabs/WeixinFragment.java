@@ -49,17 +49,6 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle_home);
-        mWeixinAdapter.setOnLoadMoreListener(this, rvWexin);
-        mWeixinAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (WeixinChoiceItemBean) adapter.getItem(position));
-            }
-        });
-        rvWexin.setAdapter(mWeixinAdapter);
-        rvWexin.setLayoutManager(new LinearLayoutManager(mContext));
-
         errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
                 (ViewGroup) rvWexin.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +57,10 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
                 mPresenter.loadLatestList();
             }
         });
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle_home);
+        rvWexin.setAdapter(mWeixinAdapter);
+        rvWexin.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -84,8 +77,12 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public void updateContentList(List<WeixinChoiceItemBean> list) {
-        //Logger.e(list.toString());
-        mWeixinAdapter.addData(list);
+        //        Logger.e(list.toString());
+        if (mWeixinAdapter.getData().size() == 0) {
+            initRecycleView(list);
+        } else {
+            mWeixinAdapter.addData(list);
+        }
     }
 
     @Override
@@ -112,5 +109,17 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
     public void onLoadMoreRequested() {
         mWeixinAdapter.loadMoreComplete();
         mPresenter.loadMoreList();
+    }
+
+    private void initRecycleView(List<WeixinChoiceItemBean> list) {
+        mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle_home, list);
+        mWeixinAdapter.setOnLoadMoreListener(this, rvWexin);
+        mWeixinAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mPresenter.onItemClick(position, (WeixinChoiceItemBean) adapter.getItem(position));
+            }
+        });
+        rvWexin.setAdapter(mWeixinAdapter);
     }
 }

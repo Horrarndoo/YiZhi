@@ -49,17 +49,6 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle_home);
-        mWangyiAdapter.setOnLoadMoreListener(this, rvWangyi);
-        mWangyiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (WangyiNewsItemBean) adapter.getItem(position));
-            }
-        });
-        rvWangyi.setAdapter(mWangyiAdapter);
-        rvWangyi.setLayoutManager(new LinearLayoutManager(mContext));
-
         errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
                 (ViewGroup) rvWangyi.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +57,10 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
                 mPresenter.loadLatestList();
             }
         });
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle_home);
+        rvWangyi.setAdapter(mWangyiAdapter);
+        rvWangyi.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -85,7 +78,11 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
     @Override
     public void updateContentList(List<WangyiNewsItemBean> list) {
         //Logger.e(list.toString());
-        mWangyiAdapter.addData(list);
+        if (mWangyiAdapter.getData().size() == 0) {
+            initRecycleView(list);
+        } else {
+            mWangyiAdapter.addData(list);
+        }
     }
 
     @Override
@@ -113,5 +110,17 @@ public class WangyiFragment extends BaseMVPCompatFragment<WangyiContract.WangyiP
         //这里loadMoreComplete要放在前面，避免在Presenter.loadMoreNewsList处理中直接showNoMoreData，出现无限显示加载item
         mWangyiAdapter.loadMoreComplete();
         mPresenter.loadMoreList();
+    }
+
+    private void initRecycleView(List<WangyiNewsItemBean> list) {
+        mWangyiAdapter = new WangyiAdapter(R.layout.item_recycle_home, list);
+        mWangyiAdapter.setOnLoadMoreListener(this, rvWangyi);
+        mWangyiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mPresenter.onItemClick(position, (WangyiNewsItemBean) adapter.getItem(position));
+            }
+        });
+        rvWangyi.setAdapter(mWangyiAdapter);
     }
 }

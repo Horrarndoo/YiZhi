@@ -72,6 +72,10 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
                 mPresenter.loadLatestList();
             }
         });
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mGankIoDayAdapter = new GankIoDayAdapter(null);
+        rvGankIoDay.setAdapter(mGankIoDayAdapter);
+        rvGankIoDay.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -89,7 +93,7 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
     @Override
     public void updateContentList(List<GankIoDayItemBean> list) {
         // Logger.e(list.toString());
-        if (mGankIoDayAdapter == null) {
+        if (mGankIoDayAdapter.getData().size() == 0) {
             initRecycleView(list);
         } else {
             mGankIoDayAdapter.addData(list);
@@ -143,6 +147,5 @@ public class GankIoDayFragment extends BaseMVPCompatFragment<GankIoDayContract
             }
         });
         rvGankIoDay.setAdapter(mGankIoDayAdapter);
-        rvGankIoDay.setLayoutManager(new LinearLayoutManager(mContext));
     }
 }

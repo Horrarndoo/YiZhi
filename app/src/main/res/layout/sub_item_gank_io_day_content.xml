@@ -19,7 +19,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_type_item_title"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
@@ -52,7 +52,7 @@
                 android:text="更多"
                 android:textSize="16sp"/>
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_more"
                 android:layout_width="18dp"
                 android:layout_height="18dp"

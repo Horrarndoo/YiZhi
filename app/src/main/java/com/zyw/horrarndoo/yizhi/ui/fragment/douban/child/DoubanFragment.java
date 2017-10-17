@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.DoubanAdapter;
 import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMainContract;
@@ -29,10 +31,11 @@ import butterknife.BindView;
 public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.DoubanMainPresenter,
         DoubanMainContract.IDoubanMainModel> implements DoubanMainContract.IDoubanMainView {
 
-    @BindView(R.id.rv_douban_top_movie)
-    RecyclerView rvDoubanTopMovie;
+    @BindView(R.id.rv_douban_hot_movie)
+    RecyclerView rvDoubanHotMovie;
 
     private DoubanAdapter mDoubanAdapter;
+    private View headView;
 
     public static DoubanFragment newInstance() {
         Bundle args = new Bundle();
@@ -55,27 +58,32 @@ public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.Dou
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
         errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
-                (ViewGroup) rvDoubanTopMovie.getParent(), false);
+                (ViewGroup) rvDoubanHotMovie.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mPresenter.loadHotMovieList();
             }
         });
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mDoubanAdapter = new DoubanAdapter(R.layout.item_douban_hot_movie);
+        rvDoubanHotMovie.setAdapter(mDoubanAdapter);
+        rvDoubanHotMovie.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
     public void updateContentList(List<SubjectsBean> list) {
-//        Logger.e(list.toString());
-        if(mDoubanAdapter == null){
+        //        Logger.e(list.toString());
+        if (mDoubanAdapter.getData().size() == 0) {
             initRecycleView(list);
-        }else {
+        } else {
             mDoubanAdapter.addData(list);
         }
     }
 
     @Override
     public void showNetworkError() {
+        Logger.e("mDoubanAdapter = " + mDoubanAdapter);
         mDoubanAdapter.setEmptyView(errorView);
     }
 
@@ -85,15 +93,29 @@ public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.Dou
         return DoubanMianPresenter.newInstance();
     }
 
-    private void initRecycleView(List<SubjectsBean> list){
+    private void initRecycleView(List<SubjectsBean> list) {
         mDoubanAdapter = new DoubanAdapter(R.layout.item_douban_hot_movie, list);
         mDoubanAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (SubjectsBean) adapter.getItem(position));
+                //由于有headview click position需要+1 adapter.getItem返回的是数据list的position，所以不用+1
+                mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position));
             }
         });
-        rvDoubanTopMovie.setAdapter(mDoubanAdapter);
-        rvDoubanTopMovie.setLayoutManager(new LinearLayoutManager(mContext));
+        initHeadView();
+        mDoubanAdapter.addHeaderView(headView);
+        rvDoubanHotMovie.setAdapter(mDoubanAdapter);
+    }
+
+    private void initHeadView() {
+        if (headView == null) {
+            headView = ResourcesUtils.inflate(R.layout.sub_douban_top_header);
+        }
+        headView.findViewById(R.id.ll_movie_top).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.e("click click.");
+            }
+        });
     }
 }

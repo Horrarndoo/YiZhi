@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,10 @@ public class GankIoWelfareFragment extends BaseMVPCompatFragment<GankIoWelfareCo
                 mPresenter.loadLatestList();
             }
         });
-        rvGankIoWelfare.setLayoutManager(new GridLayoutManager(mActivity, 2));
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mGankIoWelfareAdapter = new GankIoWelfareAdapter(R.layout.item_gank_io_welfare);
+        rvGankIoWelfare.setAdapter(mGankIoWelfareAdapter);
+        rvGankIoWelfare.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -94,7 +98,7 @@ public class GankIoWelfareFragment extends BaseMVPCompatFragment<GankIoWelfareCo
     @Override
     public void updateContentList(List<GankIoWelfareItemBean> list) {
         //Logger.e(list.toString());
-        if (mGankIoWelfareAdapter == null) {
+        if (mGankIoWelfareAdapter.getData().size() == 0) {
             initRecycleView(list);
         } else {
             mGankIoWelfareAdapter.addData(list);
@@ -137,6 +141,7 @@ public class GankIoWelfareFragment extends BaseMVPCompatFragment<GankIoWelfareCo
             }
         });
         rvGankIoWelfare.setAdapter(mGankIoWelfareAdapter);
+        rvGankIoWelfare.setLayoutManager(new GridLayoutManager(mActivity, 2));
     }
 
     /**

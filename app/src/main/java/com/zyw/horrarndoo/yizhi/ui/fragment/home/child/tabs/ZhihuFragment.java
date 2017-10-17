@@ -49,17 +49,6 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mZhihuAdapter = new ZhihuAdapter(R.layout.item_recycle_home);
-        mZhihuAdapter.setOnLoadMoreListener(this, rvZhihu);
-        mZhihuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mPresenter.onItemClick(position, (ZhihuDailyItemBean) adapter.getItem(position));
-            }
-        });
-        rvZhihu.setAdapter(mZhihuAdapter);
-        rvZhihu.setLayoutManager(new LinearLayoutManager(mContext));
-
         errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
                 (ViewGroup) rvZhihu.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +57,11 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
                 mPresenter.loadLatestList();
             }
         });
+
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mZhihuAdapter = new ZhihuAdapter(R.layout.item_recycle_home);
+        rvZhihu.setAdapter(mZhihuAdapter);
+        rvZhihu.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -85,7 +79,11 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
     @Override
     public void updateContentList(List<ZhihuDailyItemBean> list) {
         //        Logger.e(list.toString());
-        mZhihuAdapter.addData(list);
+        if (mZhihuAdapter.getData().size() == 0) {
+            initRecycleView(list);
+        } else {
+            mZhihuAdapter.addData(list);
+        }
     }
 
     @Override
@@ -114,5 +112,17 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
     public void onLoadMoreRequested() {
         mZhihuAdapter.loadMoreComplete();
         mPresenter.loadMoreList();
+    }
+
+    private void initRecycleView(List<ZhihuDailyItemBean> list) {
+        mZhihuAdapter = new ZhihuAdapter(R.layout.item_recycle_home, list);
+        mZhihuAdapter.setOnLoadMoreListener(this, rvZhihu);
+        mZhihuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mPresenter.onItemClick(position, (ZhihuDailyItemBean) adapter.getItem(position));
+            }
+        });
+        rvZhihu.setAdapter(mZhihuAdapter);
     }
 }

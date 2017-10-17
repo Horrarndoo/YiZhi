@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/bg_gray"
                 android:gravity="bottom"
                 android:paddingBottom="5dp"
@@ -14,10 +15,10 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="20dp"
             android:layout_height="23dp"
-            android:background="@drawable/ic_vector_head_vertical_line" />
+            app:srcCompat="@drawable/ic_vector_head_vertical_line" />
 
         <TextView
             android:id="@+id/tv_type_name"

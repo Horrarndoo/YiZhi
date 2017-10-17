@@ -35,7 +35,7 @@
                 android:textColor="@color/txt_black"
                 android:textSize="16sp"/>
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_item_image"
                 android:layout_width="@dimen/list_image_size"
                 android:layout_height="@dimen/list_image_size"

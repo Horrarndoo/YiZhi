@@ -42,7 +42,7 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
                     mIView.showToast("Network error.");
-                    if (Cache.getDoubanHotCache() == null)//没有缓存缓存，显示网络错误界面
+                    if (Cache.getDoubanHotCache().size() == 0)//没有缓存缓存，显示网络错误界面
                         mIView.showNetworkError();
                 }
             }

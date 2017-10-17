@@ -83,6 +83,10 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
                 mPresenter.loadLatestList();
             }
         });
+        //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
+        mGankIoCustomAdapter = new GankIoCustomAdapter(null);
+        rvGankIoCustom.setAdapter(mGankIoCustomAdapter);
+        rvGankIoCustom.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     @Override
@@ -100,7 +104,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
     @Override
     public void updateContentList(List<GankIoCustomItemBean> list) {
         //Logger.e(list.toString());
-        if (mGankIoCustomAdapter == null) {
+        if (mGankIoCustomAdapter.getData().size() == 0) {
             initRecycleView(list);
         } else {
             mGankIoCustomAdapter.addData(list);
@@ -109,7 +113,7 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
 
     @Override
     public void refeshCustomList(List<GankIoCustomItemBean> list) {
-        if (mGankIoCustomAdapter == null) {
+        if (mGankIoCustomAdapter.getData().size() == 0) {
             initRecycleView(list);
         } else {
             mGankIoCustomAdapter.replaceData(list);
@@ -164,7 +168,6 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         initHeadView();
         mGankIoCustomAdapter.addHeaderView(headView);
         rvGankIoCustom.setAdapter(mGankIoCustomAdapter);
-        rvGankIoCustom.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
     private void initHeadView() {
@@ -175,7 +178,11 @@ public class GankIoCustomFragment extends BaseMVPCompatFragment<GankIoCustomCont
         final TextView tvHeadName = (TextView) headView.findViewById(R.id.tv_type_name);
         headView.findViewById(R.id.ll_choose_catalogue).setOnClickListener(new
                 CatalogueClickListenerImp(tvHeadName));
-        tvHeadName.setText(mCustomType);
+        if (mCustomType.equals("all")) {
+            tvHeadName.setText("全部");
+        }else{
+            tvHeadName.setText(mCustomType);
+        }
     }
 
     public class CatalogueClickListenerImp implements View.OnClickListener {
