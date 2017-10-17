@@ -5,11 +5,14 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_douban_top_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="豆瓣"
-        android:textSize="50sp"/>
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

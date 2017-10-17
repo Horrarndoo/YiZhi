@@ -5,6 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * SharedPreferences工具类封装
  */
@@ -14,9 +22,10 @@ public class SpUtils {
 
     /**
      * 设置preferencesName
+     *
      * @param preferencesName preferencesName
      */
-    private void setPreferencesName(String preferencesName){
+    private void setPreferencesName(String preferencesName) {
         mPreferencesName = preferencesName;
     }
 
@@ -133,6 +142,52 @@ public class SpUtils {
                     .MODE_PRIVATE);
         }
         sp.edit().remove(key).apply();
+    }
+
+    /**
+     * 保存List
+     *
+     * @param key      sp key值
+     * @param datalist list
+     * @param <T>      item 类型
+     */
+    public static <T> void setDataList(String key, List<T> datalist) {
+        if (null == datalist || datalist.size() <= 0)
+            return;
+
+        Gson gson = new Gson();
+        //转换成json数据，再保存
+        String strJson = gson.toJson(datalist);
+        SpUtils.putString(AppUtils.getContext(), key, strJson);
+    }
+
+    /**
+     * 获取List
+     *
+     * @param key sp key值
+     * @param <T> item 类型
+     * @return list
+     */
+    public static <T> List<T> getDataList(String key, Class<T> cls) {
+        List<T> datalist = new ArrayList<T>();
+        String strJson = SpUtils.getString(AppUtils.getContext(), key, null);
+
+        if (null == strJson) {
+            return datalist;
+        }
+
+        try {
+            Gson gson = new Gson();
+            //        datalist = gson.fromJson(strJson, new TypeToken<List<T>>(){}.getType());
+            JsonArray array = new JsonParser().parse(strJson).getAsJsonArray();
+            for (final JsonElement elem : array) {
+                datalist.add(gson.fromJson(elem, cls));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return datalist;
     }
 
     public static int getThemeIndex(Context context) {

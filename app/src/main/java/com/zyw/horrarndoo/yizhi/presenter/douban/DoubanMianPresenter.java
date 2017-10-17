@@ -3,6 +3,7 @@ package com.zyw.horrarndoo.yizhi.presenter.douban;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+import com.zyw.horrarndoo.yizhi.cache.Cache;
 import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMainContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
@@ -24,12 +25,26 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
 
     @Override
     public void loadHotMovieList() {
-        if(mIModel == null || mIView == null)
+        if (mIModel == null || mIView == null)
             return;
+
         mRxManager.register(mIModel.getHotMovieList().subscribe(new Consumer<HotMovieBean>() {
             @Override
             public void accept(HotMovieBean hotMovieBean) throws Exception {
-                Logger.e(hotMovieBean.toString());
+                if (mIView == null)
+                    return;
+
+                mIView.updateContentList(hotMovieBean.getSubjects());
+                Cache.saveDoubanHotCache(hotMovieBean.getSubjects());
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                if (mIView != null) {
+                    mIView.showToast("Network error.");
+                    if (Cache.getDoubanHotCache() == null)//没有缓存缓存，显示网络错误界面
+                        mIView.showNetworkError();
+                }
             }
         }));
     }

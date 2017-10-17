@@ -55,4 +55,14 @@ public class RatingBean implements Serializable {
     public void setMin(int min) {
         this.min = min;
     }
+
+    @Override
+    public String toString() {
+        return "RatingBean{" +
+                "max=" + max +
+                ", average=" + average +
+                ", stars='" + stars + '\'' +
+                ", min=" + min +
+                '}';
+    }
 }

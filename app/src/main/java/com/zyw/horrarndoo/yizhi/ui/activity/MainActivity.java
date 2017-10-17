@@ -90,11 +90,13 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             mFragments[THIRD] = DoubanRootFragment.newInstance();
             mFragments[FOURTH] = PersonalRootFragment.newInstance();
 
-            loadMultipleRootFragment(R.id.fl_container, SECOND,
+            loadMultipleRootFragment(R.id.fl_container, THIRD,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
                     mFragments[FOURTH]);
+            // TODO: 2017/10/17  调试用，开发完成后删除
+            bottomNavigationView.setSelectedItemId(R.id.menu_item_douban);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
 

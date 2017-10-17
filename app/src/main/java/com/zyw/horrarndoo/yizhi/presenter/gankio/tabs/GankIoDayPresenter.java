@@ -51,6 +51,14 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
                         mList = list;
                         mIView.updateContentList(mList);
                     }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (mIView != null) {
+                            mIView.showToast("Network error.");
+                            mIView.showNetworkError();
+                        }
+                    }
                 }));
     }
 

@@ -73,4 +73,15 @@ public class PersonBean implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "PersonBean{" +
+                "alt='" + alt + '\'' +
+                ", type='" + type + '\'' +
+                ", avatars=" + avatars +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

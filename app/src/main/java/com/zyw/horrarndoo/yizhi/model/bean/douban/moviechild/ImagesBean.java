@@ -44,4 +44,13 @@ public class ImagesBean implements Serializable {
     public void setMedium(String medium) {
         this.medium = medium;
     }
+
+    @Override
+    public String toString() {
+        return "ImagesBean{" +
+                "small='" + small + '\'' +
+                ", large='" + large + '\'' +
+                ", medium='" + medium + '\'' +
+                '}';
+    }
 }
