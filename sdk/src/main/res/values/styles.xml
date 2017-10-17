@@ -38,8 +38,8 @@
     </style>
 
     <style name="loading_img">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
     </style>
 
     <style name="empty_img">
