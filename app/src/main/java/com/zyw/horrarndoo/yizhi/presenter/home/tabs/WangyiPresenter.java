@@ -47,7 +47,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
             public void accept(WangyiNewsListBean wangyiNewsListBean) throws Exception {
                 if (mIView != null) {
                     List<WangyiNewsItemBean> list = wangyiNewsListBean.getNewsList();
-                    for (int i = 0; i < list.size(); i++){
+                    for (int i = 0; i < list.size(); i++) {
                         //过滤掉无效的新闻
                         if (StringUtils.isEmpty(list.get(i).getUrl()))
                             list.remove(i);
@@ -60,7 +60,8 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
-                    mIView.showToast("Network error.");
+                    if (mIView.isVisiable())
+                        mIView.showToast("Network error.");
                     mIView.showNetworkError();
                 }
             }

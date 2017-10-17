@@ -7,7 +7,6 @@
 
     <android.support.v7.widget.AppCompatImageView
         style="@style/empty_img"
-        android:layout_marginBottom="10dp"
         app:srcCompat = "@drawable/ic_vector_empty"/>
 
     <TextView

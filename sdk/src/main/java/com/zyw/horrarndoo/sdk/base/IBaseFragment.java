@@ -76,4 +76,10 @@ public interface IBaseFragment extends IBaseView {
      * @param requestCode requestCode
      */
     void startNewActivityForResult(@NonNull Class<?> clz, Bundle bundle, int requestCode);
+
+    /**
+     * 返回当前fragment是否可见
+     * @return 当前fragment是否可见
+     */
+    boolean isVisiable();
 }

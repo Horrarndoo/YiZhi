@@ -54,7 +54,8 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         if (mIView != null) {
-                            mIView.showToast("Network error.");
+                            if (mIView.isVisiable())
+                                mIView.showToast("Network error.");
                             mIView.showNetworkError();
                         }
                     }
@@ -91,8 +92,7 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
                 public void accept(Throwable throwable) throws Exception {
                     isLoading = false;
                     if (mIView != null) {
-                        mIView.showToast("Network error.");
-                        mIView.showNetworkError();
+                        mIView.showLoadMoreError();
                     }
                 }
             }));
@@ -158,7 +158,8 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         if (mIView != null) {
-                            mIView.showToast("Network error.");
+                            if (mIView.isVisiable())
+                                mIView.showToast("Network error.");
                             mIView.showNetworkError();
                         }
                     }

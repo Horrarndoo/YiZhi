@@ -49,7 +49,8 @@ public class GankIoWelfarePresenter extends GankIoWelfareContract.GankIoWelfareP
             @Override
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
-                    mIView.showToast("Network error.");
+                    if (mIView.isVisiable())
+                        mIView.showToast("Network error.");
                     mIView.showNetworkError();
                 }
             }
@@ -85,8 +86,7 @@ public class GankIoWelfarePresenter extends GankIoWelfareContract.GankIoWelfareP
                 public void accept(Throwable throwable) throws Exception {
                     isLoading = false;
                     if (mIView != null) {
-                        mIView.showToast("Network error.");
-                        mIView.showNetworkError();
+                        mIView.showLoadMoreError();
                     }
                 }
             }));

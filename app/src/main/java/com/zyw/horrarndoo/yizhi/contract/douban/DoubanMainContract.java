@@ -1,8 +1,8 @@
 package com.zyw.horrarndoo.yizhi.contract.douban;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.IBaseFragment;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
-import com.zyw.horrarndoo.sdk.base.IBaseView;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 
@@ -39,7 +39,7 @@ public interface DoubanMainContract {
         Observable<HotMovieBean> getHotMovieList();
     }
 
-    interface IDoubanMainView extends IBaseView {
+    interface IDoubanMainView extends IBaseFragment {
         /**
          * 更新界面list
          *

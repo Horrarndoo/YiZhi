@@ -113,4 +113,9 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
     public void startNewActivityForResult(@NonNull Class<?> clz, Bundle bundle, int requestCode) {
         ((BaseCompatActivity) mActivity).startActivityForResult(clz, bundle, requestCode);
     }
+
+    @Override
+    public boolean isVisiable() {
+        return isSupportVisible();
+    }
 }

@@ -41,7 +41,9 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
             @Override
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
-                    mIView.showToast("Network error.");
+                    if (mIView.isVisiable())
+                        mIView.showToast("Network error.");
+
                     if (Cache.getDoubanHotCache().size() == 0)//没有缓存缓存，显示网络错误界面
                         mIView.showNetworkError();
                 }
@@ -51,7 +53,7 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
 
     @Override
     public void onItemClick(int position, SubjectsBean item) {
-        Logger.e("position " + position + "is clicked.");
+        Logger.e("position " + position + " is clicked.");
     }
 
     @Override

@@ -48,7 +48,8 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 if (mIView != null) {
-                    mIView.showToast("网络异常");
+                    if (mIView.isVisiable())
+                        mIView.showToast("Network error.");
                     mIView.showNetworkError();
                 }
             }
