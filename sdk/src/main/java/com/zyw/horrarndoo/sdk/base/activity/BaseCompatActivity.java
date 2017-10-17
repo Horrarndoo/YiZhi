@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.sdk.base;
+package com.zyw.horrarndoo.sdk.base.activity;
 
 import android.content.Context;
 import android.content.Intent;

@@ -14,7 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.rxbus.Subscribe;

@@ -6,11 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.WeixinAdapter;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.WeixinContract;
@@ -26,7 +25,7 @@ import butterknife.BindView;
  * <p>
  */
 
-public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinPresenter,
+public class WeixinFragment extends BaseRecycleFragment<WeixinContract.WeixinPresenter,
         WeixinContract.IWeixinModel> implements WeixinContract.IWeixinView, BaseQuickAdapter
         .RequestLoadMoreListener {
 
@@ -49,14 +48,6 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
-                (ViewGroup) rvWexin.getParent(), false);
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.loadLatestList();
-            }
-        });
         //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
         mWeixinAdapter = new WeixinAdapter(R.layout.item_recycle_home);
         rvWexin.setAdapter(mWeixinAdapter);
@@ -121,5 +112,15 @@ public class WeixinFragment extends BaseMVPCompatFragment<WeixinContract.WeixinP
             }
         });
         rvWexin.setAdapter(mWeixinAdapter);
+    }
+
+    @Override
+    protected void onErrorViewClick(View view) {
+        mPresenter.loadLatestList();
+    }
+
+    @Override
+    protected void showLoading() {
+        mWeixinAdapter.setEmptyView(loadingView);
     }
 }

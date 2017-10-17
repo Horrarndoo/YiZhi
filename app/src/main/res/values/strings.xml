@@ -3,9 +3,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="empty_network_error">Network error, Click Retry</string>
-    <string name="empty_no_data">There is no data, Click Retry</string>
-
     <string name="zhihu_detail_title">Zhihu daily</string>
     <string name="wangyi_detail_title">Top news</string>
     <string name="weixin_detail_title">WeChat</string>

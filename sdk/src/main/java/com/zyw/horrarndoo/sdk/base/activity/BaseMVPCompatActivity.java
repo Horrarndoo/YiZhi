@@ -1,8 +1,11 @@
-package com.zyw.horrarndoo.sdk.base;
+package com.zyw.horrarndoo.sdk.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.IBaseActivity;
+import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 /**

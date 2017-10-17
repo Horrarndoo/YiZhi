@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zyw.horrarndoo.sdk.base.BaseCompatFragment;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.ui.activity.AboutActivity;
 

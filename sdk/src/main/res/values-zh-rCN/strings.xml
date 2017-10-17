@@ -32,4 +32,7 @@
     <string name="energy_consumption_day">天</string>
     <string name="energy_consumption_week">周</string>
     <string name="energy_consumption_month">月</string>
+
+    <string name="empty_network_error">网络异常，点击重试</string>
+    <string name="empty_no_data">没有数据，点击重试</string>
 </resources>

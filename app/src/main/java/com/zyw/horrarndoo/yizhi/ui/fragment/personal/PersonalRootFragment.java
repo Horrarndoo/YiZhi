@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.zyw.horrarndoo.sdk.base.BaseCompatFragment;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.child.PersonalLowerFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.personal.child.PersonalUpperFragment;

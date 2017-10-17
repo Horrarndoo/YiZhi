@@ -67,4 +67,7 @@
     <color name="shape_count_down_bg">#88000000</color>
     <color name="text_translucent">#88000000</color>
     <color name="gankio_text_type_grey">#707070</color>
+
+    <color name="bg">#F0F0F0</color>
+    <color name="txt_color">#48495F</color>
 </resources>

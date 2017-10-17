@@ -6,11 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.ZhihuAdapter;
 import com.zyw.horrarndoo.yizhi.contract.home.tabs.ZhihuContract;
@@ -26,7 +25,7 @@ import butterknife.BindView;
  * <p>
  */
 
-public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPresenter,
+public class ZhihuFragment extends BaseRecycleFragment<ZhihuContract.ZhihuPresenter,
         ZhihuContract.IZhihuModel> implements ZhihuContract.IZhihuView, BaseQuickAdapter
         .RequestLoadMoreListener {
 
@@ -49,15 +48,6 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
-                (ViewGroup) rvZhihu.getParent(), false);
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.loadLatestList();
-            }
-        });
-
         //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
         mZhihuAdapter = new ZhihuAdapter(R.layout.item_recycle_home);
         rvZhihu.setAdapter(mZhihuAdapter);
@@ -124,5 +114,15 @@ public class ZhihuFragment extends BaseMVPCompatFragment<ZhihuContract.ZhihuPres
             }
         });
         rvZhihu.setAdapter(mZhihuAdapter);
+    }
+
+    @Override
+    protected void onErrorViewClick(View view) {
+        mPresenter.loadLatestList();
+    }
+
+    @Override
+    protected void showLoading() {
+        mZhihuAdapter.setEmptyView(loadingView);
     }
 }

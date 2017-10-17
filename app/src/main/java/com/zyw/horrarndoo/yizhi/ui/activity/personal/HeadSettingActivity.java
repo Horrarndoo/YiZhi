@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import com.zyw.horrarndoo.sdk.base.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;

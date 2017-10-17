@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.sdk.base;
+package com.zyw.horrarndoo.sdk.base.fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,7 +30,6 @@ public abstract class BaseCompatFragment extends SupportFragment {
     protected Activity mActivity;
     protected GlobalApplication mApplication;
     protected WaitPorgressDialog mWaitPorgressDialog;
-    protected View errorView;
     private Unbinder binder;
 
     @Override

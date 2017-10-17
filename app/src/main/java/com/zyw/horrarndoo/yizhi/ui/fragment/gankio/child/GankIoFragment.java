@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.adapter.FragmentAdapter;
-import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.rxbus.Subscribe;

@@ -1,9 +1,13 @@
-package com.zyw.horrarndoo.sdk.base;
+package com.zyw.horrarndoo.sdk.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.IBaseFragment;
+import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import me.yokeyword.fragmentation.SupportFragment;

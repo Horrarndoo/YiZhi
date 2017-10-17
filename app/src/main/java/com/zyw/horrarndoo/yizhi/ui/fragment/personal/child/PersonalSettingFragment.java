@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.zyw.horrarndoo.sdk.base.BaseCompatFragment;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 import com.zyw.horrarndoo.yizhi.R;
 
 import butterknife.BindView;

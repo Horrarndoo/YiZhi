@@ -6,12 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.orhanobut.logger.Logger;
-import com.zyw.horrarndoo.sdk.base.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.DoubanAdapter;
@@ -28,7 +27,7 @@ import butterknife.BindView;
  * <p>
  */
 
-public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.DoubanMainPresenter,
+public class DoubanFragment extends BaseRecycleFragment<DoubanMainContract.DoubanMainPresenter,
         DoubanMainContract.IDoubanMainModel> implements DoubanMainContract.IDoubanMainView {
 
     @BindView(R.id.rv_douban_hot_movie)
@@ -57,14 +56,6 @@ public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.Dou
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        errorView = mActivity.getLayoutInflater().inflate(R.layout.view_network_error,
-                (ViewGroup) rvDoubanHotMovie.getParent(), false);
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.loadHotMovieList();
-            }
-        });
         //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
         mDoubanAdapter = new DoubanAdapter(R.layout.item_douban_hot_movie);
         rvDoubanHotMovie.setAdapter(mDoubanAdapter);
@@ -83,8 +74,17 @@ public class DoubanFragment extends BaseMVPCompatFragment<DoubanMainContract.Dou
 
     @Override
     public void showNetworkError() {
-        Logger.e("mDoubanAdapter = " + mDoubanAdapter);
         mDoubanAdapter.setEmptyView(errorView);
+    }
+
+    @Override
+    protected void onErrorViewClick(View view) {
+        mPresenter.loadHotMovieList();
+    }
+
+    @Override
+    protected void showLoading() {
+        mDoubanAdapter.setEmptyView(loadingView);
     }
 
     @NonNull

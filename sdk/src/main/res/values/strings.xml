@@ -32,4 +32,7 @@
     <string name="energy_consumption_day">DAY</string>
     <string name="energy_consumption_week">WEEK</string>
     <string name="energy_consumption_month">MONTH</string>
+
+    <string name="empty_network_error">Network error, Click Retry</string>
+    <string name="empty_no_data">There is no data, Click Retry</string>
 </resources>
