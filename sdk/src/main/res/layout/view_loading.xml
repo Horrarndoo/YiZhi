@@ -27,6 +27,6 @@
             android:layout_marginLeft="8dp"
             android:text="@string/loading"
             android:textColor="@color/txt_color"
-            android:textSize="@dimen/sp_18"/>
+            android:textSize="16sp"/>
     </LinearLayout>
 </LinearLayout>
