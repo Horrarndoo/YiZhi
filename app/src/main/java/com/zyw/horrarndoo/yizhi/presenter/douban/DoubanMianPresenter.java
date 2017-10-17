@@ -44,8 +44,11 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
                     if (mIView.isVisiable())
                         mIView.showToast("Network error.");
 
-                    if (Cache.getDoubanHotCache().size() == 0)//没有缓存缓存，显示网络错误界面
+                    if (Cache.getDoubanHotCache().size() == 0) {//没有缓存缓存，显示网络错误界面
                         mIView.showNetworkError();
+                    }else{
+                        mIView.updateContentList(Cache.getDoubanHotCache());//加载缓存
+                    }
                 }
             }
         }));
