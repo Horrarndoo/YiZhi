@@ -16,17 +16,17 @@ import java.util.List;
  * <p>
  */
 
-public class DoubanTopAdapter extends BaseCompatAdapter<SubjectsBean, BaseViewHolder> {
+public class DoubanTopMovieAdapter extends BaseCompatAdapter<SubjectsBean, BaseViewHolder> {
 
-    public DoubanTopAdapter(@LayoutRes int layoutResId, @Nullable List<SubjectsBean> data) {
+    public DoubanTopMovieAdapter(@LayoutRes int layoutResId, @Nullable List<SubjectsBean> data) {
         super(layoutResId, data);
     }
 
-    public DoubanTopAdapter(@Nullable List<SubjectsBean> data) {
+    public DoubanTopMovieAdapter(@Nullable List<SubjectsBean> data) {
         super(data);
     }
 
-    public DoubanTopAdapter(@LayoutRes int layoutResId) {
+    public DoubanTopMovieAdapter(@LayoutRes int layoutResId) {
         super(layoutResId);
     }
 

@@ -6,7 +6,7 @@ import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.sdk.helper.RetrofitCreateHelper;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.api.DoubanApi;
-import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopContract;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopMovieContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
 
 import io.reactivex.Observable;
@@ -16,11 +16,11 @@ import io.reactivex.Observable;
  * <p>
  */
 
-public class DoubanTopModel extends BaseModel implements DoubanTopContract.IDoubanTopModel {
+public class DoubanTopMovieModel extends BaseModel implements DoubanTopMovieContract.IDoubanTopMovieModel {
 
     @NonNull
-    public static DoubanTopModel newInstance() {
-        return new DoubanTopModel();
+    public static DoubanTopMovieModel newInstance() {
+        return new DoubanTopMovieModel();
     }
 
     @Override

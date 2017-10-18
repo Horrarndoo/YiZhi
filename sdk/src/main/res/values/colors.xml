@@ -70,4 +70,7 @@
 
     <color name="bg">#F0F0F0</color>
     <color name="txt_color">#48495F</color>
+
+    <!--电影评分-->
+    <color name="colorRateRed">#FB5B81</color>
 </resources>

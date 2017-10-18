@@ -42,6 +42,8 @@
 
         <activity android:name=".ui.activity.detail.GankIoDetailActivity"/>
 
+        <activity android:name=".ui.activity.detail.DoubanMovieDetailActivity"/>
+
         <activity android:name=".ui.activity.AboutActivity"/>
 
         <activity android:name=".ui.activity.personal.HeadSettingActivity"/>

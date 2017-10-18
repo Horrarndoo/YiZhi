@@ -1,10 +1,13 @@
 package com.zyw.horrarndoo.yizhi.presenter.douban;
 
 import android.support.annotation.NonNull;
+import android.widget.ImageView;
 
-import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopContract;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopMovieContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
-import com.zyw.horrarndoo.yizhi.model.douban.DoubanTopModel;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.model.douban.DoubanTopMovieModel;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMovieDetailActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -13,15 +16,15 @@ import io.reactivex.functions.Consumer;
  * <p>
  */
 
-public class DoubanTopPresenter extends DoubanTopContract.DoubanTopPresenter {
+public class DoubanTopMoviePresenter extends DoubanTopMovieContract.DoubanTopMoivePresenter {
 
     private int mStart;
     private int mCount = 30;
     private boolean isLoading;
 
     @NonNull
-    public static DoubanTopPresenter newInstance() {
-        return new DoubanTopPresenter();
+    public static DoubanTopMoviePresenter newInstance() {
+        return new DoubanTopMoviePresenter();
     }
 
     @Override
@@ -88,8 +91,14 @@ public class DoubanTopPresenter extends DoubanTopContract.DoubanTopPresenter {
     }
 
     @Override
-    public DoubanTopModel getModel() {
-        return DoubanTopModel.newInstance();
+    public void onItemClick(int position, SubjectsBean item, ImageView imageView) {
+        //        Logger.e("position " + position + " is clicked.");
+        DoubanMovieDetailActivity.start(mIView.getBindActivity(), item, imageView);
+    }
+
+    @Override
+    public DoubanTopMovieModel getModel() {
+        return DoubanTopMovieModel.newInstance();
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
@@ -98,7 +99,8 @@ public class DoubanFragment extends BaseRecycleFragment<DoubanMainContract.Douba
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 //由于有headview click position需要+1 adapter.getItem返回的是数据list的position，所以不用+1
-                mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position));
+                mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position),
+                        (ImageView) view.findViewById(R.id.iv_moive_photo));
             }
         });
         initHeadView();

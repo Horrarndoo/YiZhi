@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.sdk.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -82,4 +83,10 @@ public interface IBaseFragment extends IBaseView {
      * @return 当前fragment是否可见
      */
     boolean isVisiable();
+
+    /**
+     * 返回当前fragment绑定的activity
+     * @return activity
+     */
+    Activity getBindActivity();
 }

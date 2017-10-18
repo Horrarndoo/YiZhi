@@ -8,16 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.yizhi.R;
-import com.zyw.horrarndoo.yizhi.adapter.DoubanTopAdapter;
-import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopContract;
+import com.zyw.horrarndoo.yizhi.adapter.DoubanTopMovieAdapter;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanTopMovieContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
-import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanTopPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanTopMoviePresenter;
 
 import java.util.List;
 
@@ -28,9 +28,9 @@ import butterknife.BindView;
  * <p>
  */
 
-public class DoubanTopFragment extends BaseRecycleFragment<DoubanTopContract
-        .DoubanTopPresenter, DoubanTopContract.IDoubanTopModel> implements DoubanTopContract
-        .IDoubanTopView, BaseQuickAdapter.RequestLoadMoreListener {
+public class DoubanTopMoiveFragment extends BaseRecycleFragment<DoubanTopMovieContract
+        .DoubanTopMoivePresenter, DoubanTopMovieContract.IDoubanTopMovieModel> implements
+        DoubanTopMovieContract.IDoubanTopMovieView, BaseQuickAdapter.RequestLoadMoreListener {
 
 
     @BindView(R.id.toolbar)
@@ -38,11 +38,11 @@ public class DoubanTopFragment extends BaseRecycleFragment<DoubanTopContract
     @BindView(R.id.rv_douban_top_movie)
     RecyclerView rvDoubanTopMovie;
 
-    private DoubanTopAdapter mDoubanTopAdapter;
+    private DoubanTopMovieAdapter mDoubanTopMovieAdapter;
 
-    public static DoubanTopFragment newInstance() {
+    public static DoubanTopMoiveFragment newInstance() {
         Bundle args = new Bundle();
-        DoubanTopFragment fragment = new DoubanTopFragment();
+        DoubanTopMoiveFragment fragment = new DoubanTopMoiveFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,8 +69,8 @@ public class DoubanTopFragment extends BaseRecycleFragment<DoubanTopContract
             }
         });
 
-        mDoubanTopAdapter = new DoubanTopAdapter(R.layout.item_douban_top_movie);
-        rvDoubanTopMovie.setAdapter(mDoubanTopAdapter);
+        mDoubanTopMovieAdapter = new DoubanTopMovieAdapter(R.layout.item_douban_top_movie);
+        rvDoubanTopMovie.setAdapter(mDoubanTopMovieAdapter);
         //getItemCount()返回值<=0,要设置LinearLayoutManager，否则后面数据更新RecycleView也不执行onBindViewHolder;
         rvDoubanTopMovie.setLayoutManager(new LinearLayoutManager(mActivity));
     }
@@ -78,10 +78,10 @@ public class DoubanTopFragment extends BaseRecycleFragment<DoubanTopContract
     @Override
     public void updateContentList(List<SubjectsBean> list) {
         //        Logger.e(list.toString());
-        if (mDoubanTopAdapter.getData().size() == 0) {
+        if (mDoubanTopMovieAdapter.getData().size() == 0) {
             initRecycleView(list);
         } else {
-            mDoubanTopAdapter.addData(list);
+            mDoubanTopMovieAdapter.addData(list);
         }
     }
 
@@ -92,47 +92,48 @@ public class DoubanTopFragment extends BaseRecycleFragment<DoubanTopContract
 
     @Override
     protected void showLoading() {
-        mDoubanTopAdapter.setEmptyView(loadingView);
+        mDoubanTopMovieAdapter.setEmptyView(loadingView);
     }
 
     @Override
     public void showNetworkError() {
-        mDoubanTopAdapter.setEmptyView(errorView);
+        mDoubanTopMovieAdapter.setEmptyView(errorView);
     }
 
     @Override
     public void showNoMoreData() {
-        mDoubanTopAdapter.loadMoreEnd(true);
+        mDoubanTopMovieAdapter.loadMoreEnd(true);
     }
 
     @Override
     public void showLoadMoreError() {
-        mDoubanTopAdapter.loadMoreFail();
+        mDoubanTopMovieAdapter.loadMoreFail();
     }
 
     @NonNull
     @Override
     public BasePresenter initPresenter() {
-        return DoubanTopPresenter.newInstance();
+        return DoubanTopMoviePresenter.newInstance();
     }
 
     @Override
     public void onLoadMoreRequested() {
         //这里loadMoreComplete要放在前面，避免在Presenter.loadMoreNewsList处理中直接showNoMoreData，出现无限显示加载item
-        mDoubanTopAdapter.loadMoreComplete();
+        mDoubanTopMovieAdapter.loadMoreComplete();
         mPresenter.loadMoreTopMovie();
     }
 
     private void initRecycleView(List<SubjectsBean> list) {
-        mDoubanTopAdapter = new DoubanTopAdapter(R.layout.item_douban_top_movie, list);
-        mDoubanTopAdapter.setOnLoadMoreListener(this, rvDoubanTopMovie);
-        mDoubanTopAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mDoubanTopMovieAdapter = new DoubanTopMovieAdapter(R.layout.item_douban_top_movie, list);
+        mDoubanTopMovieAdapter.setOnLoadMoreListener(this, rvDoubanTopMovie);
+        mDoubanTopMovieAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Logger.e("position " + position + " is clicked.");
+                mPresenter.onItemClick(position, (SubjectsBean) adapter.getItem(position),
+                        (ImageView) view.findViewById(R.id.iv_top_moive_photo));
             }
         });
-        rvDoubanTopMovie.setAdapter(mDoubanTopAdapter);
+        rvDoubanTopMovie.setAdapter(mDoubanTopMovieAdapter);
         //构造器中，第一个参数表示列数或者行数，第二个参数表示滑动方向,瀑布流
         rvDoubanTopMovie.setLayoutManager(new StaggeredGridLayoutManager(3,
                 StaggeredGridLayoutManager.VERTICAL));

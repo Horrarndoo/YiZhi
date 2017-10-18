@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.sdk.base.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
@@ -117,5 +118,10 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
     @Override
     public boolean isVisiable() {
         return isSupportVisible();
+    }
+
+    @Override
+    public Activity getBindActivity() {
+        return mActivity;
     }
 }

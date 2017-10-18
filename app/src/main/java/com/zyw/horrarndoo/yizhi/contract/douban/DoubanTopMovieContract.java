@@ -1,5 +1,7 @@
 package com.zyw.horrarndoo.yizhi.contract.douban;
 
+import android.widget.ImageView;
+
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseFragment;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
@@ -15,8 +17,8 @@ import io.reactivex.Observable;
  * <p>
  */
 
-public interface DoubanTopContract {
-    abstract class DoubanTopPresenter extends BasePresenter<IDoubanTopModel, IDoubanTopView> {
+public interface DoubanTopMovieContract {
+    abstract class DoubanTopMoivePresenter extends BasePresenter<IDoubanTopMovieModel, IDoubanTopMovieView> {
         /**
          * 加载Top电影list
          */
@@ -26,9 +28,18 @@ public interface DoubanTopContract {
          * 加载更多Top电影
          */
         public abstract void loadMoreTopMovie();
+
+        /**
+         * item点击事件
+         *
+         * @param position  position
+         * @param item      item
+         * @param imageView imageView
+         */
+        public abstract void onItemClick(int position, SubjectsBean item, ImageView imageView);
     }
 
-    interface IDoubanTopModel extends IBaseModel {
+    interface IDoubanTopMovieModel extends IBaseModel {
         /**
          * 获取豆瓣电影top250
          *
@@ -38,7 +49,7 @@ public interface DoubanTopContract {
         Observable<HotMovieBean> getTopMovieList(int start, int count);
     }
 
-    interface IDoubanTopView extends IBaseFragment {
+    interface IDoubanTopMovieView extends IBaseFragment {
         /**
          * 更新界面list
          *

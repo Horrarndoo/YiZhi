@@ -1,5 +1,7 @@
 package com.zyw.horrarndoo.yizhi.contract.douban;
 
+import android.widget.ImageView;
+
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseFragment;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
@@ -25,10 +27,11 @@ public interface DoubanMainContract {
         /**
          * item点击事件
          *
-         * @param position position
-         * @param item     item
+         * @param position  position
+         * @param item      item
+         * @param imageView imageView
          */
-        public abstract void onItemClick(int position, SubjectsBean item);
+        public abstract void onItemClick(int position, SubjectsBean item, ImageView imageView);
 
         /**
          * Header被点击
@@ -39,6 +42,7 @@ public interface DoubanMainContract {
     interface IDoubanMainModel extends IBaseModel {
         /**
          * 获取最热电影
+         *
          * @return 最热电影
          */
         Observable<HotMovieBean> getHotMovieList();

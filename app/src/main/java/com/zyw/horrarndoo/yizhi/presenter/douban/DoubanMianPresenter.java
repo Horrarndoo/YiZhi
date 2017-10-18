@@ -1,14 +1,15 @@
 package com.zyw.horrarndoo.yizhi.presenter.douban;
 
 import android.support.annotation.NonNull;
+import android.widget.ImageView;
 
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.yizhi.cache.Cache;
 import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMainContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.douban.DoubanMainModel;
-import com.zyw.horrarndoo.yizhi.ui.fragment.douban.child.top.DoubanTopFragment;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMovieDetailActivity;
+import com.zyw.horrarndoo.yizhi.ui.fragment.douban.child.top.DoubanTopMoiveFragment;
 
 import io.reactivex.functions.Consumer;
 
@@ -56,13 +57,14 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
     }
 
     @Override
-    public void onItemClick(int position, SubjectsBean item) {
-        Logger.e("position " + position + " is clicked.");
+    public void onItemClick(int position, SubjectsBean item, ImageView imageView) {
+//        Logger.e("position " + position + " is clicked.");
+        DoubanMovieDetailActivity.start(mIView.getBindActivity(), item, imageView);
     }
 
     @Override
     public void onHeaderClick() {
-        mIView.startNewFragment(DoubanTopFragment.newInstance());
+        mIView.startNewFragment(DoubanTopMoiveFragment.newInstance());
     }
 
     @Override
