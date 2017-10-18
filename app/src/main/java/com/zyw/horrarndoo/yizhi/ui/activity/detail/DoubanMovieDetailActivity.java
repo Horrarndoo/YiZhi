@@ -2,10 +2,9 @@ package com.zyw.horrarndoo.yizhi.ui.activity.detail;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +21,7 @@ import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.activity.BaseMVPCompatActivity;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
+import com.zyw.horrarndoo.sdk.utils.StatusBarUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.DoubanMovieDetailAdapter;
 import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
@@ -34,8 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant
-        .INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
+import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
 
 /**
  * Created by Horrarndoo on 2017/10/18.
@@ -48,10 +47,6 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout collapsingToolbar;
-    @BindView(R.id.app_bar)
-    AppBarLayout appBar;
     @BindView(R.id.iv_header_bg)
     ImageView ivHeaderBg;
     @BindView(R.id.iv_movie_photo)
@@ -98,6 +93,7 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
     @Override
     protected void initView(Bundle savedInstanceState) {
         initTitleBar(toolbar, mSubjectBean.getTitle());
+        StatusBarUtils.setBarColor(this, Color.TRANSPARENT);
         tvMovieRatingNumber.setText(String.valueOf(mSubjectBean.getRating().getAverage()));
         tvCollectCount.setText(String.valueOf(mSubjectBean.getCollect_count()));
         tvMovieDirectors.setText(mSubjectBean.getDirectorsString());
@@ -110,6 +106,7 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
                 .item_douban_detail_movie_person);
         rvDoubanMovieDetail.setAdapter(mDoubanMovieDetailAdapter);
         rvDoubanMovieDetail.setLayoutManager(new LinearLayoutManager(this));
+        rvDoubanMovieDetail.setNestedScrollingEnabled(false);
 
         mPresenter.loadMovieDetail(mSubjectBean.getId());
     }

@@ -62,6 +62,7 @@ dependencies {
     // Glide
     compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     compile "com.github.bumptech.glide:okhttp-integration:$rootProject.glideokhttpVersion"
+    compile "jp.wasabeef:glide-transformations:$rootProject.glideTransformationVersion"
 
     //Butterknife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
