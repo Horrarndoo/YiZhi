@@ -6,4 +6,6 @@
     <string name="zhihu_detail_title">Zhihu daily</string>
     <string name="wangyi_detail_title">Top news</string>
     <string name="weixin_detail_title">WeChat</string>
+
+    <string name="transition_movie_img">transition_movie_img</string>
 </resources>

@@ -8,6 +8,7 @@ import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMainContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.douban.DoubanMainModel;
+import com.zyw.horrarndoo.yizhi.ui.fragment.douban.child.top.DoubanTopFragment;
 
 import io.reactivex.functions.Consumer;
 
@@ -46,7 +47,7 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
 
                     if (Cache.getDoubanHotCache().size() == 0) {//没有缓存缓存，显示网络错误界面
                         mIView.showNetworkError();
-                    }else{
+                    } else {
                         mIView.updateContentList(Cache.getDoubanHotCache());//加载缓存
                     }
                 }
@@ -57,6 +58,11 @@ public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter 
     @Override
     public void onItemClick(int position, SubjectsBean item) {
         Logger.e("position " + position + " is clicked.");
+    }
+
+    @Override
+    public void onHeaderClick() {
+        mIView.startNewFragment(DoubanTopFragment.newInstance());
     }
 
     @Override

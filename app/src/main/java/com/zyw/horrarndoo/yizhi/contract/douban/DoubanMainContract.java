@@ -29,6 +29,11 @@ public interface DoubanMainContract {
          * @param item     item
          */
         public abstract void onItemClick(int position, SubjectsBean item);
+
+        /**
+         * Header被点击
+         */
+        public abstract void onHeaderClick();
     }
 
     interface IDoubanMainModel extends IBaseModel {

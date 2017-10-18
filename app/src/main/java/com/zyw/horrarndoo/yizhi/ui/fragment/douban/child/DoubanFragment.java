@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
@@ -114,7 +113,7 @@ public class DoubanFragment extends BaseRecycleFragment<DoubanMainContract.Douba
         headView.findViewById(R.id.ll_movie_top).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logger.e("click click.");
+                mPresenter.onHeaderClick();
             }
         });
     }

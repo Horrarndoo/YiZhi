@@ -3,9 +3,9 @@ package com.zyw.horrarndoo.yizhi.ui.fragment.gankio.child.tabs;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -71,6 +71,7 @@ public class GankIoWelfareFragment extends BaseRecycleFragment<GankIoWelfareCont
         //初始化一个空list的adapter，网络错误时使用，第一次加载到数据时重新初始化adapter并绑定recycleview
         mGankIoWelfareAdapter = new GankIoWelfareAdapter(R.layout.item_gank_io_welfare);
         rvGankIoWelfare.setAdapter(mGankIoWelfareAdapter);
+        //getItemCount()返回值<=0,要设置LinearLayoutManager，否则后面数据更新RecycleView也不执行onBindViewHolder;
         rvGankIoWelfare.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
@@ -132,7 +133,10 @@ public class GankIoWelfareFragment extends BaseRecycleFragment<GankIoWelfareCont
             }
         });
         rvGankIoWelfare.setAdapter(mGankIoWelfareAdapter);
-        rvGankIoWelfare.setLayoutManager(new GridLayoutManager(mActivity, 2));
+        //构造器中，第一个参数表示列数或者行数，第二个参数表示滑动方向,瀑布流
+        rvGankIoWelfare.setLayoutManager(new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL));
+        //        rvGankIoWelfare.setLayoutManager(new GridLayoutManager(mActivity, 2));
     }
 
     /**
