@@ -31,6 +31,9 @@
     <!--item的水波纹颜色-->
     <color name="itemBackground">#DD7D7D7D</color>
 
+    <!--item的分割线-->
+    <color name="colorLineItem">#FFDDDDDD</color>
+
     <!--item的5.0一下版本选择器颜色-->
     <color name="itemLowBackground">#d9d9d9</color>
 

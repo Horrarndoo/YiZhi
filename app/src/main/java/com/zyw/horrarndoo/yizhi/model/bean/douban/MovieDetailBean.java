@@ -340,4 +340,76 @@ public class MovieDetailBean {
                 ", aka=" + aka +
                 '}';
     }
+
+    /**
+     * 获取城市字符串
+     * @return 城市字符串
+     */
+    public String getCountriesString(){
+        return sListToString(getCountries());
+    }
+
+    /**
+     * 获取导演字符串
+     *
+     * @return 导演字符串 A/B/C..
+     */
+    public String getDirectorsString() {
+        return pListToString(getDirectors());
+    }
+
+    /**
+     * 获取演员字符串
+     *
+     * @return 演员字符串 A/B/C..
+     */
+    public String getActorsString() {
+        return pListToString(getCasts());
+    }
+
+    /**
+     * 获取类型字符串
+     *
+     * @return 类型字符串 A/B/C..
+     */
+    public String getGenresString() {
+        return sListToString(getGenres());
+    }
+
+
+    /**
+     * 格式化list为字符串
+     *
+     * @param list 类型list
+     * @return 字符串 A/B/C..
+     */
+    private String sListToString(List<String> list) {
+        String str = "";
+        if (list.size() == 0)
+            return str;
+        for (int i = 0; i < list.size(); i++) {
+            str = str + list.get(i);
+            if (i < list.size() - 1)
+                str += " / ";
+        }
+        return str;
+    }
+
+    /**
+     * 格式化list为字符串
+     *
+     * @param list 类型list
+     * @return 字符串 A/B/C..
+     */
+    private String pListToString(List<PersonBean> list) {
+        String str = "";
+        if (list.size() == 0)
+            return str;
+        for (int i = 0; i < list.size(); i++) {
+            str = str + list.get(i).getName();
+            if (i < list.size() - 1)
+                str += " / ";
+        }
+        return str;
+    }
 }

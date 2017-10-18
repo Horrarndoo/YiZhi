@@ -2,7 +2,7 @@ package com.zyw.horrarndoo.yizhi.presenter.detail;
 
 import android.support.annotation.NonNull;
 
-import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
+import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.detail.DoubanMovieDetailModel;
 

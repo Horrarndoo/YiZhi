@@ -8,25 +8,34 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.activity.BaseMVPCompatActivity;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
-import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
+import com.zyw.horrarndoo.yizhi.adapter.DoubanMovieDetailAdapter;
+import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.presenter.detail.DoubanMovieDetailPresenter;
 
+import java.util.List;
+
 import butterknife.BindView;
 
-import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
+import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant
+        .INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
 
 /**
  * Created by Horrarndoo on 2017/10/18.
@@ -65,8 +74,11 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
     TextView tvMovieCity;
     @BindView(R.id.ll_movie_header)
     LinearLayout llMovieHeader;
+    @BindView(R.id.rv_douban_movie_detail)
+    RecyclerView rvDoubanMovieDetail;
 
     private SubjectsBean mSubjectBean;
+    private DoubanMovieDetailAdapter mDoubanMovieDetailAdapter;
 
     @NonNull
     @Override
@@ -85,15 +97,21 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        initTitleBar(toolbar, "电影详情");
+        initTitleBar(toolbar, mSubjectBean.getTitle());
         tvMovieRatingNumber.setText(String.valueOf(mSubjectBean.getRating().getAverage()));
         tvCollectCount.setText(String.valueOf(mSubjectBean.getCollect_count()));
         tvMovieDirectors.setText(mSubjectBean.getDirectorsString());
         tvMovieCasts.setText(mSubjectBean.getActorsString());
         tvMovieGenres.setText(mSubjectBean.getGenresString());
         tvMovieDate.setText(mSubjectBean.getYear());
-        tvMovieCity.setText("city");
         Glide.with(this).load(mSubjectBean.getImages().getLarge()).asBitmap().into(ivMoviePhoto);
+
+        mDoubanMovieDetailAdapter = new DoubanMovieDetailAdapter(R.layout
+                .item_douban_detail_movie_person);
+        rvDoubanMovieDetail.setAdapter(mDoubanMovieDetailAdapter);
+        rvDoubanMovieDetail.setLayoutManager(new LinearLayoutManager(this));
+
+        mPresenter.loadMovieDetail(mSubjectBean.getId());
     }
 
     @Override
@@ -104,6 +122,12 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
     @Override
     public void showMovieDetail(MovieDetailBean bean) {
         Logger.e(bean.toString());
+        if (mDoubanMovieDetailAdapter.getData().size() == 0) {
+            initRecycleView(bean);
+            tvMovieCity.setText("制片国家/地区： " + bean.getCountriesString());
+        } else {
+            mDoubanMovieDetailAdapter.addData(bean.getCasts());
+        }
     }
 
     @Override
@@ -126,5 +150,19 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
                 (context, imageView, ResourcesUtils.getString(R.string.transition_movie_img));
         //与xml文件对应
         ActivityCompat.startActivity(context, intent, options.toBundle());
+    }
+
+    private void initRecycleView(MovieDetailBean bean) {
+        List<PersonBean> list = bean.getDirectors();
+        list.addAll(bean.getCasts());
+        mDoubanMovieDetailAdapter = new DoubanMovieDetailAdapter(R.layout
+                .item_douban_detail_movie_person, list);
+        mDoubanMovieDetailAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener
+                () {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+        });
+        rvDoubanMovieDetail.setAdapter(mDoubanMovieDetailAdapter);
     }
 }

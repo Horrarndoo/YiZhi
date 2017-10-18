@@ -49,7 +49,7 @@ public class DoubanTopMoiveFragment extends BaseRecycleFragment<DoubanTopMovieCo
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_douban_top;
+        return R.layout.fragment_douban_top_movie;
     }
 
     @Override

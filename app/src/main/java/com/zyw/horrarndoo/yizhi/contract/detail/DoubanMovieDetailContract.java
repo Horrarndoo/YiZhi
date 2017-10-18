@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.contract.douban;
+package com.zyw.horrarndoo.yizhi.contract.detail;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
