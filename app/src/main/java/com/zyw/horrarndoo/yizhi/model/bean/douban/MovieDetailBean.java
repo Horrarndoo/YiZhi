@@ -376,6 +376,14 @@ public class MovieDetailBean {
         return sListToString(getGenres());
     }
 
+    /**
+     * 获取其它名称字符串
+     *
+     * @return 类型字符串 A/B/C..
+     */
+    public String getAkaString() {
+        return sListToString(getAka());
+    }
 
     /**
      * 格式化list为字符串

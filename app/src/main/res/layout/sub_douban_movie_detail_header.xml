@@ -9,7 +9,6 @@
         android:id="@+id/iv_header_bg"
         android:layout_width="match_parent"
         android:layout_height="330dp"
-        android:background="@color/colorRateRed"
         android:scaleType="fitXY"/>
 
     <LinearLayout
