@@ -12,7 +12,6 @@
         android:scaleType="fitXY"/>
 
     <LinearLayout
-        android:id="@+id/ll_movie_header"
         android:layout_width="match_parent"
         android:layout_height="330dp"
         android:layout_alignParentLeft="true"
@@ -24,6 +23,7 @@
         android:paddingTop="95dp">
 
         <LinearLayout
+            android:id="@+id/ll_movie_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

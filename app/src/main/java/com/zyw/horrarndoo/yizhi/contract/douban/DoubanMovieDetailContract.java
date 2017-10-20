@@ -5,6 +5,7 @@ import com.zyw.horrarndoo.sdk.base.IBaseActivity;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 
 import io.reactivex.Observable;
 
@@ -30,6 +31,12 @@ public interface DoubanMovieDetailContract {
          * @param item      item
          */
         public abstract void onItemClick(int position, PersonBean item);
+
+        /**
+         * header点击事件
+         * @param bean bean
+         */
+        public abstract void onHeaderClick(SubjectsBean bean);
     }
 
     interface IDoubanMovieDetailModel extends IBaseModel {
@@ -54,10 +61,5 @@ public interface DoubanMovieDetailContract {
          * 显示网络错误
          */
         void showNetworkError();
-
-        /**
-         * 显示加载中
-         */
-        void showLoading();
     }
 }

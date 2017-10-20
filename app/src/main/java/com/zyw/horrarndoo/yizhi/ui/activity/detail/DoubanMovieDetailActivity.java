@@ -32,10 +32,10 @@ import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanMovieDetailPresenter;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.zyw.horrarndoo.sdk.utils.StatusBarUtils.getStatusBarHeight;
-import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant
-        .INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
+import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN;
 
 /**
  * Created by Horrarndoo on 2017/10/18.
@@ -116,6 +116,14 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
         return R.layout.activity_douban_detail;
     }
 
+    @OnClick(R.id.ll_movie_header)
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.ll_movie_header:
+                mPresenter.onHeaderClick(mSubjectBean);
+                break;
+        }
+    }
     @Override
     public void showMovieDetail(MovieDetailBean bean) {
         //        Logger.e(bean.toString());
@@ -131,10 +139,6 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
 
     @Override
     public void showNetworkError() {
-    }
-
-    @Override
-    public void showLoading() {
     }
 
     /**

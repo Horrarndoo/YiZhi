@@ -7,6 +7,7 @@ import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.douban.DoubanMovieDetailModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMoiveMoreDetailActivity;
 
@@ -54,6 +55,14 @@ public class DoubanMovieDetailPresenter extends DoubanMovieDetailContract
         Bundle bundle = new Bundle();
         bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, item.getName());
         bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, item.getAlt());
+        mIView.startNewActivity(DoubanMoiveMoreDetailActivity.class, bundle);
+    }
+
+    @Override
+    public void onHeaderClick(SubjectsBean bean) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, bean.getTitle());
+        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, bean.getAlt());
         mIView.startNewActivity(DoubanMoiveMoreDetailActivity.class, bundle);
     }
 
