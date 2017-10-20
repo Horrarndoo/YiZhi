@@ -23,11 +23,11 @@ import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.sdk.widgets.CompatNestedScrollView;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.DoubanMovieDetailAdapter;
-import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
-import com.zyw.horrarndoo.yizhi.presenter.detail.DoubanMovieDetailPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanMovieDetailPresenter;
 
 import java.util.List;
 
@@ -160,6 +160,7 @@ public class DoubanMovieDetailActivity extends BaseMVPCompatActivity<DoubanMovie
                 () {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mPresenter.onItemClick(position, (PersonBean) adapter.getItem(position));
             }
         });
         rvDoubanMovieDetail.setAdapter(mDoubanMovieDetailAdapter);

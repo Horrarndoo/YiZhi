@@ -146,7 +146,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
     @Override
     public void gotoImageBrowse(String imgUrl) {
-        if(StringUtils.isEmpty(imgUrl))
+        if (StringUtils.isEmpty(imgUrl))
             return;
 
         Bundle bundle = new Bundle();
@@ -261,19 +261,48 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
      * @param settings WebSetting
      */
     protected void initWebSetting(WebSettings settings) {
-        settings.setBlockNetworkImage(false);
+        // 缩放至屏幕的大小
+        settings.setLoadWithOverviewMode(true);
+        // 保存表单数据
+        settings.setSaveFormData(true);
+        // 是否应该支持使用其屏幕缩放控件和手势缩放
+        settings.setSupportZoom(true);
+        //        //是否支持手势缩放控制
+        //        settings.setBuiltInZoomControls(true);
+        //        是否隐藏原生的缩放控件
+        //        settings.setDisplayZoomControls(false);
+        // 启动应用缓存
         settings.setAppCacheEnabled(true);
+        // 排版适应屏幕，只显示一列
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        //  页面加载好以后，再放开图片
+        settings.setBlockNetworkImage(false);
+        // 使用localStorage则必须打开
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
+        // WebView启用JavaScript执行。默认的是false。
+        settings.setJavaScriptEnabled(true); // 设置支持javascript脚本
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         if (NetworkConnectionUtils.isConnected(mContext)) {
             settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
             settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
         }
-        settings.setJavaScriptEnabled(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setSupportZoom(true);
+
+        //        settings.setBlockNetworkImage(false);
+        //        settings.setAppCacheEnabled(true);
+        //        settings.setDomStorageEnabled(true);
+        //        settings.setDatabaseEnabled(true);
+        //        if (NetworkConnectionUtils.isConnected(mContext)) {
+        //            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        //        } else {
+        //            settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
+        //        }
+        //        settings.setJavaScriptEnabled(true);
+        //        settings.setLoadWithOverviewMode(true);
+        //        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //        settings.setSupportZoom(true);
     }
 
     /**

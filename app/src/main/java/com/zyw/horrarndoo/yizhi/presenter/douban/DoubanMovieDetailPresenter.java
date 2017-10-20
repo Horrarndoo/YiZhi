@@ -1,10 +1,14 @@
-package com.zyw.horrarndoo.yizhi.presenter.detail;
+package com.zyw.horrarndoo.yizhi.presenter.douban;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
+import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
-import com.zyw.horrarndoo.yizhi.model.detail.DoubanMovieDetailModel;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.douban.DoubanMovieDetailModel;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMoiveMoreDetailActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -43,6 +47,14 @@ public class DoubanMovieDetailPresenter extends DoubanMovieDetailContract
                 mIView.showNetworkError();
             }
         }));
+    }
+
+    @Override
+    public void onItemClick(int position, PersonBean item) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, item.getName());
+        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, item.getAlt());
+        mIView.startNewActivity(DoubanMoiveMoreDetailActivity.class, bundle);
     }
 
     @Override

@@ -44,6 +44,8 @@
 
         <activity android:name=".ui.activity.detail.DoubanMovieDetailActivity"/>
 
+        <activity android:name=".ui.activity.detail.DoubanMoiveMoreDetailActivity"/>
+
         <activity android:name=".ui.activity.AboutActivity"/>
 
         <activity android:name=".ui.activity.personal.HeadSettingActivity"/>

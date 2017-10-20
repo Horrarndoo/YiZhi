@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.model.detail;
+package com.zyw.horrarndoo.yizhi.model.douban;
 
 import android.support.annotation.NonNull;
 
@@ -6,7 +6,7 @@ import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.sdk.helper.RetrofitCreateHelper;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.api.DoubanApi;
-import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMovieDetailContract;
+import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMovieDetailContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
 

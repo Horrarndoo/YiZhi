@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.model.detail;
 
 import android.support.annotation.NonNull;
 
+import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.yizhi.contract.detail.WeixinDetailContract;
 
 /**
@@ -9,7 +10,7 @@ import com.zyw.horrarndoo.yizhi.contract.detail.WeixinDetailContract;
  * <p>
  */
 
-public class WeixinDetailModel implements WeixinDetailContract.IWeixinDetailModel {
+public class WeixinDetailModel extends BaseModel implements WeixinDetailContract.IWeixinDetailModel {
     @NonNull
     public static WeixinDetailModel newInstance() {
         return new WeixinDetailModel();

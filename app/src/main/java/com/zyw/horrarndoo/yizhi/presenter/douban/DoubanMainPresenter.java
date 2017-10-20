@@ -18,11 +18,11 @@ import io.reactivex.functions.Consumer;
  * <p>
  */
 
-public class DoubanMianPresenter extends DoubanMainContract.DoubanMainPresenter {
+public class DoubanMainPresenter extends DoubanMainContract.DoubanMainPresenter {
 
     @NonNull
-    public static DoubanMianPresenter newInstance() {
-        return new DoubanMianPresenter();
+    public static DoubanMainPresenter newInstance() {
+        return new DoubanMainPresenter();
     }
 
     @Override

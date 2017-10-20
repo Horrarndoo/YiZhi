@@ -1,9 +1,10 @@
-package com.zyw.horrarndoo.yizhi.contract.detail;
+package com.zyw.horrarndoo.yizhi.contract.douban;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
+import com.zyw.horrarndoo.sdk.base.IBaseActivity;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
-import com.zyw.horrarndoo.sdk.base.IBaseView;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
 
 import io.reactivex.Observable;
 
@@ -21,6 +22,14 @@ public interface DoubanMovieDetailContract {
          * @param id 电影id
          */
         public abstract void loadMovieDetail(String id);
+
+        /**
+         * item点击事件
+         *
+         * @param position  position
+         * @param item      item
+         */
+        public abstract void onItemClick(int position, PersonBean item);
     }
 
     interface IDoubanMovieDetailModel extends IBaseModel {
@@ -33,7 +42,7 @@ public interface DoubanMovieDetailContract {
         Observable<MovieDetailBean> getMovieDetail(String id);
     }
 
-    interface IDoubanMovieDetailView extends IBaseView {
+    interface IDoubanMovieDetailView extends IBaseActivity {
         /**
          * 显示电影详情
          *

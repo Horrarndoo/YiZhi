@@ -16,7 +16,7 @@ import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.DoubanAdapter;
 import com.zyw.horrarndoo.yizhi.contract.douban.DoubanMainContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
-import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanMianPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.douban.DoubanMainPresenter;
 
 import java.util.List;
 
@@ -90,7 +90,7 @@ public class DoubanFragment extends BaseRecycleFragment<DoubanMainContract.Douba
     @NonNull
     @Override
     public BasePresenter initPresenter() {
-        return DoubanMianPresenter.newInstance();
+        return DoubanMainPresenter.newInstance();
     }
 
     private void initRecycleView(List<SubjectsBean> list) {
