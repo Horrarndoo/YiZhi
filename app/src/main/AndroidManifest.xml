@@ -42,9 +42,9 @@
 
         <activity android:name=".ui.activity.detail.GankIoDetailActivity"/>
 
-        <activity android:name=".ui.activity.detail.DoubanMovieDetailActivity"/>
+        <activity android:name=".ui.activity.detail.MovieDetailActivity"/>
 
-        <activity android:name=".ui.activity.detail.DoubanMoiveMoreDetailActivity"/>
+        <activity android:name=".ui.activity.detail.DoubanMoreDetailActivity"/>
 
         <activity android:name=".ui.activity.AboutActivity"/>
 

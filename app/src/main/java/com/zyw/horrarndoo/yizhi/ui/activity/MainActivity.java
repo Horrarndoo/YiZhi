@@ -24,7 +24,8 @@ import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
 import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
-import com.zyw.horrarndoo.yizhi.ui.fragment.douban.DoubanRootFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.book.BookRootFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.movie.MovieRootFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.gankio.GankIoRootFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.HomeRootFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.HomeFragment;
@@ -59,8 +60,9 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
+    public static final int FIFTH = 4;
 
-    private SupportFragment[] mFragments = new SupportFragment[4];
+    private SupportFragment[] mFragments = new SupportFragment[5];
 
     private MovingImageView mivMenu;
     private CircleImageView civHead;
@@ -87,16 +89,18 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         if (savedInstanceState == null) {
             mFragments[FIRST] = HomeRootFragment.newInstance();
             mFragments[SECOND] = GankIoRootFragment.newInstance();
-            mFragments[THIRD] = DoubanRootFragment.newInstance();
-            mFragments[FOURTH] = PersonalRootFragment.newInstance();
+            mFragments[THIRD] = MovieRootFragment.newInstance();
+            mFragments[FOURTH] = BookRootFragment.newInstance();
+            mFragments[FIFTH] = PersonalRootFragment.newInstance();
 
-            loadMultipleRootFragment(R.id.fl_container, THIRD,
+            loadMultipleRootFragment(R.id.fl_container, FOURTH,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
-                    mFragments[FOURTH]);
+                    mFragments[FOURTH],
+                    mFragments[FIFTH]);
             // TODO: 2017/10/17  调试用，开发完成后删除
-            bottomNavigationView.setSelectedItemId(R.id.menu_item_douban);
+            bottomNavigationView.setSelectedItemId(R.id.menu_item_book);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
 
@@ -104,8 +108,9 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             // 自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findFragment(HomeRootFragment.class);
             mFragments[SECOND] = findFragment(GankIoRootFragment.class);
-            mFragments[THIRD] = findFragment(DoubanRootFragment.class);
-            mFragments[FOURTH] = findFragment(PersonalRootFragment.class);
+            mFragments[THIRD] = findFragment(MovieRootFragment.class);
+            mFragments[FOURTH] = findFragment(BookRootFragment.class);
+            mFragments[FIFTH] = findFragment(PersonalRootFragment.class);
         }
 
         mivMenu = (MovingImageView) nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
@@ -142,11 +147,14 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
                     case R.id.menu_item_gank_io:
                         showHideFragment(mFragments[SECOND]);
                         break;
-                    case R.id.menu_item_douban:
+                    case R.id.menu_item_movie:
                         showHideFragment(mFragments[THIRD]);
                         break;
-                    case R.id.menu_item_personal:
+                    case R.id.menu_item_book:
                         showHideFragment(mFragments[FOURTH]);
+                        break;
+                    case R.id.menu_item_personal:
+                        showHideFragment(mFragments[FIFTH]);
                         break;
                 }
                 return true;

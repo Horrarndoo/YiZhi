@@ -6,5 +6,5 @@ package com.zyw.horrarndoo.yizhi.constant;
  */
 
 public class InternKeyConstant {
-    public static final String INTENT_KEY_DOUBAN_MOVIE_SUBJECTBEAN = "intent_key_douban_movie_subjectbean";
+    public static final String INTENT_KEY_MOVIE_SUBJECTBEAN = "intent_key_movie_subjectbean";
 }

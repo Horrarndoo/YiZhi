@@ -11,9 +11,14 @@
         android:title="干货" />
 
     <item
-        android:id="@+id/menu_item_douban"
-        android:icon="@drawable/ic_vector_bottom_message"
-        android:title="豆瓣" />
+        android:id="@+id/menu_item_movie"
+        android:icon="@drawable/ic_vector_bottom_movie"
+        android:title="影视" />
+
+    <item
+        android:id="@+id/menu_item_book"
+        android:icon="@drawable/ic_vector_bottom_book"
+        android:title="书籍" />
 
     <item
         android:id="@+id/menu_item_personal"
