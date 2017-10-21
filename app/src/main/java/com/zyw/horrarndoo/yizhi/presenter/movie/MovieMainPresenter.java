@@ -4,9 +4,9 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.zyw.horrarndoo.yizhi.cache.Cache;
-import com.zyw.horrarndoo.yizhi.contract.douban.MovieMainContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.MovieMainContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.HotMovieBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.movie.MovieMainModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.MovieDetailActivity;
 import com.zyw.horrarndoo.yizhi.ui.fragment.movie.child.top.TopMoiveFragment;

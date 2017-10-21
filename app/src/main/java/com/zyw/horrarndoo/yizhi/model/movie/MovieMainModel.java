@@ -6,8 +6,8 @@ import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.sdk.helper.RetrofitCreateHelper;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.api.DoubanApi;
-import com.zyw.horrarndoo.yizhi.contract.douban.MovieMainContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.MovieMainContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.HotMovieBean;
 
 import io.reactivex.Observable;
 

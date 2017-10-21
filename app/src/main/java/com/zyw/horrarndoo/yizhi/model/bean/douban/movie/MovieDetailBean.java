@@ -1,8 +1,9 @@
-package com.zyw.horrarndoo.yizhi.model.bean.douban;
+package com.zyw.horrarndoo.yizhi.model.bean.douban.movie;
 
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.ImagesBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.RatingBean;
+
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.ImagesBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.RatingBean;
 
 import java.util.List;
 

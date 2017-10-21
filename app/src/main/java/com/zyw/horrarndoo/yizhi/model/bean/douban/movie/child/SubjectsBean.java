@@ -1,4 +1,4 @@
-package com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild;
+package com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child;
 
 import com.google.gson.annotations.SerializedName;
 

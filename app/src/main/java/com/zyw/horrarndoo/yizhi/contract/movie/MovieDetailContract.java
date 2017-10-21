@@ -1,11 +1,11 @@
-package com.zyw.horrarndoo.yizhi.contract.douban;
+package com.zyw.horrarndoo.yizhi.contract.movie;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseActivity;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.MovieDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 
 import io.reactivex.Observable;
 

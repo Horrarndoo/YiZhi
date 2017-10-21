@@ -1,7 +1,7 @@
 package com.zyw.horrarndoo.yizhi.cache;
 
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 
 import java.util.List;
 

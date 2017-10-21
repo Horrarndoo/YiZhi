@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
+        android:elevation="1dp"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical"/>
 </FrameLayout>

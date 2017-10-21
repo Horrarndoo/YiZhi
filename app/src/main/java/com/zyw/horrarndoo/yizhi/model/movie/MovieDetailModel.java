@@ -6,9 +6,9 @@ import com.zyw.horrarndoo.sdk.base.BaseModel;
 import com.zyw.horrarndoo.sdk.helper.RetrofitCreateHelper;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
 import com.zyw.horrarndoo.yizhi.api.DoubanApi;
-import com.zyw.horrarndoo.yizhi.contract.douban.MovieDetailContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.MovieDetailContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.MovieDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;

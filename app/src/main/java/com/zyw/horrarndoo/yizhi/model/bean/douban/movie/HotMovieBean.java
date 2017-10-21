@@ -1,10 +1,11 @@
-package com.zyw.horrarndoo.yizhi.model.bean.douban;
+package com.zyw.horrarndoo.yizhi.model.bean.douban.movie;
 
 import com.google.gson.annotations.SerializedName;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 
 import java.io.Serializable;
 import java.util.List;
+
 
 /**
  * Created by Horrarndoo on 2017/10/16.

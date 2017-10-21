@@ -1,12 +1,12 @@
-package com.zyw.horrarndoo.yizhi.contract.douban;
+package com.zyw.horrarndoo.yizhi.contract.movie;
 
 import android.widget.ImageView;
 
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseFragment;
 import com.zyw.horrarndoo.sdk.base.IBaseModel;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.HotMovieBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.HotMovieBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 
 import java.util.List;
 

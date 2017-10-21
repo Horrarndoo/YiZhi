@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zyw.horrarndoo.yizhi.R;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
 
 import java.util.List;
 

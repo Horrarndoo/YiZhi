@@ -15,8 +15,8 @@ import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.TopMovieAdapter;
-import com.zyw.horrarndoo.yizhi.contract.douban.TopMovieContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.TopMovieContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.presenter.movie.TopMoviePresenter;
 
 import java.util.List;

@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
-import com.zyw.horrarndoo.yizhi.contract.douban.MovieDetailContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.MovieDetailBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.PersonBean;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.MovieDetailContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.MovieDetailBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.movie.MovieDetailModel;
 import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMoreDetailActivity;
 

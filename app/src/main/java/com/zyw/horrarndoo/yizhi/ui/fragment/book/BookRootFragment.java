@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.ui.fragment.book.child.BookFragment;
 
 /**
  * Created by Horrarndoo on 2017/10/21.
@@ -27,5 +28,8 @@ public class BookRootFragment extends BaseCompatFragment{
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        if (findChildFragment(BookFragment.class) == null) {
+            loadRootFragment(R.id.fl_container, BookFragment.newInstance());
+        }
     }
 }

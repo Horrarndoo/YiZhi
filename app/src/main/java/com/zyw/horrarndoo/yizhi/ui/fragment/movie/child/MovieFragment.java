@@ -14,8 +14,8 @@ import com.zyw.horrarndoo.sdk.base.fragment.BaseRecycleFragment;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.adapter.HotMovieAdapter;
-import com.zyw.horrarndoo.yizhi.contract.douban.MovieMainContract;
-import com.zyw.horrarndoo.yizhi.model.bean.douban.moviechild.SubjectsBean;
+import com.zyw.horrarndoo.yizhi.contract.movie.MovieMainContract;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.presenter.movie.MovieMainPresenter;
 
 import java.util.List;
