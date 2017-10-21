@@ -17,9 +17,7 @@ import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.book.BookMainContract;
 import com.zyw.horrarndoo.yizhi.presenter.book.BookMainPresenter;
-import com.zyw.horrarndoo.yizhi.ui.fragment.book.child.tabs.BookCultureFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.book.child.tabs.BookLifeFragment;
-import com.zyw.horrarndoo.yizhi.ui.fragment.book.child.tabs.BookLiteratureFragment;
+import com.zyw.horrarndoo.yizhi.ui.fragment.book.child.tabs.BookCustomFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,16 +77,16 @@ public class BookFragment extends BaseMVPCompatFragment<BookMainContract.BookMai
             tlTabs.addTab(tlTabs.newTab().setText(tabs[i]));
             switch (i) {
                 case TabFragmentIndex.TAB_BOOK_LITERATURE_INDEX:
-                    fragments.add(BookLiteratureFragment.newInstance());
+                    fragments.add(BookCustomFragment.newInstance("文学"));
                     break;
                 case TabFragmentIndex.TAB_BOOK_CULTURE_INDEX:
-                    fragments.add(BookCultureFragment.newInstance());
+                    fragments.add(BookCustomFragment.newInstance("文化"));
                     break;
                 case TabFragmentIndex.TAB_BOOK_LIFE_INDEX:
-                    fragments.add(BookLifeFragment.newInstance());
+                    fragments.add(BookCustomFragment.newInstance("生活"));
                     break;
                 default:
-                    fragments.add(BookLiteratureFragment.newInstance());
+                    fragments.add(BookCustomFragment.newInstance("文学"));
                     break;
             }
         }

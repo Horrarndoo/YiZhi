@@ -5,9 +5,10 @@
               android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="文学"
+        android:text="文化"
         android:textSize="80dp"/>
 </LinearLayout>

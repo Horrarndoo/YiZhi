@@ -14,6 +14,7 @@ import com.zyw.horrarndoo.yizhi.ui.fragment.movie.child.MovieFragment;
  */
 
 public class MovieRootFragment extends BaseCompatFragment {
+
     public static MovieRootFragment newInstance() {
         Bundle args = new Bundle();
         MovieRootFragment fragment = new MovieRootFragment();

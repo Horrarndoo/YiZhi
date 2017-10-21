@@ -26,5 +26,7 @@ public class BundleKeyConstant {
     public static final String ARG_KEY_GANKIO_DETAIL_TITLE = "arg_key_gankio_detail_title";
 
     public static final String ARG_KEY_DOUBAN_MORE_DETAIL_URL = "arg_key_douban_more_detail_url";
-    public static final String ARG_KEY_DOUBAN_MORE_DETAIL_TITLE = "arg_key_douban_more_weixini_detail_title";
+    public static final String ARG_KEY_DOUBAN_MORE_DETAIL_TITLE = "arg_key_douban_more_detail_title";
+
+    public static final String ARG_KEY_DOUBAN_BOOK_TAGS = "arg_key_douban_more_book_tags";
 }

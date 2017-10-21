@@ -7,10 +7,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by jingbin on 2016/12/15.
+ * Created by Horrarndoo on 2017/10/21.
+ *
  */
 
-public class BooksBean implements Serializable {
+public class BookItemBean implements Serializable {
     /**
      * rating : {"max":10,"numRaters":116375,"average":"7.9","min":0}
      * subtitle :

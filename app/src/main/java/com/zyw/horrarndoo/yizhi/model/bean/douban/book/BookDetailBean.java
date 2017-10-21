@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by jingbin on 2016/12/25.
+ * Created by Horrarndoo on 2017/10/21.
+ * <p>
  */
 
 public class BookDetailBean implements Serializable {
@@ -95,7 +96,7 @@ public class BookDetailBean implements Serializable {
      * price : 23.90元
      */
     @SerializedName("rating")
-    private BooksBean.RatingBean rating;
+    private BookItemBean.RatingBean rating;
     @SerializedName("subtitle")
     private String subtitle;
     @SerializedName("pubdate")
@@ -137,15 +138,15 @@ public class BookDetailBean implements Serializable {
     @SerializedName("author")
     private List<String> author;
     @SerializedName("tags")
-    private List<BooksBean.TagsBean> tags;
+    private List<BookItemBean.TagsBean> tags;
     @SerializedName("translator")
     private List<String> translator;
 
-    public BooksBean.RatingBean getRating() {
+    public BookItemBean.RatingBean getRating() {
         return rating;
     }
 
-    public void setRating(BooksBean.RatingBean rating) {
+    public void setRating(BookItemBean.RatingBean rating) {
         this.rating = rating;
     }
 
@@ -330,11 +331,11 @@ public class BookDetailBean implements Serializable {
     }
 
 
-    public List<BooksBean.TagsBean> getTags() {
+    public List<BookItemBean.TagsBean> getTags() {
         return tags;
     }
 
-    public void setTags(List<BooksBean.TagsBean> tags) {
+    public void setTags(List<BookItemBean.TagsBean> tags) {
         this.tags = tags;
     }
 

@@ -1,6 +1,6 @@
 package com.zyw.horrarndoo.yizhi.api;
 
-import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookListBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.HotMovieBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.MovieDetailBean;
@@ -45,11 +45,13 @@ public interface DoubanApi {
      * 根据tag获取图书
      *
      * @param tag   搜索关键字
+     * @param start 从多少开始，如从"0"开始
      * @param count 一次请求的数目 最多100
      */
 
     @GET("v2/book/search")
-    Observable<BookBean> getBook(@Query("tag") String tag, @Query("start") int start, @Query("count") int count);
+    Observable<BookListBean> getBookListWithTag(@Query("tag") String tag, @Query("start") int
+            start, @Query("count") int count);
 
     @GET("v2/book/{id}")
     Observable<BookDetailBean> getBookDetail(@Path("id") String id);
