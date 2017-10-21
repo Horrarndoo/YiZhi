@@ -69,14 +69,6 @@ public class BookCustomFragment extends BaseRecycleFragment<BookCustomContract
     }
 
     @Override
-    protected void onErrorViewClick(View view) {
-    }
-
-    @Override
-    protected void showLoading() {
-    }
-
-    @Override
     public void updateContentList(List<BookItemBean> list) {
         Logger.e(list.toString());
     }
@@ -96,5 +88,13 @@ public class BookCustomFragment extends BaseRecycleFragment<BookCustomContract
     @Override
     public String getBookTags() {
         return mBookTags;
+    }
+
+    @Override
+    protected void onErrorViewClick(View view) {
+    }
+
+    @Override
+    protected void showLoading() {
     }
 }
