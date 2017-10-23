@@ -42,7 +42,8 @@ import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_MOV
  * <p>
  */
 
-public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContract.MovieDetailPresenter, MovieDetailContract.IMovieDetailModel>
+public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContract
+        .MovieDetailPresenter, MovieDetailContract.IMovieDetailModel>
         implements MovieDetailContract.IMovieDetailView {
 
     @BindView(R.id.toolbar)
@@ -80,6 +81,7 @@ public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContra
 
     private SubjectsBean mSubjectBean;
     private MovieDetailAdapter mMovieDetailAdapter;
+    private View errorView;
 
     @NonNull
     @Override
@@ -108,6 +110,14 @@ public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContra
         rvMovieDetail.setNestedScrollingEnabled(false);
         nsvScrollView.bindAlphaView(ivToolbarBg);
         mPresenter.loadMovieDetail(mSubjectBean.getId());
+
+        errorView = getLayoutInflater().inflate(R.layout.view_network_error, rvMovieDetail, false);
+        errorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.loadMovieDetail(mSubjectBean.getId());
+            }
+        });
     }
 
     @Override
@@ -116,13 +126,14 @@ public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContra
     }
 
     @OnClick(R.id.ll_movie_header)
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.ll_movie_header:
                 mPresenter.onHeaderClick(mSubjectBean);
                 break;
         }
     }
+
     @Override
     public void showMovieDetail(MovieDetailBean bean) {
         //        Logger.e(bean.toString());
@@ -138,6 +149,7 @@ public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContra
 
     @Override
     public void showNetworkError() {
+        mMovieDetailAdapter.setEmptyView(errorView);
     }
 
     /**

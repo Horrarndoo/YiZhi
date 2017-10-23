@@ -3,11 +3,11 @@ package com.zyw.horrarndoo.yizhi.presenter.book.tabs;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
-import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.yizhi.contract.book.tabs.BookCustomContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookItemBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookListBean;
 import com.zyw.horrarndoo.yizhi.model.book.tabs.BookCustomModel;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.BookDetailActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -93,7 +93,8 @@ public class BookCustomPresenter extends BookCustomContract.BookCustomPresenter 
 
     @Override
     public void onItemClick(int position, BookItemBean item, ImageView imageView) {
-        Logger.e("position " + position + " is clicked.");
+//        Logger.e("position " + position + " is clicked.");
+        BookDetailActivity.start(mIView.getBindActivity(), item, imageView);
     }
 
     @Override

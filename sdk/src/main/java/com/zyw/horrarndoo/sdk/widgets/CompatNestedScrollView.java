@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 import com.zyw.horrarndoo.sdk.utils.StatusBarUtils;
@@ -56,6 +57,8 @@ public class CompatNestedScrollView extends NestedScrollView {
         float alpha = 1.f;
         if (headView != null && bindView != null) {
             //如果上滑超过toolbar高度，开启伴随动画
+            Logger.e("t = " + t);
+            Logger.e("headView.getHeight = " + headView.getHeight());
             float slideValue = t - (DisplayUtils.dp2px(56) + StatusBarUtils.getStatusBarHeight
                     (AppUtils.getContext()));
 

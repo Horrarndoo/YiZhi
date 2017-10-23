@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:descendantFocusability="blocksDescendants">
+    <!--android:descendantFocusability="blocksDescendants"-->
+    <!--viewgroup会覆盖子类控件而直接获得焦点，避免RecycleView开始的时候获取焦点滚动到底部-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/fl_net_view"
+            layout="@layout/sub_net_status"/>
+
+        <com.zyw.horrarndoo.sdk.widgets.CompatNestedScrollView
+            android:id="@+id/nsv_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ll_book_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/sub_book_detail_header"/>
+
+                <include layout="@layout/sub_book_detail_mid"/>
+
+                <!--目录-->
+                <TextView
+                    android:id="@+id/tv_book_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPageBg"
+                    android:lineSpacingExtra="5dp"
+                    android:padding="8dp"/>
+            </LinearLayout>
+        </com.zyw.horrarndoo.sdk.widgets.CompatNestedScrollView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_toolbar_bg"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:alpha="0"
+            android:scaleType="fitXY"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.ToolbarPopupOverlay"
+                app:titleTextColor="@color/white"/>
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

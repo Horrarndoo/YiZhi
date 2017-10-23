@@ -73,7 +73,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        initTitleBar(toolbar, getToolbarTitle());
+        initTitleBar(toolbar, "跳转中……");
         initWebSetting(nswvDetailContent.getSettings());
         initWebView();
 
@@ -192,6 +192,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
                 super.onPageFinished(view, url);
                 // html加载完成之后，添加监听图片的点击js函数
                 addWebImageClickListner(view);
+                toolbar.setTitle(getToolbarTitle());
             }
 
             @Override
