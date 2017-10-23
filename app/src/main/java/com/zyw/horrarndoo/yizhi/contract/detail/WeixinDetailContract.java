@@ -1,6 +1,6 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
-import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.detail.BaseWebViewLoadPresenter;
 
 /**
  * Created by Horrarndoo on 2017/9/21.
@@ -10,8 +10,8 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
 
 public interface WeixinDetailContract {
 
-    abstract class WeixinDetailPresenter extends BaseDetailPresenter<IWeixinDetailModel,
-                    IWeixinDetailView> {
+    abstract class WeixinDetailPresenter extends BaseWebViewLoadPresenter<IWeixinDetailModel,
+                        IWeixinDetailView> {
         /**
          * 加载微信精选详情
          *
@@ -20,10 +20,10 @@ public interface WeixinDetailContract {
         public abstract void loadWeixinChoiceDetail(String url);
     }
 
-    interface IWeixinDetailModel extends BaseDetailContract.IBaseDetailModel {
+    interface IWeixinDetailModel extends BaseWebViewLoadContract.IBaseWebViewLoadModel {
     }
 
-    interface IWeixinDetailView extends BaseDetailContract.IBaseDetailView {
+    interface IWeixinDetailView extends BaseWebViewLoadContract.IBaseWebViewLoadView {
         /**
          * 显示微信精选详细内容
          *

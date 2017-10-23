@@ -8,15 +8,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
-import com.zyw.horrarndoo.yizhi.contract.detail.BaseDetailContract;
+import com.zyw.horrarndoo.yizhi.contract.detail.BaseWebViewLoadContract;
 
 /**
  * Created by Horrarndoo on 2017/9/28.
  * <p>
  */
 
-public abstract class BaseDetailPresenter<M extends BaseDetailContract.IBaseDetailModel, V extends
-        BaseDetailContract.IBaseDetailView> extends BaseDetailContract.BaseDetailPresenter<M, V> {
+public abstract class BaseWebViewLoadPresenter<M extends BaseWebViewLoadContract
+        .IBaseWebViewLoadModel, V extends BaseWebViewLoadContract.IBaseWebViewLoadView> extends
+        BaseWebViewLoadContract.BaseWebViewLoadPresenter<M, V> {
 
     @Override
     public void saveImageClicked(final FragmentActivity activity, final String imgUrl) {

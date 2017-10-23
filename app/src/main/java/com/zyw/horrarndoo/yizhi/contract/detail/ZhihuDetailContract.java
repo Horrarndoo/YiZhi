@@ -1,7 +1,7 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
 import com.zyw.horrarndoo.yizhi.model.bean.zhihu.ZhihuDailyDetailBean;
-import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.detail.BaseWebViewLoadPresenter;
 
 import io.reactivex.Observable;
 
@@ -12,14 +12,14 @@ import io.reactivex.Observable;
  */
 
 public interface ZhihuDetailContract {
-    abstract class ZhihuDetailPresenter extends BaseDetailPresenter<IZhihuDetailModel, IZhihuDetailView> {
+    abstract class ZhihuDetailPresenter extends BaseWebViewLoadPresenter<IZhihuDetailModel, IZhihuDetailView> {
         /**
          * 加载日报详情
          */
         public abstract void loadDailyDetail(String id);
     }
 
-    interface IZhihuDetailModel extends BaseDetailContract.IBaseDetailModel {
+    interface IZhihuDetailModel extends BaseWebViewLoadContract.IBaseWebViewLoadModel {
         /**
          * 获取日报详情
          *
@@ -29,7 +29,7 @@ public interface ZhihuDetailContract {
         Observable<ZhihuDailyDetailBean> getDailyDetail(String id);
     }
 
-    interface IZhihuDetailView extends BaseDetailContract.IBaseDetailView {
+    interface IZhihuDetailView extends BaseWebViewLoadContract.IBaseWebViewLoadView {
         /**
          * 显示日报详细内容
          *

@@ -23,7 +23,9 @@ import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
 import com.zyw.horrarndoo.sdk.widgets.MovingViewAnimator.MovingState;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.model.bean.rxbus.RxEventHeadBean;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.WebViewLoadActivity;
 import com.zyw.horrarndoo.yizhi.ui.fragment.book.BookRootFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.movie.MovieRootFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.gankio.GankIoRootFragment;
@@ -93,17 +95,14 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             mFragments[FOURTH] = BookRootFragment.newInstance();
             mFragments[FIFTH] = PersonalRootFragment.newInstance();
 
-            loadMultipleRootFragment(R.id.fl_container, FOURTH,
+            loadMultipleRootFragment(R.id.fl_container, FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
                     mFragments[FOURTH],
                     mFragments[FIFTH]);
-            // TODO: 2017/10/17  调试用，开发完成后删除
-            bottomNavigationView.setSelectedItemId(R.id.menu_item_book);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
-
             // 这里我们需要拿到mFragments的引用,也可以通过getSupportFragmentManager.getFragments()
             // 自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findFragment(HomeRootFragment.class);
@@ -125,7 +124,6 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
                 civHead.setImageBitmap(bitmap);
             }
         }
-
 
         civHead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,23 +159,31 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             }
         });
 
-        nvMenu.getMenu().findItem(R.id.item_setting).setTitle(SpUtils.getNightModel(mContext) ?
+        nvMenu.getMenu().findItem(R.id.item_model).setTitle(SpUtils.getNightModel(mContext) ?
                 "夜间模式" : "日间模式");
         nvMenu.setNavigationItemSelectedListener(new NavigationView
                 .OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.group_item_test1:
-                        ToastUtils.showToast("group item test1 is clicked");
+                    case R.id.group_item_home:
+                        Bundle bundle = new Bundle();
+                        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, "Yizhi");
+                        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL,
+                                "https://github.com/Horrarndoo/YiZhi");
+                        startActivity(WebViewLoadActivity.class, bundle);
                         break;
-                    case R.id.group_item_test2:
-                        ToastUtils.showToast("group item test2 is clicked");
+                    case R.id.group_item_more:
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE,
+                                "Horrarndoo");
+                        bundle2.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL,
+                                "http://blog.csdn.net/oqinyou");
+                        startActivity(WebViewLoadActivity.class, bundle2);
                         break;
-                    case R.id.group_item_test3:
-                        ToastUtils.showToast("group item test3 is clicked");
+                    case R.id.item_share:
                         break;
-                    case R.id.item_setting:
+                    case R.id.item_model:
                         SpUtils.setNightModel(mContext, !SpUtils.getNightModel(mContext));
                         MainActivity.this.reload();
                         break;

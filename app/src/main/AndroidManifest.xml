@@ -46,7 +46,7 @@
 
         <activity android:name=".ui.activity.detail.BookDetailActivity"/>
 
-        <activity android:name=".ui.activity.detail.DoubanMoreDetailActivity"/>
+        <activity android:name=".ui.activity.detail.WebViewLoadActivity"/>
 
         <activity android:name=".ui.activity.AboutActivity"/>
 

@@ -1,6 +1,6 @@
 package com.zyw.horrarndoo.yizhi.contract.detail;
 
-import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
+import com.zyw.horrarndoo.yizhi.presenter.detail.BaseWebViewLoadPresenter;
 
 /**
  * Created by Horrarndoo on 2017/10/11.
@@ -8,8 +8,8 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.BaseDetailPresenter;
  */
 
 public interface GankIoDetailContract {
-    abstract class GankIoDetailPresenter extends BaseDetailPresenter<IGankIoDetailModel,
-            IGankIoDetailView> {
+    abstract class GankIoDetailPresenter extends BaseWebViewLoadPresenter<IGankIoDetailModel,
+                IGankIoDetailView> {
         /**
          * 加载GankIo详情
          *
@@ -18,10 +18,10 @@ public interface GankIoDetailContract {
         public abstract void loadGankIoDetail(String url);
     }
 
-    interface IGankIoDetailModel extends BaseDetailContract.IBaseDetailModel {
+    interface IGankIoDetailModel extends BaseWebViewLoadContract.IBaseWebViewLoadModel {
     }
 
-    interface IGankIoDetailView extends BaseDetailContract.IBaseDetailView {
+    interface IGankIoDetailView extends BaseWebViewLoadContract.IBaseWebViewLoadView {
         /**
          * 显示GankIo详细内容
          *

@@ -19,7 +19,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.WangyiDetailPresenter;
  * <p>
  */
 
-public class WangyiDailyDetailActivity extends BaseDetailActivity<WangyiDetailContract
+public class WangyiDailyDetailActivity extends BaseWebViewLoadActivity<WangyiDetailContract
         .WangyiDetailPresenter, WangyiDetailContract.IWangyiDetailModel>
         implements WangyiDetailContract.IWangyiDetailView {
 

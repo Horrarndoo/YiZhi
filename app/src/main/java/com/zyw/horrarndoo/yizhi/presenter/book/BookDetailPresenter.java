@@ -8,7 +8,7 @@ import com.zyw.horrarndoo.yizhi.contract.book.BookDeatilContract;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.BookItemBean;
 import com.zyw.horrarndoo.yizhi.model.book.BookDetailModel;
-import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMoreDetailActivity;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.WebViewLoadActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -51,9 +51,9 @@ public class BookDetailPresenter extends BookDeatilContract.BookDetailPresenter 
     @Override
     public void onHeaderClick(BookItemBean bean) {
         Bundle bundle = new Bundle();
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, bean.getTitle());
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, bean.getAlt());
-        mIView.startNewActivity(DoubanMoreDetailActivity.class, bundle);
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, bean.getTitle());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL, bean.getAlt());
+        mIView.startNewActivity(WebViewLoadActivity.class, bundle);
     }
 
     @Override

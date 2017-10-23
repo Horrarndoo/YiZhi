@@ -19,7 +19,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.ZhihuDetailPresenter;
  * <p>
  */
 
-public class ZhihuDailyDetailActivity extends BaseDetailActivity<ZhihuDetailContract
+public class ZhihuDailyDetailActivity extends BaseWebViewLoadActivity<ZhihuDetailContract
         .ZhihuDetailPresenter, ZhihuDetailContract.IZhihuDetailModel> implements
         ZhihuDetailContract.IZhihuDetailView {
 

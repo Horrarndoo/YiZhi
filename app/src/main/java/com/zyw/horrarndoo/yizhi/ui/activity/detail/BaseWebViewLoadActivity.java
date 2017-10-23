@@ -29,7 +29,7 @@ import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
 import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.sdk.widgets.NestedScrollWebView;
 import com.zyw.horrarndoo.yizhi.R;
-import com.zyw.horrarndoo.yizhi.contract.detail.BaseDetailContract;
+import com.zyw.horrarndoo.yizhi.contract.detail.BaseWebViewLoadContract;
 import com.zyw.horrarndoo.yizhi.ui.activity.pic.ImageBrowseActivity;
 import com.zyw.horrarndoo.yizhi.ui.widgets.WebViewLongClickedPopWindow;
 
@@ -42,9 +42,9 @@ import static com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant.ARG_KEY_IMAGE_
  * <p>
  */
 
-public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetailPresenter, M
-        extends BaseDetailContract.IBaseDetailModel> extends
-        BaseMVPCompatActivity<P, M> implements BaseDetailContract.IBaseDetailView {
+public abstract class BaseWebViewLoadActivity<P extends BaseWebViewLoadContract
+        .BaseWebViewLoadPresenter, M extends BaseWebViewLoadContract.IBaseWebViewLoadModel> extends
+        BaseMVPCompatActivity<P, M> implements BaseWebViewLoadContract.IBaseWebViewLoadView {
 
     @BindView(R.id.tv_detail_title)
     TextView tvDetailTitle;
@@ -73,7 +73,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        initTitleBar(toolbar, "跳转中……");
+        initTitleBar(toolbar, "跳转中...");
         initWebSetting(nswvDetailContent.getSettings());
         initWebView();
 
@@ -84,7 +84,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
             }
         });
 
-        popWindow = new WebViewLongClickedPopWindow(BaseDetailActivity.this,
+        popWindow = new WebViewLongClickedPopWindow(BaseWebViewLoadActivity.this,
                 WebViewLongClickedPopWindow.IMAGE_VIEW_POPUPWINDOW, DisplayUtils.dp2px
                 (120), ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -96,7 +96,7 @@ public abstract class BaseDetailActivity<P extends BaseDetailContract.BaseDetail
 
             @Override
             public void onSavePicClicked() {
-                mPresenter.saveImageClicked(BaseDetailActivity.this, mImgurl);
+                mPresenter.saveImageClicked(BaseWebViewLoadActivity.this, mImgurl);
             }
         });
 

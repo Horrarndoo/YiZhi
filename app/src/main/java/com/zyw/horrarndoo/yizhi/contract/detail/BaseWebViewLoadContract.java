@@ -10,11 +10,12 @@ import com.zyw.horrarndoo.sdk.base.IBaseModel;
 /**
  * Created by Horrarndoo on 2017/9/20.
  * <p>
+ * webview base contract
  */
 
-public interface BaseDetailContract {
-    abstract class BaseDetailPresenter<M extends IBaseDetailModel, V extends IBaseDetailView>
-            extends BasePresenter<M, V> {
+public interface BaseWebViewLoadContract {
+    abstract class BaseWebViewLoadPresenter<M extends IBaseWebViewLoadModel, V extends
+            IBaseWebViewLoadView> extends BasePresenter<M, V> {
 
         /**
          * 保存图片点击
@@ -40,11 +41,11 @@ public interface BaseDetailContract {
 
     }
 
-    interface IBaseDetailModel extends IBaseModel {
+    interface IBaseWebViewLoadModel extends IBaseModel {
 
     }
 
-    interface IBaseDetailView extends IBaseActivity {
+    interface IBaseWebViewLoadView extends IBaseActivity {
         /**
          * 显示网络错误
          */

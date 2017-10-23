@@ -9,19 +9,18 @@ import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 import com.zyw.horrarndoo.sdk.utils.StatusBarUtils;
 import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
-import com.zyw.horrarndoo.yizhi.contract.detail.DoubanMoreDetailConaract;
-import com.zyw.horrarndoo.yizhi.presenter.detail.DoubanMoreDetailPresenter;
+import com.zyw.horrarndoo.yizhi.contract.detail.WebViewLoadConaract;
+import com.zyw.horrarndoo.yizhi.presenter.detail.WebViewLoadPresenter;
 
 /**
  * Created by Horrarndoo on 2017/10/20.
  * <p>
- * 豆瓣电影、豆瓣书籍更多详情页
+ * Webview加载Url详情页
  */
 
-public class DoubanMoreDetailActivity extends
-        BaseDetailActivity<DoubanMoreDetailConaract.DoubanMoreDetailPresenter,
-                DoubanMoreDetailConaract.IDoubanMoreDetailModel> implements
-        DoubanMoreDetailConaract.IDoubanMoreDetailView {
+public class WebViewLoadActivity extends BaseWebViewLoadActivity<WebViewLoadConaract
+        .WebViewLoadPresenter, WebViewLoadConaract.IWebViewLoadModel> implements
+        WebViewLoadConaract.IWebViewLoadView {
 
     private String mTitle, mUrl;
 
@@ -30,8 +29,8 @@ public class DoubanMoreDetailActivity extends
         super.initData();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            mUrl = bundle.getString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL);
-            mTitle = bundle.getString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE);
+            mUrl = bundle.getString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL);
+            mTitle = bundle.getString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE);
         }
     }
 
@@ -46,14 +45,14 @@ public class DoubanMoreDetailActivity extends
     }
 
     @Override
-    public void showDoubanMoreDetail(String url) {
+    public void showUrlDetail(String url) {
         flNetView.setVisibility(View.GONE);
         nswvDetailContent.loadUrl(url);
     }
 
     @Override
     protected void loadDetail() {
-        mPresenter.loadDoubanMoreDetail(mUrl);
+        mPresenter.loadUrl(mUrl);
     }
 
     @Override
@@ -64,6 +63,6 @@ public class DoubanMoreDetailActivity extends
     @NonNull
     @Override
     public BasePresenter initPresenter() {
-        return DoubanMoreDetailPresenter.newInstance();
+        return WebViewLoadPresenter.newInstance();
     }
 }

@@ -1,8 +1,6 @@
 package com.zyw.horrarndoo.yizhi.ui.fragment.home.child;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,14 +16,16 @@ import android.view.View;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.adapter.FragmentAdapter;
 import com.zyw.horrarndoo.sdk.anim.ToolbarAnimManager;
+import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
-import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant;
 import com.zyw.horrarndoo.yizhi.constant.TabFragmentIndex;
 import com.zyw.horrarndoo.yizhi.contract.home.HomeMainContract;
 import com.zyw.horrarndoo.yizhi.presenter.home.HomeMainPresenter;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.WebViewLoadActivity;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WangyiFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.WeixinFragment;
 import com.zyw.horrarndoo.yizhi.ui.fragment.home.child.tabs.ZhihuFragment;
@@ -41,7 +41,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMainPresenter, HomeMainContract.IHomeMainModel> implements HomeMainContract.IHomeMainView {
+public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMainPresenter,
+        HomeMainContract.IHomeMainModel> implements HomeMainContract.IHomeMainView {
 
     @BindView(R.id.app_bar)
     AppBarLayout appBar;
@@ -115,10 +116,11 @@ public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMai
         fabDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setData(Uri.parse("https://github.com/Horrarndoo/YiZhi"));
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent); //启动浏览器
+                Bundle bundle = new Bundle();
+                bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, "Yizhi");
+                bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL,
+                        "https://github.com/Horrarndoo/YiZhi");
+                startNewActivity(WebViewLoadActivity.class, bundle);
             }
         });
         toolbar.inflateMenu(R.menu.toolbar_menu);

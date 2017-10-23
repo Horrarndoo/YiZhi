@@ -9,7 +9,7 @@ import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.MovieDetailBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 import com.zyw.horrarndoo.yizhi.model.movie.MovieDetailModel;
-import com.zyw.horrarndoo.yizhi.ui.activity.detail.DoubanMoreDetailActivity;
+import com.zyw.horrarndoo.yizhi.ui.activity.detail.WebViewLoadActivity;
 
 import io.reactivex.functions.Consumer;
 
@@ -52,17 +52,17 @@ public class MovieDetailPresenter extends MovieDetailContract.MovieDetailPresent
     @Override
     public void onItemClick(int position, PersonBean item) {
         Bundle bundle = new Bundle();
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, item.getName());
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, item.getAlt());
-        mIView.startNewActivity(DoubanMoreDetailActivity.class, bundle);
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, item.getName());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL, item.getAlt());
+        mIView.startNewActivity(WebViewLoadActivity.class, bundle);
     }
 
     @Override
     public void onHeaderClick(SubjectsBean bean) {
         Bundle bundle = new Bundle();
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_TITLE, bean.getTitle());
-        bundle.putString(BundleKeyConstant.ARG_KEY_DOUBAN_MORE_DETAIL_URL, bean.getAlt());
-        mIView.startNewActivity(DoubanMoreDetailActivity.class, bundle);
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, bean.getTitle());
+        bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL, bean.getAlt());
+        mIView.startNewActivity(WebViewLoadActivity.class, bundle);
     }
 
     @Override
