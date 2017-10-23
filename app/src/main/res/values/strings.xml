@@ -8,4 +8,5 @@
     <string name="weixin_detail_title">WeChat</string>
 
     <string name="transition_movie_img">transition_movie_img</string>
+    <string name="transition_book_img">transition_book_img</string>
 </resources>

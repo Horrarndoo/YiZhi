@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.model.bean.douban.book;
 
 import com.google.gson.annotations.SerializedName;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.book.child.ImagesBean;
+import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -367,5 +368,50 @@ public class BookItemBean implements Serializable {
 
     public void setTranslator(List<String> translator) {
         this.translator = translator;
+    }
+
+    /**
+     * 获取Author字符串
+     *
+     * @return Author字符串 A/B/C..
+     */
+    public String getAuthorsString() {
+        return sListToString(getAuthor());
+    }
+
+    /**
+     * 格式化list为字符串
+     *
+     * @param list 类型list
+     * @return 字符串 A/B/C..
+     */
+    private String sListToString(List<String> list) {
+        String str = "";
+        if (list.size() == 0)
+            return str;
+        for (int i = 0; i < list.size(); i++) {
+            str = str + list.get(i);
+            if (i < list.size() - 1)
+                str += " / ";
+        }
+        return str;
+    }
+
+    /**
+     * 格式化list为字符串
+     *
+     * @param list 类型list
+     * @return 字符串 A/B/C..
+     */
+    private String pListToString(List<PersonBean> list) {
+        String str = "";
+        if (list.size() == 0)
+            return str;
+        for (int i = 0; i < list.size(); i++) {
+            str = str + list.get(i).getName();
+            if (i < list.size() - 1)
+                str += " / ";
+        }
+        return str;
     }
 }

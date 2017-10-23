@@ -4,11 +4,13 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_test"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="文化"
-        android:textSize="80dp"/>
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"/>
 </LinearLayout>

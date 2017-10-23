@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/cv_click"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="3dp"
+                                    android:foreground="@drawable/item_touch_bg"
+                                    app:cardCornerRadius="2dp"
+                                    app:cardElevation="2dp"
+                                    app:contentPadding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="100dp"
+            android:layout_height="132dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_vector_image_load_before"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/txt_black"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_item_author"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_item_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_item_pubdate"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_item_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
