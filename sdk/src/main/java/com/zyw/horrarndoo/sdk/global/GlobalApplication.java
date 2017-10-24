@@ -1,9 +1,9 @@
 package com.zyw.horrarndoo.sdk.global;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.mob.MobApplication;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.BuildConfig;
@@ -15,7 +15,7 @@ import com.zyw.horrarndoo.sdk.BuildConfig;
  * 全局Application
  */
 
-public class GlobalApplication extends Application {
+public class GlobalApplication extends MobApplication {
     private static final String LOG_TAG = "YZ_LOGGER";
     protected static Context context;
     protected static Handler handler;

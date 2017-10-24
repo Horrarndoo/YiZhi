@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ssdk_weibo_oauth_regiseter">Authorization</string>
+    <string name="ssdk_website">http://www.mob.com</string>
+    <string name="ssdk_weibo_upload_content">分享图片</string>
+    <string name="ssdk_wechat_client_inavailable">Wechat client not exists or the version is too low</string>
+    <string name="ssdk_google_plus_client_inavailable">Google+ client not exists or the version is too low</string>
+    <string name="ssdk_qq_client_inavailable">Mobile QQ client not exists or the version is too low</string>
+    <string name="ssdk_pinterest_client_inavailable">Pinterest client not exists or the version is too low</string>
+    <string name="ssdk_instagram_client_inavailable">Instagram client not exists or the version is too low</string>
+    <string name="ssdk_yixin_client_inavailable">Yixin client not exists or the version is too low</string>
+    <string name="ssdk_line_client_inavailable">Line client not exists or the version is too low</string>
+    <string name="ssdk_kakaotalk_client_inavailable">KakaoTalk client not exists or the version is too low</string>
+    <string name="ssdk_kakaostory_client_inavailable">KakaoStory client not exists or the version is too low</string>
+    <string name="ssdk_whatsapp_client_inavailable">WhatsApp client not exists or the version is too low</string>
+    <string name="ssdk_laiwang_client_inavailable">Laiwangs client not exists or the version is too low</string>
+    <string name="ssdk_alipay_client_inavailable">Alipay client not exists or the version is too low</string>
+    <string name="ssdk_facebookmessenger_client_inavailable">Facebookmessenger client not exists or the version is too low</string>
+	<string name="ssdk_telegram_client_inavailable">Telegram client not exists or the version is too low</string>
+    
+	<string name="ssdk_sinaweibo">Sina Weibo</string>
+	<string name="ssdk_tencentweibo">Tencent Weibo</string>
+	<string name="ssdk_qzone">QZone</string>
+	<string name="ssdk_wechat">WeChat</string>
+	<string name="ssdk_wechatmoments">WeChat Moments</string>
+	<string name="ssdk_wechatfavorite">WeChat Favorites</string>
+	<string name="ssdk_facebook">Facebook</string>
+	<string name="ssdk_twitter">Twitter</string>
+	<string name="ssdk_renren">Renren</string>
+	<string name="ssdk_kaixin">Kaixin</string>
+	<string name="ssdk_email">Email</string>
+	<string name="ssdk_shortmessage">Short Message</string>
+	<string name="ssdk_sohumicroblog">Sohu Microblog</string>
+	<string name="ssdk_neteasemicroblog">Netease Microblog</string>
+	<string name="ssdk_douban">Douban</string>
+	<string name="ssdk_youdao">Youdao</string>
+	<string name="ssdk_evernote">Evernote</string>
+	<string name="ssdk_linkedin">Linked in</string>
+	<string name="ssdk_googleplus">Google+</string>
+	<string name="ssdk_foursquare">FourSquare</string>
+	<string name="ssdk_qq">QQ</string>
+	<string name="ssdk_sohusuishenkan">Sohu Suishenkan</string>
+	<string name="ssdk_pinterest">Pinterest</string>
+	<string name="ssdk_flickr">Flickr</string>
+	<string name="ssdk_tumblr">Tumblr</string>
+	<string name="ssdk_dropbox">Dropbox</string>
+	<string name="ssdk_vkontakte">VK</string>
+	<string name="ssdk_instagram">Instagram</string>
+	<string name="ssdk_yixin">Yixin</string>
+	<string name="ssdk_yixinmoments">Yixin Moments</string>
+	<string name="ssdk_mingdao">Mingdao</string>
+	<string name="ssdk_kakaotalk">KakaoTalk</string>
+	<string name="ssdk_kakaostory">KakaoStory</string>
+	<string name="ssdk_line">Line</string>
+	<string name="ssdk_bluetooth">Bluetooth</string>
+	<string name="ssdk_whatsapp">WhatsApp</string>
+    <string name="ssdk_pocket">Pocket</string>
+    <string name="ssdk_instapaper">Instapaper</string>
+	<string name="ssdk_instapaper_email">Email</string>
+	<string name="ssdk_instapaper_pwd">Password</string>
+	<string name="ssdk_instapaper_login">Sign In</string>
+    <string name="ssdk_instapaper_logining">Sign In…</string>
+	<string name="ssdk_instapager_email_or_password_incorrect">Email or Password incorrect</string>
+    <string name="ssdk_facebookmessenger">Facebook Messenger</string>
+    <string name="ssdk_laiwang">Laiwang</string>
+    <string name="ssdk_laiwangmoments">Laiwang Moments</string>
+    <string name="ssdk_alipay">Alipay</string>
+    <string name="ssdk_alipaymoments">Alipay Moments</string>
+    <string name="ssdk_plurk">Plurk</string>
+    <string name="ssdk_dingding">Dingding</string>
+	<string name="ssdk_meipai">Meipai</string>
+	<string name="ssdk_youtube">Youtube</string>
+	<string name="ssdk_telegram">Telegram</string>
+
+	<string name="ssdk_share_to_qzone">Share To QZone</string>
+	<string name="ssdk_share_to_qq">Share To QQ</string>
+	<string name="ssdk_share_to_googleplus">Share To Google+</string>
+	<string name="ssdk_share_to_facebook">Share To Facebook</string>
+	<string name="ssdk_mingdao_share_content">Share webpage</string>
+	<string name="ssdk_share_to_mingdao">Share To Mingdao</string>
+	<string name="ssdk_share_to_qzone_default">Shared from %s</string>
+	<string name="ssdk_share_to_youtube">Share To Youtube</string>
+	<string name="ssdk_use_login_button">use login button instead</string>
+	<string name="ssdk_dont_keep_activitys_client">Please turn off settings developers options don t keeps Activitys</string>
+
+	<string name="ssdk_gender_male">Male</string>
+	<string name="ssdk_gender_female">Female</string>
+	<string name="ssdk_symbol_ellipsis">...</string>
+
+	<!--sina web -->
+	<string name="ssdk_sina_web_close">Close</string>
+	<string name="ssdk_sina_web_net_error">A network error occurs, please tap the button to reload</string>
+	<string name="ssdk_sina_web_refresh">channel_data_error</string>
+	<string name="ssdk_sina_web_title">Weibo Share</string>
+	<string name="ssdk_sina_web_login_title">Weibo Login</string>
+
+	<!--sms login-->
+	<string name="ssdk_sms_login">Message Login</string>
+	<string name="ssdk_sms_top_text">Please input your phone number</string>
+	<string name="ssdk_sms_top_identify_text">Please input the verification code</string>
+	<string name="ssdk_sms_btn_next">Next</string>
+	<string name="ssdk_sms_btn_submit">Submit</string>
+	<string name="ssdk_sms_btn_sende_voice">Send voice code</string>
+	<string name="ssdk_sms_zone">Country</string>
+	<string name="ssdk_sms_china">China</string>
+	<string name="ssdk_sms_phone">Phone NO.</string>
+	<string name="ssdk_sms_code">Code</string>
+	<string name="ssdk_sms_send_again">Send again</string>
+	<string name="ssdk_sms_input_phone_hint">Input phone number</string>
+	<string name="ssdk_sms_input_code_hint">Input Verification Code</string>
+	<string name="ssdk_sms_input_voice_code"><Data>Can not be received? Please try the&lt;font color=#2ba245>voice verification code&lt;/font></Data></string>
+	<string name="ssdk_sms_dialog_btn_cancel">Cancel</string>
+	<string name="ssdk_sms_dialog_btn_ok">OK</string>
+	<string name="ssdk_sms_dialog_btn_wait">Wait</string>
+	<string name="ssdk_sms_dialog_btn_back">Back</string>
+	<string name="ssdk_sms_dialog_btn_sure">I konw</string>
+	<string name="ssdk_sms_dialog_btn_login">Confirm landing</string>
+	<string name="ssdk_sms_dialog_confirm_title">Confirm phone number</string>
+	<string name="ssdk_sms_dialog_confirm_des">We will send verification code to this phone number:\n</string>
+	<string name="ssdk_sms_dialog_error_title">Phone number error</string>
+	<string name="ssdk_sms_dialog_error_des">Is an invalid phone number</string>
+	<string name="ssdk_sms_dialog_close_identify_page">Verification code may be slightly delayed,confirm return\nand start over？</string>
+	<string name="ssdk_sms_dialog_error_code">Verification code Incorrect，Please re-enter</string>
+	<string name="ssdk_sms_dialog_voice_text">We will inform you of the verification code by telephone，\nPlease attention to answer</string>
+	<string name="ssdk_sms_dialog_send_success">Send success</string>
+	<string name="ssdk_sms_dialog_login_success">Login success</string>
+	<string name="ssdk_sms_dialog_smart_title">Congratulations!The phone number has been checked by cloud detection</string>
+	<string name="ssdk_sms_dialog_smart_dec">Your equipment is a safety device，The number has passed the intelligent\ncloud detection，sms authentication is not required\n(This verification process does not have any security risks)</string>
+
+
+	<string name="ssdk_sms_choose_country">Choose country</string>
+	<string name="ssdk_sms_country_search">Search</string>
+
+	<string name="ssdk_sms_dialog_net_error">Network error, please try later</string>
+	<string name="ssdk_sms_dialog_system_error">There is a minor problem with the system,Please try again later</string>
+	<string name="ssdk_sms_dialog_error_desc_100">Server error</string>
+	<string name="ssdk_sms_dialog_error_desc_101">No permission request</string>
+	<string name="ssdk_sms_dialog_error_desc_102">Failed to decrypt data</string>
+	<string name="ssdk_sms_dialog_error_desc_103">The requested argument list is missing the necessary data</string>
+	<string name="ssdk_sms_dialog_error_desc_104">Request data illegal</string>
+	<string name="ssdk_sms_dialog_error_desc_105">Verification code error</string>
+	<string name="ssdk_sms_dialog_error_desc_106">Failed to request the send authentication code</string>
+	<string name="ssdk_sms_dialog_error_desc_107">Sending text message to the phone number \nalready hit its limit, Please try again tomorrow</string>
+	<string name="ssdk_sms_dialog_error_desc_108">Sending text message to the device \nalready hit its limit, Please try again tomorrow</string>
+	<string name="ssdk_sms_dialog_error_desc_109">Sending validation code too frequently</string>
+</resources>

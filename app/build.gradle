@@ -58,10 +58,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
     //Butterknife
-//    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    //    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     testCompile 'junit:junit:4.12'
-//    compile project(':sdk')
+    //    compile project(':sdk')
     releaseCompile project(path: ':sdk', configuration: 'release')
     debugCompile project(path: ':sdk', configuration: 'debug')
 }
