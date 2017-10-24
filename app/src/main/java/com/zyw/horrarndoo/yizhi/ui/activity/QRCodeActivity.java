@@ -1,11 +1,13 @@
 package com.zyw.horrarndoo.yizhi.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.yizhi.R;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -15,8 +17,12 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  */
 
 public class QRCodeActivity extends BaseCompatActivity {
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void initView(Bundle savedInstanceState) {
+        initTitleBar(toolbar, "下载");
     }
 
     @Override
