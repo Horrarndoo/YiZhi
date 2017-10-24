@@ -136,3 +136,8 @@
 
 #避免混淆泛型 如果混淆报错建议关掉
 #-keepattributes Signature
+
+#不能混淆这个成员变量，否则会导致BottomNavigationMenuView ShiftingMode设置无效
+-keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
+    boolean mShiftingMode;
+}
