@@ -48,6 +48,8 @@
 
         <activity android:name=".ui.activity.detail.WebViewLoadActivity"/>
 
+        <activity android:name=".ui.activity.QRCodeActivity"/>
+
         <activity android:name=".ui.activity.AboutActivity"/>
 
         <activity android:name=".ui.activity.personal.HeadSettingActivity"/>

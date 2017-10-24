@@ -3,13 +3,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/group_item_home"
-            android:icon="@drawable/ic_vector_bottom_home"
+            android:id="@+id/group_item_github"
+            android:icon="@drawable/ic_vector_github_grey"
             android:title="项目主页"/>
         <item
             android:id="@+id/group_item_more"
             android:icon="@drawable/ic_vector_more"
             android:title="更多内容"/>
+
+        <item
+            android:id="@+id/group_item_qr_code"
+            android:icon="@drawable/ic_vector_qr_code"
+            android:title="二维码"/>
+
+        <item
+            android:id="@+id/group_item_share_project"
+            android:icon="@drawable/ic_vector_share"
+            android:title="分享项目"/>
     </group>
 
     <item android:title="选项">
@@ -18,11 +28,6 @@
                 android:id="@+id/item_model"
                 android:icon="@drawable/ic_vetor_setting"
                 android:title="夜间模式"/>
-
-            <item
-                android:id="@+id/item_share"
-                android:icon="@drawable/ic_vector_share"
-                android:title="分享"/>
 
             <item
                 android:id="@+id/item_about"

@@ -167,7 +167,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.group_item_home:
+                    case R.id.group_item_github:
                         Bundle bundle = new Bundle();
                         bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_TITLE, "Yizhi");
                         bundle.putString(BundleKeyConstant.ARG_KEY_WEB_VIEW_LOAD_URL,
@@ -182,7 +182,10 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
                                 "http://blog.csdn.net/oqinyou");
                         startActivity(WebViewLoadActivity.class, bundle2);
                         break;
-                    case R.id.item_share:
+                    case R.id.group_item_qr_code:
+                        startActivity(QRCodeActivity.class);
+                        break;
+                    case R.id.group_item_share_project:
                         showShare();
                         break;
                     case R.id.item_model:
@@ -292,7 +295,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         // titleUrl是标题的网络链接，QQ和QQ空间等使用
         oks.setTitleUrl("https://github.com/Horrarndoo/YiZhi");
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("每日新闻，精选干货，最新资讯，应有尽有.");
+        oks.setText("每日新闻，精选干货，最新资讯，应有尽有.项目详情链接：https://github.com/Horrarndoo/YiZhi");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用

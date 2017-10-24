@@ -21,7 +21,6 @@
             tools:context=".ui.activity.MainActivity"/>
 
         <android.support.design.widget.BottomNavigationView
-            android:background="@color/colorPageBg"
             android:elevation="3dp"
             android:id="@+id/bviv_bar"
             android:layout_width="match_parent"

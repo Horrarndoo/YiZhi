@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="最新资讯集合\n\n功能：\n  · 知乎日报\n  · 新闻头条\n  · 微信精选\n  · 干货整理\n  · 电影资讯\n"
+                    android:text="最新资讯集合\n\n功能：\n  · 知乎日报\n  · 新闻头条\n  · 微信精选\n  · 干货整理\n  · 电影资讯 · 精选书籍\n"
                     android:textSize="16sp"/>
             </android.support.v7.widget.CardView>
 

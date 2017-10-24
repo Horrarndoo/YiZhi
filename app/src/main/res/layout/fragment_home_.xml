@@ -45,5 +45,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="?attr/colorPrimary"
-        app:srcCompat="@mipmap/download"/>
+        app:srcCompat="@drawable/ic_vector_github_white"/>
 </android.support.design.widget.CoordinatorLayout>
