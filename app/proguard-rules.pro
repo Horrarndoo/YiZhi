@@ -54,6 +54,17 @@
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
+
+# shareSdk混淆设置
+-keep class cn.sharesdk.**{*;}
+-keep class com.sina.**{*;}
+-keep class **.R$* {*;}
+-keep class **.R{*;}
+-keep class com.mob.**{*;}
+-dontwarn com.mob.**
+-dontwarn cn.sharesdk.**
+-dontwarn **.R$*
+
 #如果有引用v4包可以添加下面这行
 -keep public class * extends android.support.v4.app.Fragment
 
