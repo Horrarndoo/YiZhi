@@ -20,19 +20,33 @@
    public *;
 }
 
-#指定代码的压缩级别
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String);
+}
+
+# 代码混淆压缩比，在0~7之间，默认为5,一般不下需要修改
 -optimizationpasses 5
 
-#包明不混合大小写
+# 混淆时不使用大小写混合，混淆后的类名为小写
+# windows下的同学还是加入这个选项吧(windows大小写不敏感)
 -dontusemixedcaseclassnames
 
-#不去忽略非公共的库类
+# 指定不去忽略非公共的库的类
+# 默认跳过，有些情况下编写的代码与类库中的类在同一个包下，并且持有包中内容的引用，此时就需要加入此条声明
 -dontskipnonpubliclibraryclasses
+
+# 指定不去忽略非公共的库的类的成员
+-dontskipnonpubliclibraryclassmembers
 
  #优化  不优化输入的类文件
 -dontoptimize
 
- #预校验
+# 不做预检验，preverify是proguard的四个步骤之一
+# Android不需要preverify，去掉这一步可以加快混淆速度
 -dontpreverify
 
  #混淆时是否记录日志
@@ -54,16 +68,6 @@
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
-
-# shareSdk混淆设置
--keep class cn.sharesdk.**{*;}
--keep class com.sina.**{*;}
--keep class **.R$* {*;}
--keep class **.R{*;}
--keep class com.mob.**{*;}
--dontwarn com.mob.**
--dontwarn cn.sharesdk.**
--dontwarn **.R$*
 
 #如果有引用v4包可以添加下面这行
 -keep public class * extends android.support.v4.app.Fragment
@@ -130,6 +134,11 @@
     java.lang.Object readResolve();
 }
 
+# 对于带有回调函数onXXEvent的，不能混淆
+-keepclassmembers class * {
+    void *(**On*Event);
+}
+
 #保持枚举 enum 类不被混淆
 -keepclassmembers enum * {
   public static **[] values();
@@ -146,9 +155,56 @@
 }
 
 #避免混淆泛型 如果混淆报错建议关掉
-#-keepattributes Signature
+-keepattributes Signature
+
+# 抛出异常时保留代码行号
+-keepattributes SourceFile,LineNumberTable
 
 #不能混淆这个成员变量，否则会导致BottomNavigationMenuView ShiftingMode设置无效
 -keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
     boolean mShiftingMode;
+}
+
+# shareSdk混淆设置
+-keep class cn.sharesdk.**{*;}
+-keep class com.sina.**{*;}
+-keep class **.R$* {*;}
+-keep class **.R{*;}
+-keep class com.mob.**{*;}
+-dontwarn com.mob.**
+-dontwarn cn.sharesdk.**
+-dontwarn **.R$*
+#okhttp3
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn okio.**
+
+#retrofit
+-dontwarn javax.annotation.**
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+
+#rxjava
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+#gson
+-keep class com.google.gson.stream.** { *; }
+
+#实体类不混淆，否则gson解析会出错
+-keep class com.zyw.horrarndoo.yizhi.model.bean.**{*;}
+
+# 对于rxBusEvent方法，不能混淆，否则rxBus注解事件无法执行
+-keepclassmembers class * {
+    void rxBusEvent();
+    void rxBusEvent(**);
 }
