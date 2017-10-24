@@ -5,8 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.ResourcesUtils;
 import com.zyw.horrarndoo.yizhi.R;
 
@@ -21,11 +24,15 @@ import butterknife.OnClick;
 public class AboutActivity extends BaseCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tv_version_code)
+    TextView tvVersionCode;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         initTitleBar(toolbar, "关于");
         toolbar.setTitleTextColor(ResourcesUtils.getColor(R.color.md_white));
+        Logger.e("tvVersionCode = " + tvVersionCode);
+        tvVersionCode.setText(AppUtils.getAppVersionName(this));
     }
 
     @OnClick(R.id.cv_author)
