@@ -1,8 +1,10 @@
 # YiZhi
-----
-#一之
 
-###简介
+----
+
+# 一之
+
+### 简介
 
 “一之”是一款资讯类App，主要实现的内容如下：
 
@@ -15,29 +17,30 @@
 项目地址：[https://github.com/Horrarndoo/YiZhi](https://github.com/Horrarndoo/YiZhi)
 
 ----
-###运行截图
-####运行时权限&懒加载
-![运行时权限] [img_permission] ![懒加载] [img_lazy_init] 
+
+### 运行截图
+#### 运行时权限&懒加载
+![运行时权限][img_permission] ![懒加载][img_lazy_init] 
 
 
-####主页
-![主页1] [img_home1] ![主页2] [img_home2]
-![主页_项目主页] [img_home_project_home] ![主页_夜间模式] [img_home_night_mode]
-![主页_分享] [img_home_share]
+#### 主页
+![主页1][img_home1] ![主页2][img_home2]
+![主页_项目主页][img_home_project_home] ![主页_夜间模式][img_home_night_mode]
+![主页_分享][img_home_share]
 
-####干货
-![干货_主页刷新] [img_gankio_refesh] ![干货_定制] [img_gankio_custom]
-![干货_福利] [img_gankio_fuli]
+#### 干货
+![干货_主页刷新][img_gankio_refesh] ![干货_定制][img_gankio_custom]
+![干货_福利][img_gankio_fuli]
 
-####影视&书籍
-![影视_hot] [img_movie_hot] ![书籍_hot] [img_book]
+#### 影视&书籍
+![影视_hot][img_movie_hot] ![书籍_hot][img_book]
 
-####个人
-![个人_head1] [img_person_head] ![个人_head2] [img_person_head2]
+#### 个人
+![个人_head1][img_person_head] ![个人_head2][img_person_head2]
 
 ----
 
-###敏感权限说明
+### 敏感权限说明
 
 ```xml
 	<!--用于进行网络定位-->
@@ -64,14 +67,17 @@
 	<!--用于分享App-->
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 ```
+
 ----
-###下载地址
+
+### 下载地址
 
 Fir.im: http://fir.im/s4lr
 
 ----
 
-###API来源
+### API来源
+
 知乎日报以及每日新闻API源于Github开源项目中提供的API，干货API使用的是GankIo提供的API，微信精选API来源于聚合数据，影视以及图书都是来源于豆瓣API。
 
 1. [知乎日报][zhihu]
@@ -83,7 +89,8 @@ Fir.im: http://fir.im/s4lr
 
 ----
 
-###开源项目
+### 开源项目
+
 1. [Rxjava][1]
 2. [RxAndroid][2]
 3. [Retrofit][3]
@@ -98,7 +105,8 @@ Fir.im: http://fir.im/s4lr
 
 ----
 
-###感谢
+### 感谢
+
 感谢Github的各位开源作者提供宝贵的代码参考。
 
 - [@evan.wang][evan]
@@ -148,7 +156,9 @@ Fir.im: http://fir.im/s4lr
 
 
 ----
-###关于作者
+
+### 关于作者
+
 Horrarndoo
 
 - csdn: http://blog.csdn.net/oqinyou
