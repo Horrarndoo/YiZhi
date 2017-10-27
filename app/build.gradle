@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'bugly'
 
+bugly {
+    appId = "c73ecc54da"
+    appKey = "27580d71-8095-4e00-8212-85b9ddf985a4"
+}
 def buildTime() {
     def date = new Date()
     def formattedDate = date.format('yyyyMMdd')
@@ -13,8 +18,8 @@ android {
         applicationId "com.zyw.horrarndoo.yizhi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 8
+        versionName "1.0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         ndk { abiFilters "armeabi", "x86_64", "x86" }
@@ -24,8 +29,6 @@ android {
             minifyEnabled false
             //Zipalign优化
             zipAlignEnabled true
-            // 移除无用的resource文件
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
