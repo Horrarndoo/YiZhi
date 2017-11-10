@@ -203,11 +203,14 @@
 #实体类不混淆，否则gson解析会出错
 -keep class com.zyw.horrarndoo.yizhi.model.bean.**{*;}
 
+#rxBus
 # 对于rxBusEvent方法，不能混淆，否则rxBus注解事件无法执行
--keepclassmembers class * {
-    void rxBusEvent();
-    void rxBusEvent(**);
+-keepclassmembers class ** {
+#    void rxBusEvent();
+#    void rxBusEvent(**);
+    @com.zyw.horrarndoo.sdk.rxbus.Subscribe <methods>;
 }
+-keep enum com.zyw.horrarndoo.sdk.rxbus.ThreadMode { *; }
 
 #Bugly
 -dontwarn com.tencent.bugly.**
