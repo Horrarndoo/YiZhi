@@ -1,6 +1,7 @@
 package com.zyw.horrarndoo.sdk.anim;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -26,12 +27,23 @@ public class AnimManager {
         view.setAlpha(0f);
         view.setScaleX(0.8f);
 
-        view.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .setStartDelay(startDelay)
-                .setDuration(duration)
-                .setInterpolator(AnimUtils.getFastOutSlowInInterpolator(context)).start();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .setStartDelay(startDelay)
+                    .setDuration(duration)
+                    .setInterpolator(AnimUtils.getFastOutSlowInInterpolator(context))
+                    .start();
+        }else{
+            view.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .setStartDelay(startDelay)
+                    .setDuration(duration)
+                    .setInterpolator(AnimationUtils.loadInterpolator(context, android.R.interpolator.linear))
+                    .start();
+        }
     }
 
     /**

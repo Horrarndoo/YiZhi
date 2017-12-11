@@ -42,24 +42,30 @@ public class AnimUtils {
 
     public static Interpolator getFastOutSlowInInterpolator(Context context) {
         if (fastOutSlowIn == null) {
-            fastOutSlowIn = AnimationUtils.loadInterpolator(context,
-                    android.R.interpolator.fast_out_slow_in);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                fastOutSlowIn = AnimationUtils.loadInterpolator(context,
+                        android.R.interpolator.fast_out_slow_in);
+            }
         }
         return fastOutSlowIn;
     }
 
     public static Interpolator getFastOutLinearInInterpolator(Context context) {
         if (fastOutLinearIn == null) {
-            fastOutLinearIn = AnimationUtils.loadInterpolator(context,
-                    android.R.interpolator.fast_out_linear_in);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                fastOutLinearIn = AnimationUtils.loadInterpolator(context,
+                        android.R.interpolator.fast_out_linear_in);
+            }
         }
         return fastOutLinearIn;
     }
 
     public static Interpolator getLinearOutSlowInInterpolator(Context context) {
         if (linearOutSlowIn == null) {
-            linearOutSlowIn = AnimationUtils.loadInterpolator(context,
-                    android.R.interpolator.linear_out_slow_in);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                linearOutSlowIn = AnimationUtils.loadInterpolator(context,
+                        android.R.interpolator.linear_out_slow_in);
+            }
         }
         return linearOutSlowIn;
     }
