@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.PersonBean;
 
@@ -33,7 +34,16 @@ public class MovieDetailAdapter extends BaseCompatAdapter<PersonBean, BaseViewHo
     protected void convert(BaseViewHolder helper, PersonBean item) {
         helper.setText(R.id.tv_person_name, item.getName());
         helper.setText(R.id.tv_person_type, item.getType());
-        Glide.with(mContext).load(item.getAvatars().getLarge()).crossFade().into((ImageView)
-                helper.getView(R.id.iv_avatar_photo));
+        try {
+            //避免空指针异常
+            if (StringUtils.isEmpty(item.getAvatars().getLarge()))
+                return;
+
+            Glide.with(mContext).load(item.getAvatars().getLarge()).crossFade().into((ImageView)
+                    helper.getView(R.id.iv_avatar_photo));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

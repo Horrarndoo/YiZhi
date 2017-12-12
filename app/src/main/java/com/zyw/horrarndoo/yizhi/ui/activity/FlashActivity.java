@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.RxHelper;
+import com.zyw.horrarndoo.sdk.utils.StringUtils;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 import com.zyw.horrarndoo.yizhi.R;
 
@@ -108,7 +109,8 @@ public class FlashActivity extends BaseCompatActivity {
         //                            Log.d(TAG, permission.name + " is granted.");
         //                        } else if (permission.shouldShowRequestPermissionRationale) {
         //                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-        //                            Log.d(TAG, permission.name + " is denied. More info should be provided.");
+        //                            Log.d(TAG, permission.name + " is denied. More info should
+        // be provided.");
         //                        } else {
         //                            // 用户拒绝了该权限，并且选中『不再询问』
         //                            Log.d(TAG, permission.name + " is denied.");
@@ -135,7 +137,9 @@ public class FlashActivity extends BaseCompatActivity {
                     @Override
                     public void onNext(Long value) {
                         //                        Logger.e("value = " + value);
-                        tvCountDown.setText(String.valueOf(value));
+                        String s = String.valueOf(value);
+                        if (tvCountDown != null)
+                            tvCountDown.setText(StringUtils.isEmpty(s) ? "" : s);
                     }
 
                     @Override
