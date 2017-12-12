@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -33,6 +34,11 @@ public abstract class BaseCompatActivity extends SupportActivity {
     protected WaitPorgressDialog mWaitPorgressDialog;
     protected Context mContext;//全局上下文对象
     protected boolean isTransAnim;
+
+    static {
+        //5.0以下兼容vector
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

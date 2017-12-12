@@ -18,6 +18,7 @@ import com.zyw.horrarndoo.sdk.rxbus.RxBus;
 import com.zyw.horrarndoo.sdk.rxbus.Subscribe;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
+import com.zyw.horrarndoo.sdk.utils.NavigationUtils;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 import com.zyw.horrarndoo.sdk.widgets.MovingImageView;
@@ -113,6 +114,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             mFragments[FIFTH] = findFragment(PersonalRootFragment.class);
         }
 
+        NavigationUtils.disableNavigationViewScrollbars(nvMenu);
         mivMenu = (MovingImageView) nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
         civHead = (CircleImageView) nvMenu.getHeaderView(0).findViewById(R.id.civ_head);
 

@@ -12,12 +12,13 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
+        <!--兼容5.0以下的vector使用selector作为drawableLeft图片-->
         <TextView
             android:id="@+id/tv_btn_settings"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="?attr/selectableItemBackground"
-            android:drawableLeft="@drawable/ic_vetor_setting"
+            android:drawableLeft="@drawable/select_personal_setting"
             android:drawablePadding="16dp"
             android:drawableRight="@drawable/fragmentation_ic_right"
             android:gravity="center_vertical"
@@ -32,12 +33,13 @@
             android:layout_height="3dp"
             android:background="#f3f3f3"/>
 
+        <!--兼容5.0以下的vector使用selector作为drawableLeft图片-->
         <TextView
             android:id="@+id/tv_btn_about"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="?attr/selectableItemBackground"
-            android:drawableLeft="@drawable/ic_vector_about"
+            android:drawableLeft="@drawable/select_personal_about"
             android:drawablePadding="16dp"
             android:drawableRight="@drawable/fragmentation_ic_right"
             android:gravity="center_vertical"
