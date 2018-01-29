@@ -18,8 +18,8 @@ android {
         applicationId "com.zyw.horrarndoo.yizhi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 16
-        versionName "1.0.16"
+        versionCode 17
+        versionName "1.0.17"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         ndk { abiFilters "armeabi", "x86_64", "x86" }

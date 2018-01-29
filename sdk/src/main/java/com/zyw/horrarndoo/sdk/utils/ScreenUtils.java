@@ -56,6 +56,25 @@ public class ScreenUtils {
     }
 
     /**
+     * 获取当前屏幕截图，包含状态栏
+     *
+     * @param activity
+     * @return
+     */
+    public static Bitmap snapShotWithStatusBar(Activity activity) {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap bmp = view.getDrawingCache();
+        int width = getScreenWidth(activity);
+        int height = getScreenHeight(activity);
+        Bitmap bp = null;
+        bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
+        view.destroyDrawingCache();
+        return bp;
+    }
+
+    /**
      * 获取当前屏幕截图，不包含状态栏
      *
      * @param activity
