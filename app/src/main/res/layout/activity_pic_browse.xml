@@ -31,11 +31,16 @@
         android:layout_height="60dp"
         android:layout_gravity="center"/>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        android:fitsSystemWindows="true"
-        app:navigationIcon="@mipmap/ic_arrow_back_white"/>
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:navigationIcon="@mipmap/ic_arrow_back_white"/>
+    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>
