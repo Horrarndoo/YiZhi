@@ -3,9 +3,9 @@ package com.zyw.horrarndoo.sdk.base.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseActivity;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 /**
@@ -13,17 +13,12 @@ import com.zyw.horrarndoo.sdk.utils.ToastUtils;
  * <p>
  * Mvp Activity基类
  */
-public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends IBaseModel> extends
+public abstract class BaseMVPCompatActivity<P extends BasePresenter> extends
         BaseCompatActivity implements IBaseActivity {
     /**
      * presenter 具体的presenter由子类确定
      */
     protected P mPresenter;
-
-    /**
-     * model 具体的model由子类确定
-     */
-    private M mIMode;
 
     /**
      * 初始化数据
@@ -34,11 +29,8 @@ public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends I
         super.initData();
         mPresenter = (P) initPresenter();
         if (mPresenter != null) {
-            mIMode = (M) mPresenter.getModel();
-            if (mIMode != null) {
-                mPresenter.attachMV(mIMode, this);
-            }
-            //Logger.d("attach M V success.");
+                mPresenter.attachMV(this);
+            Logger.d("attach M V success.");
         }
     }
 

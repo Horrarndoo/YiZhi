@@ -41,8 +41,7 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_HEAD_IMAGE
  */
 
 public class PersonalUpperFragment extends BaseMVPCompatFragment<PersonalContract
-        .PersonalUpperPresenter, PersonalContract.IPersonalUpperModel> implements
-        PersonalContract.IPersonalUpperView {
+        .PersonalUpperPresenter> implements PersonalContract.IPersonalUpperView {
 
     @BindView(R.id.civ_head)
     CircleImageView civHead;

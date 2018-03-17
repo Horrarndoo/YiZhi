@@ -30,8 +30,8 @@ import static com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant.ARG_KEY_DOUBAN
  */
 
 public class BookCustomFragment extends BaseRecycleFragment<BookCustomContract
-        .BookCustomPresenter, BookCustomContract.IBookCustomModel> implements BookCustomContract
-        .IBookCustomView, BaseQuickAdapter.RequestLoadMoreListener {
+        .BookCustomPresenter> implements BookCustomContract.IBookCustomView, BaseQuickAdapter
+        .RequestLoadMoreListener {
 
     @BindView(R.id.rv_book)
     RecyclerView rvBook;

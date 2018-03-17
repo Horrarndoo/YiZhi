@@ -40,8 +40,7 @@ import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_BOO
  */
 
 public class BookDetailActivity extends BaseMVPCompatActivity<BookDeatilContract
-        .BookDetailPresenter, BookDeatilContract.IBookDetailModel> implements BookDeatilContract
-        .IBookDetailView {
+        .BookDetailPresenter> implements BookDeatilContract.IBookDetailView {
 
     @BindView(R.id.iv_header_bg)
     ImageView ivHeaderBg;
@@ -165,7 +164,7 @@ public class BookDetailActivity extends BaseMVPCompatActivity<BookDeatilContract
         int headerBgHeight;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             headerBgHeight = toolbar.getLayoutParams().height + getStatusBarHeight(this);
-        }else {
+        } else {
             headerBgHeight = toolbar.getLayoutParams().height;
         }
         // 使背景图向上移动到图片的最低端，保留（toolbar+状态栏）的高度

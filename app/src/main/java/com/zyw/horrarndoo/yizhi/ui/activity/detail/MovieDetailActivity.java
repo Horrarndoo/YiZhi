@@ -44,8 +44,7 @@ import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_MOV
  */
 
 public class MovieDetailActivity extends BaseMVPCompatActivity<MovieDetailContract
-        .MovieDetailPresenter, MovieDetailContract.IMovieDetailModel>
-        implements MovieDetailContract.IMovieDetailView {
+        .MovieDetailPresenter> implements MovieDetailContract.IMovieDetailView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

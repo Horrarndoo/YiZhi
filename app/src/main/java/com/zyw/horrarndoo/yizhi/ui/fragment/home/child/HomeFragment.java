@@ -41,8 +41,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMainPresenter,
-        HomeMainContract.IHomeMainModel> implements HomeMainContract.IHomeMainView {
+public class HomeFragment extends BaseMVPCompatFragment<HomeMainContract.HomeMainPresenter>
+        implements HomeMainContract.IHomeMainView {
 
     @BindView(R.id.app_bar)
     AppBarLayout appBar;

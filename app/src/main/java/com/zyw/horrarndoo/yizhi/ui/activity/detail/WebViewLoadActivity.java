@@ -19,8 +19,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.WebViewLoadPresenter;
  */
 
 public class WebViewLoadActivity extends BaseWebViewLoadActivity<WebViewLoadConaract
-        .WebViewLoadPresenter, WebViewLoadConaract.IWebViewLoadModel> implements
-        WebViewLoadConaract.IWebViewLoadView {
+        .WebViewLoadPresenter> implements WebViewLoadConaract.IWebViewLoadView {
 
     private String mTitle, mUrl;
 

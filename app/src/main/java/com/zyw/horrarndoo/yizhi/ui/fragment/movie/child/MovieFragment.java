@@ -27,8 +27,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMainPresenter,
-        MovieMainContract.IMovieMainModel> implements MovieMainContract.IMovieMainView {
+public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMainPresenter>
+        implements MovieMainContract.IMovieMainView {
 
     @BindView(R.id.rv_hot_movie)
     RecyclerView rvHotMovie;

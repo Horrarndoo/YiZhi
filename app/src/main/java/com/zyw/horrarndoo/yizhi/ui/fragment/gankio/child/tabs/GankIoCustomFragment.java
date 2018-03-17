@@ -35,8 +35,8 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_PAR
  */
 
 public class GankIoCustomFragment extends BaseRecycleFragment<GankIoCustomContract
-        .GankIoCustomPresenter, GankIoCustomContract.IGankIoCustomModel> implements
-        GankIoCustomContract.IGankIoCustomView, BaseQuickAdapter.RequestLoadMoreListener {
+        .GankIoCustomPresenter> implements GankIoCustomContract.IGankIoCustomView,
+        BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.rv_gankio_custom)
     RecyclerView rvGankIoCustom;
@@ -181,7 +181,7 @@ public class GankIoCustomFragment extends BaseRecycleFragment<GankIoCustomContra
                 CatalogueClickListenerImp(tvHeadName));
         if (mCustomType.equals("all")) {
             tvHeadName.setText("全部");
-        }else{
+        } else {
             tvHeadName.setText(mCustomType);
         }
     }

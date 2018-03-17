@@ -25,9 +25,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class WeixinFragment extends BaseRecycleFragment<WeixinContract.WeixinPresenter,
-        WeixinContract.IWeixinModel> implements WeixinContract.IWeixinView, BaseQuickAdapter
-        .RequestLoadMoreListener {
+public class WeixinFragment extends BaseRecycleFragment<WeixinContract.WeixinPresenter>
+        implements WeixinContract.IWeixinView, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.rv_weixin)
     RecyclerView rvWexin;

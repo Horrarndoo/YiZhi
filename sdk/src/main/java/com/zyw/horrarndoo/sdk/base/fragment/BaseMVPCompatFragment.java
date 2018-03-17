@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.IBaseFragment;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
+import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import me.yokeyword.fragmentation.SupportFragment;
@@ -21,10 +20,9 @@ import me.yokeyword.fragmentation.SupportFragment;
  * 实现IBaseView方法、绑定butterknife
  */
 
-public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends IBaseModel> extends
+public abstract class BaseMVPCompatFragment<P extends BasePresenter> extends
         BaseCompatFragment implements IBaseFragment {
     public P mPresenter;
-    public M mIMode;
 
     /**
      * 在监听器之前把数据准备好
@@ -34,10 +32,7 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
 
         mPresenter = (P) initPresenter();
         if (mPresenter != null) {
-            mIMode = (M) mPresenter.getModel();
-            if (mIMode != null) {
-                mPresenter.attachMV(mIMode, this);
-            }
+                mPresenter.attachMV(this);
         }
     }
 

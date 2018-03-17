@@ -30,8 +30,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class BookFragment extends BaseMVPCompatFragment<BookMainContract.BookMainPresenter,
-        BookMainContract.IBookMainModel> implements BookMainContract.IBookMainView {
+public class BookFragment extends BaseMVPCompatFragment<BookMainContract.BookMainPresenter>
+        implements BookMainContract.IBookMainView {
 
     @BindView(R.id.tl_tabs)
     TabLayout tlTabs;

@@ -25,11 +25,10 @@ public abstract class BasePresenter<M, V> {
     /**
      * 绑定IModel和IView的引用
      *
-     * @param m model
      * @param v view
      */
-    public void attachMV(@NonNull M m, @NonNull V v) {
-        this.mIModel = m;
+    public void attachMV(@NonNull V v) {
+        this.mIModel = getModel();
         this.mIView = v;
         this.onStart();
     }

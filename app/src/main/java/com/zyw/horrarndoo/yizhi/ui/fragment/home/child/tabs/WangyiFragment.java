@@ -25,9 +25,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class WangyiFragment extends BaseRecycleFragment<WangyiContract.WangyiPresenter,
-        WangyiContract.IWangyiModel> implements WangyiContract.IWangyiView, BaseQuickAdapter
-        .RequestLoadMoreListener {
+public class WangyiFragment extends BaseRecycleFragment<WangyiContract.WangyiPresenter>
+        implements WangyiContract.IWangyiView, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.rv_wangyi)
     RecyclerView rvWangyi;

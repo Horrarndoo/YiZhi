@@ -28,9 +28,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class TopMoiveFragment extends BaseRecycleFragment<TopMovieContract.TopMoivePresenter,
-        TopMovieContract.ITopMovieModel> implements TopMovieContract.ITopMovieView,
-        BaseQuickAdapter.RequestLoadMoreListener {
+public class TopMoiveFragment extends BaseRecycleFragment<TopMovieContract.TopMoivePresenter>
+        implements TopMovieContract.ITopMovieView, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

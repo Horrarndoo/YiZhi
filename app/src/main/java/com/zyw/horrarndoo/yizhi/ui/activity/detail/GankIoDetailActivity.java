@@ -18,8 +18,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.GankIoDetailPresenter;
  */
 
 public class GankIoDetailActivity extends BaseWebViewLoadActivity<GankIoDetailContract
-        .GankIoDetailPresenter, GankIoDetailContract.IGankIoDetailModel> implements
-        GankIoDetailContract.IGankIoDetailView {
+        .GankIoDetailPresenter> implements GankIoDetailContract.IGankIoDetailView {
 
     private String mTitle, mUrl;
 
