@@ -43,14 +43,14 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
-                            && 'release'.equals(variant.buildType.name)) {
-                        def apkFile = new File(
-                                output.outputFile.getParent(),
-                                "YiZhi_${variant.flavorName}_v${variant.versionName}_${buildTime()}.apk")
-                        output.outputFile = apkFile
+            applicationVariants.all { variant -> //批量修改Apk名字
+                variant.outputs.all { output ->
+                    if (!variant.buildType.isDebuggable()) {
+                        //要被替换的源字符串
+                        def sourceFile = "-${variant.flavorName}-${variant.buildType.name}"
+                        //替换的字符串
+                        def replaceFile = "YiZhi_${variant.flavorName}_${variant.versionName}_${variant.buildType.name}_${buildTime()}"
+                        outputFileName = output.outputFile.name.replace(sourceFile, replaceFile);
                     }
                 }
             }
@@ -63,16 +63,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: '*.jar')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
     //Butterknife
     //    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     testCompile 'junit:junit:4.12'
-    //    compile project(':sdk')
-    releaseCompile project(path: ':sdk', configuration: 'release')
-    debugCompile project(path: ':sdk', configuration: 'debug')
+    implementation project(':sdk')
+    debugImplementation project(':sdk')
+    releaseImplementation project(':sdk')
 }
