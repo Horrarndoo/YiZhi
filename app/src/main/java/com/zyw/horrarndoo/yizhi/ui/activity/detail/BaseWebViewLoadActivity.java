@@ -43,8 +43,8 @@ import static com.zyw.horrarndoo.yizhi.constant.BundleKeyConstant.ARG_KEY_IMAGE_
  */
 
 public abstract class BaseWebViewLoadActivity<P extends BaseWebViewLoadContract
-        .BaseWebViewLoadPresenter, M extends BaseWebViewLoadContract.IBaseWebViewLoadModel> extends
-        BaseMVPCompatActivity<P, M> implements BaseWebViewLoadContract.IBaseWebViewLoadView {
+        .BaseWebViewLoadPresenter> extends BaseMVPCompatActivity<P> implements
+        BaseWebViewLoadContract.IBaseWebViewLoadView {
 
     @BindView(R.id.tv_detail_title)
     TextView tvDetailTitle;

@@ -27,8 +27,7 @@ import butterknife.BindView;
  */
 
 public class GankIoDayFragment extends BaseRecycleFragment<GankIoDayContract
-        .GankIoDayPresenter, GankIoDayContract.IGankIoDayModel> implements GankIoDayContract
-        .IGankIoDayView {
+        .GankIoDayPresenter> implements GankIoDayContract.IGankIoDayView {
 
     @BindView(R.id.rv_gankio_day)
     RecyclerView rvGankIoDay;

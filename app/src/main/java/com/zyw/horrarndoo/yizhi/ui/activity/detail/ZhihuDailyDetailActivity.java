@@ -20,8 +20,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.ZhihuDetailPresenter;
  */
 
 public class ZhihuDailyDetailActivity extends BaseWebViewLoadActivity<ZhihuDetailContract
-        .ZhihuDetailPresenter, ZhihuDetailContract.IZhihuDetailModel> implements
-        ZhihuDetailContract.IZhihuDetailView {
+        .ZhihuDetailPresenter> implements ZhihuDetailContract.IZhihuDetailView {
 
     private String mId, mTitle;
 
@@ -29,7 +28,7 @@ public class ZhihuDailyDetailActivity extends BaseWebViewLoadActivity<ZhihuDetai
     protected void initData() {
         super.initData();
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null) {
+        if (bundle != null) {
             mId = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_ID);
             mTitle = bundle.getString(BundleKeyConstant.ARG_KEY_ZHIHU_DETAIL_TITLE);
         }

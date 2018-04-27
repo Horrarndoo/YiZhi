@@ -25,9 +25,8 @@ import butterknife.BindView;
  * <p>
  */
 
-public class ZhihuFragment extends BaseRecycleFragment<ZhihuContract.ZhihuPresenter,
-        ZhihuContract.IZhihuModel> implements ZhihuContract.IZhihuView, BaseQuickAdapter
-        .RequestLoadMoreListener {
+public class ZhihuFragment extends BaseRecycleFragment<ZhihuContract.ZhihuPresenter> implements
+        ZhihuContract.IZhihuView, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.rv_zhihu)
     RecyclerView rvZhihu;

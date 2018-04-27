@@ -44,9 +44,11 @@ public class StatusBarUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window win = activity.getWindow();
             View decorView = win.getDecorView();
-            win.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//沉浸式状态栏(4.4-5.0透明，5.0以上半透明)
+            win.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//沉浸式状态栏(4.4-5.0透明，5
+            // .0以上半透明)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//android5.0以上设置透明效果
-                win.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//清除flag，为了android5.0以上也全透明效果
+                win.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                //清除flag，为了android5.0以上也全透明效果
                 //让应用的主体内容占用系统状态栏的空间
                 int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
@@ -78,7 +80,23 @@ public class StatusBarUtils {
     public static void fixToolbar(Toolbar toolbar, Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int statusHeight = getStatusBarHeight(activity);
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) toolbar.getLayoutParams();
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) toolbar
+                    .getLayoutParams();
+            layoutParams.setMargins(0, statusHeight, 0, 0);
+        }
+    }
+
+    /**
+     * 修正 Titlebar 的位置
+     * Fragment中android:fitsSystemWindows="true"属性无效时使用，直接在初始化的时候修改布局
+     *
+     * @param titlebar 自定义titlebar 布局
+     */
+    public static void fixTitlebar(ViewGroup titlebar, Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusHeight = getStatusBarHeight(activity);
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) titlebar
+                    .getLayoutParams();
             layoutParams.setMargins(0, statusHeight, 0, 0);
         }
     }
@@ -106,18 +124,18 @@ public class StatusBarUtils {
         return statusBarHeight;
     }
 
-//    /**
-//     * 获取状态栏高度
-//     *
-//     * @param context context
-//     * @return 状态栏高度
-//     */
-//    private static int getStatusBarHeight(Context context) {
-//        // 获得状态栏高度
-//        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
-//                "android");
-//        return context.getResources().getDimensionPixelSize(resourceId);
-//    }
+    //    /**
+    //     * 获取状态栏高度
+    //     *
+    //     * @param context context
+    //     * @return 状态栏高度
+    //     */
+    //    private static int getStatusBarHeight(Context context) {
+    //        // 获得状态栏高度
+    //        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
+    //                "android");
+    //        return context.getResources().getDimensionPixelSize(resourceId);
+    //    }
 
     /**
      * 计算状态栏颜色

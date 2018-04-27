@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
-import com.zyw.horrarndoo.sdk.base.IBaseModel;
 
 /**
  * Created by Horrarndoo on 2017/10/17.
@@ -16,8 +15,8 @@ import com.zyw.horrarndoo.sdk.base.IBaseModel;
  * 带RecycleView加载状态view的fragment，主要用于显示加载中、空界面、加载失败等状态界面显示
  */
 
-public abstract class BaseRecycleFragment<P extends BasePresenter, M extends IBaseModel> extends
-        BaseMVPCompatFragment<P, M> {
+public abstract class BaseRecycleFragment<P extends BasePresenter> extends
+        BaseMVPCompatFragment<P> {
     /**
      * 网络异常View
      */

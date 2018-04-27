@@ -18,8 +18,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.GankIoDetailPresenter;
  */
 
 public class GankIoDetailActivity extends BaseWebViewLoadActivity<GankIoDetailContract
-        .GankIoDetailPresenter, GankIoDetailContract.IGankIoDetailModel> implements
-        GankIoDetailContract.IGankIoDetailView {
+        .GankIoDetailPresenter> implements GankIoDetailContract.IGankIoDetailView {
 
     private String mTitle, mUrl;
 
@@ -38,7 +37,7 @@ public class GankIoDetailActivity extends BaseWebViewLoadActivity<GankIoDetailCo
         super.initView(savedInstanceState);
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) appBar.getChildAt(0)
                 .getLayoutParams();
-        // 控件的高强制设成56dp+状态栏高度
+        // 控件的高强制设成56dp+状态栏高度，重新定义AppBarLayout的高度
         params.height = DisplayUtils.dp2px(56) + StatusBarUtils.getStatusBarHeight
                 (mContext);
     }

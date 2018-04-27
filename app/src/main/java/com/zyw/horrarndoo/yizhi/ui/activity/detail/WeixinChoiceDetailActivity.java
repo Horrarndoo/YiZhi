@@ -20,8 +20,7 @@ import com.zyw.horrarndoo.yizhi.presenter.detail.WeixinDetailPresenter;
  */
 
 public class WeixinChoiceDetailActivity extends BaseWebViewLoadActivity<WeixinDetailContract
-        .WeixinDetailPresenter, WeixinDetailContract.IWeixinDetailModel> implements
-        WeixinDetailContract.IWeixinDetailView {
+        .WeixinDetailPresenter> implements WeixinDetailContract.IWeixinDetailView {
 
     private String mTitle, mUrl, mImageUrl, mCopyright;
 

@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:id="@+id/cl_pic_browse"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:background="@android:color/black">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_pic_browse"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <com.bm.library.PhotoView
+        android:id="@+id/pv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/header_icon"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_save_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/black"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:rippleColor="@android:color/black"
+        app:srcCompat="@drawable/ic_vector_pic_save"/>
+
+    <ProgressBar
+        android:id="@+id/pb_pic_browse"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
-
-        <com.bm.library.PhotoView
-            android:id="@+id/pv_pic"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/header_icon"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_save_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="@android:color/black"
-            app:borderWidth="0dp"
-            app:elevation="0dp"
-            app:rippleColor="@android:color/black"
-            app:srcCompat="@drawable/ic_vector_pic_save"/>
-
-        <ProgressBar
-            android:id="@+id/pb_pic_browse"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"/>
-
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -43,5 +43,4 @@
             android:background="@android:color/transparent"
             app:navigationIcon="@mipmap/ic_arrow_back_white"/>
     </FrameLayout>
-
 </android.support.design.widget.CoordinatorLayout>

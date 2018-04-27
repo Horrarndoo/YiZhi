@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.ui.activity.detail;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -39,8 +40,7 @@ import static com.zyw.horrarndoo.yizhi.constant.InternKeyConstant.INTENT_KEY_BOO
  */
 
 public class BookDetailActivity extends BaseMVPCompatActivity<BookDeatilContract
-        .BookDetailPresenter, BookDeatilContract.IBookDetailModel> implements BookDeatilContract
-        .IBookDetailView {
+        .BookDetailPresenter> implements BookDeatilContract.IBookDetailView {
 
     @BindView(R.id.iv_header_bg)
     ImageView ivHeaderBg;
@@ -161,7 +161,12 @@ public class BookDetailActivity extends BaseMVPCompatActivity<BookDeatilContract
         DisplayUtils.displayBlurImg(this, bookItemBean.getImages().getLarge(), ivHeaderBg);
         DisplayUtils.displayBlurImg(this, bookItemBean.getImages().getLarge(), ivToolbarBg);
 
-        int headerBgHeight = toolbar.getLayoutParams().height + getStatusBarHeight(this);
+        int headerBgHeight;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            headerBgHeight = toolbar.getLayoutParams().height + getStatusBarHeight(this);
+        } else {
+            headerBgHeight = toolbar.getLayoutParams().height;
+        }
         // 使背景图向上移动到图片的最低端，保留（toolbar+状态栏）的高度
         // 实际上此时ivToolbarBg高度还是330dp，只是除了toolbar外，剩下部分是透明状态
         ViewGroup.MarginLayoutParams ivTitleHeadBgParams = (ViewGroup.MarginLayoutParams)

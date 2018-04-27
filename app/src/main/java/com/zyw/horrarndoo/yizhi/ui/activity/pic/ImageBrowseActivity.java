@@ -2,6 +2,7 @@ package com.zyw.horrarndoo.yizhi.ui.activity.pic;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -44,6 +45,8 @@ public class ImageBrowseActivity extends BaseCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.pb_pic_browse)
     ProgressBar pbPicBrowse;
+    @BindView(R.id.fab_save_pic)
+    FloatingActionButton fabSavePic;
 
     private String mImageUrl;
 
@@ -155,13 +158,13 @@ public class ImageBrowseActivity extends BaseCompatActivity {
                 .SaveResultCallback() {
             @Override
             public void onSavedSuccess() {
-                Snackbar.make(pvPic, "保存成功", Snackbar.LENGTH_SHORT).setActionTextColor
+                Snackbar.make(fabSavePic, "保存成功", Snackbar.LENGTH_SHORT).setActionTextColor
                         (ResourcesUtils.getColor(R.color.white)).show();
             }
 
             @Override
             public void onSavedFailed() {
-                Snackbar.make(pvPic, "保存失败", Snackbar.LENGTH_SHORT).setActionTextColor
+                Snackbar.make(fabSavePic, "保存失败", Snackbar.LENGTH_SHORT).setActionTextColor
                         (ResourcesUtils.getColor(R.color.white)).show();
             }
         });

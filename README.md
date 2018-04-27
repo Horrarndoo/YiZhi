@@ -162,7 +162,7 @@ Horrarndoo
 - 简书：http://www.jianshu.com/u/5c92e4ae9dc3
 - github: https://github.com/Horrarndoo
 - e-mail: 237077219@qq.com
-- QQ: 237077219
+- 注：由于QQ主要用于家人朋友沟通，所以不方便加好友。使用代码中如遇到问题，建议使用邮件！
 
 ## LICENSE
 

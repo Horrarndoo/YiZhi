@@ -40,8 +40,8 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_SEL
  * <p>
  */
 
-public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.GankIoMainPresenter,
-        GankIoMainContract.IGankIoMainModel> implements GankIoMainContract.IGankIoMainView {
+public class GankIoFragment extends BaseMVPCompatFragment<GankIoMainContract.GankIoMainPresenter>
+        implements GankIoMainContract.IGankIoMainView {
 
     @BindView(R.id.app_bar)
     AppBarLayout appBar;

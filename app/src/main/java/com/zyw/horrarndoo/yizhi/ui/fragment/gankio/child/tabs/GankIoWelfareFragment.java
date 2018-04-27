@@ -31,8 +31,8 @@ import static com.zyw.horrarndoo.yizhi.constant.RxBusCode.RX_BUS_CODE_GANKIO_WEL
  */
 
 public class GankIoWelfareFragment extends BaseRecycleFragment<GankIoWelfareContract
-        .GankIoWelfarePresenter, GankIoWelfareContract.IGankIoWelfareModel> implements
-        GankIoWelfareContract.IGankIoWelfareView, BaseQuickAdapter.RequestLoadMoreListener {
+        .GankIoWelfarePresenter> implements GankIoWelfareContract.IGankIoWelfareView,
+        BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.rv_gankio_welfare)
     RecyclerView rvGankIoWelfare;
