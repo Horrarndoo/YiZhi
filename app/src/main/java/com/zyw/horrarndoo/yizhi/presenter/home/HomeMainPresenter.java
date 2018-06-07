@@ -26,7 +26,7 @@ public class HomeMainPresenter extends HomeMainContract.HomeMainPresenter {
     }
 
     @Override
-    public HomeMainContract.IHomeMainModel getModel() {
+    protected HomeMainContract.IHomeMainModel getModel() {
         return HomeMainModel.newInstance();
     }
 

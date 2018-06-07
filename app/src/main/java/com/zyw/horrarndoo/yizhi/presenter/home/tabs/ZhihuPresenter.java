@@ -113,7 +113,7 @@ public class ZhihuPresenter extends ZhihuContract.ZhihuPresenter {
     }
 
     @Override
-    public ZhihuContract.IZhihuModel getModel() {
+    protected ZhihuContract.IZhihuModel getModel() {
         return ZhihuModel.newInstance();
     }
 

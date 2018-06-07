@@ -128,7 +128,7 @@ public class WeixinPresenter extends WeixinContract.WeixinPresenter {
     }
 
     @Override
-    public WeixinContract.IWeixinModel getModel() {
+    protected WeixinContract.IWeixinModel getModel() {
         return WeixinChoiceModel.newInstance();
     }
 

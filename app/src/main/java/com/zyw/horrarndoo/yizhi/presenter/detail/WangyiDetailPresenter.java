@@ -57,7 +57,7 @@ public class WangyiDetailPresenter extends WangyiDetailContract.WangyiDetailPres
     }
 
     @Override
-    public WangyiDetailContract.IWangyiDetailModel getModel() {
+    protected WangyiDetailContract.IWangyiDetailModel getModel() {
         return WangyiDetailModel.newInstance();
     }
 

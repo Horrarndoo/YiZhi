@@ -98,7 +98,7 @@ public class BookCustomPresenter extends BookCustomContract.BookCustomPresenter 
     }
 
     @Override
-    public BookCustomContract.IBookCustomModel getModel() {
+    protected BookCustomContract.IBookCustomModel getModel() {
         return BookCustomModel.newInstance();
     }
 

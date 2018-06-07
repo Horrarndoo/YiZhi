@@ -97,7 +97,7 @@ public class TopMoviePresenter extends TopMovieContract.TopMoivePresenter {
     }
 
     @Override
-    public TopMovieModel getModel() {
+    protected TopMovieModel getModel() {
         return TopMovieModel.newInstance();
     }
 

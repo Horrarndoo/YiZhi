@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -56,6 +57,20 @@ public abstract class BaseCompatActivity extends SupportActivity {
     public FragmentAnimator onCreateFragmentAnimator() {
         //fragment切换使用默认Vertical动画
         return new DefaultVerticalAnimator();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                View view = getCurrentFocus();
+                AppUtils.hideKeyboard(ev, view, this);//调用方法判断是否需要隐藏键盘
+                break;
+
+            default:
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     private void init(Bundle savedInstanceState) {
@@ -233,6 +248,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
 
     /**
      * 是否使用overridePendingTransition过度动画
+     *
      * @return 是否使用overridePendingTransition过度动画，默认使用
      */
     protected boolean isTransAnim() {
@@ -242,7 +258,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
     /**
      * 设置是否使用overridePendingTransition过度动画
      */
-    protected void setIsTransAnim(boolean b){
+    protected void setIsTransAnim(boolean b) {
         isTransAnim = b;
     }
 }

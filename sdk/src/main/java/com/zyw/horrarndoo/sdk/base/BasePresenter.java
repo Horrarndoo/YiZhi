@@ -11,8 +11,8 @@ import com.zyw.horrarndoo.sdk.RxManager;
  */
 
 public abstract class BasePresenter<M, V> {
-    public M mIModel;
-    public V mIView;
+    protected M mIModel;
+    protected V mIView;
     protected RxManager mRxManager = new RxManager();
 
     /**
@@ -20,7 +20,7 @@ public abstract class BasePresenter<M, V> {
      *
      * @return presenter持有的Model引用
      */
-    public abstract M getModel();
+    protected abstract M getModel();
 
     /**
      * 绑定IModel和IView的引用

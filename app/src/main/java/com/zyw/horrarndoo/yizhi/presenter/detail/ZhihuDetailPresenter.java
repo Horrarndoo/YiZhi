@@ -42,7 +42,7 @@ public class ZhihuDetailPresenter extends ZhihuDetailContract.ZhihuDetailPresent
     }
 
     @Override
-    public ZhihuDetailContract.IZhihuDetailModel getModel() {
+    protected ZhihuDetailContract.IZhihuDetailModel getModel() {
         return ZhihuDetailModel.newInstance();
     }
 

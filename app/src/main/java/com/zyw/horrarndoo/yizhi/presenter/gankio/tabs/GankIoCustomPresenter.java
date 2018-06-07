@@ -167,7 +167,7 @@ public class GankIoCustomPresenter extends GankIoCustomContract.GankIoCustomPres
     }
 
     @Override
-    public GankIoCustomContract.IGankIoCustomModel getModel() {
+    protected GankIoCustomContract.IGankIoCustomModel getModel() {
         return GankIoCustomModel.newInstance();
     }
 

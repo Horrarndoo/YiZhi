@@ -102,7 +102,7 @@ public class GankIoWelfarePresenter extends GankIoWelfareContract.GankIoWelfareP
 
 
     @Override
-    public GankIoWelfareContract.IGankIoWelfareModel getModel() {
+    protected GankIoWelfareContract.IGankIoWelfareModel getModel() {
         return GankIoWelfareModel.newInstance();
     }
 

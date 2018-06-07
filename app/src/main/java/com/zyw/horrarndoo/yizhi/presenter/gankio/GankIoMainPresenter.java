@@ -26,7 +26,7 @@ public class GankIoMainPresenter extends GankIoMainContract.GankIoMainPresenter{
     }
 
     @Override
-    public GankIoMainContract.IGankIoMainModel getModel() {
+    protected GankIoMainContract.IGankIoMainModel getModel() {
         return GankIoMainModel.newInstance();
     }
 

@@ -31,7 +31,7 @@ public class WebViewLoadPresenter extends WebViewLoadConaract.WebViewLoadPresent
     }
 
     @Override
-    public WebViewLoadConaract.IWebViewLoadModel getModel() {
+    protected WebViewLoadConaract.IWebViewLoadModel getModel() {
         return WebViewLoadModel.newInstance();
     }
 

@@ -30,7 +30,7 @@ public class GankIoDetailPresenter extends GankIoDetailContract.GankIoDetailPres
     }
 
     @Override
-    public GankIoDetailContract.IGankIoDetailModel getModel() {
+    protected GankIoDetailContract.IGankIoDetailModel getModel() {
         return GankIoDetailModel.newInstance();
     }
 

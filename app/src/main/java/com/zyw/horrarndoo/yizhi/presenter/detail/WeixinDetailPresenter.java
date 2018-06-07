@@ -30,7 +30,7 @@ public class WeixinDetailPresenter extends WeixinDetailContract.WeixinDetailPres
     }
 
     @Override
-    public WeixinDetailContract.IWeixinDetailModel getModel() {
+    protected WeixinDetailContract.IWeixinDetailModel getModel() {
         return WeixinDetailModel.newInstance();
     }
 

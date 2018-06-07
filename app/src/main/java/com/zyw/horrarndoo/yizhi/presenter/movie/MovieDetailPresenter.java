@@ -66,7 +66,7 @@ public class MovieDetailPresenter extends MovieDetailContract.MovieDetailPresent
     }
 
     @Override
-    public MovieDetailModel getModel() {
+    protected MovieDetailModel getModel() {
         return MovieDetailModel.newInstance();
     }
 

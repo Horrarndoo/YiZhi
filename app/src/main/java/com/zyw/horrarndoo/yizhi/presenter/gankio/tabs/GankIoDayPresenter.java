@@ -110,7 +110,7 @@ public class GankIoDayPresenter extends GankIoDayContract.GankIoDayPresenter {
     }
 
     @Override
-    public GankIoDayContract.IGankIoDayModel getModel() {
+    protected GankIoDayContract.IGankIoDayModel getModel() {
         return GankIoDayModel.newInstance();
     }
 

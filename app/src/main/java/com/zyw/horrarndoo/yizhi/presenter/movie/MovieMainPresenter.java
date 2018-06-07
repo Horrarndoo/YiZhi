@@ -68,7 +68,7 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
     }
 
     @Override
-    public MovieMainContract.IMovieMainModel getModel() {
+    protected MovieMainContract.IMovieMainModel getModel() {
         return MovieMainModel.newInstance();
     }
 

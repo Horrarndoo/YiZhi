@@ -57,7 +57,7 @@ public class BookDetailPresenter extends BookDeatilContract.BookDetailPresenter 
     }
 
     @Override
-    public BookDeatilContract.IBookDetailModel getModel() {
+    protected BookDeatilContract.IBookDetailModel getModel() {
         return BookDetailModel.newInstance();
     }
 

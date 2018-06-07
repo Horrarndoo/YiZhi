@@ -31,7 +31,7 @@ public class WangyiPresenter extends WangyiContract.WangyiPresenter {
     }
 
     @Override
-    public WangyiContract.IWangyiModel getModel() {
+    protected WangyiContract.IWangyiModel getModel() {
         return WangyiModel.newInstance();
     }
 

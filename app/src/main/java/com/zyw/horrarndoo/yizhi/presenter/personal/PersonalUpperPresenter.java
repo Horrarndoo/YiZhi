@@ -129,7 +129,7 @@ public class PersonalUpperPresenter extends PersonalContract.PersonalUpperPresen
     }
 
     @Override
-    public PersonalContract.IPersonalUpperModel getModel() {
+    protected PersonalContract.IPersonalUpperModel getModel() {
         return PersonalUpperModel.newInstance();
     }
 

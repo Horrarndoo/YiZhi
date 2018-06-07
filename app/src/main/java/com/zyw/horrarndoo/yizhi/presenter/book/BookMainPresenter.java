@@ -25,7 +25,7 @@ public class BookMainPresenter extends BookMainContract.BookMainPresenter {
     }
 
     @Override
-    public BookMainContract.IBookMainModel getModel() {
+    protected BookMainContract.IBookMainModel getModel() {
         return BookMainModel.newInstance();
     }
 
