@@ -115,8 +115,8 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
         }
 
         NavigationUtils.disableNavigationViewScrollbars(nvMenu);
-        mivMenu = (MovingImageView) nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
-        civHead = (CircleImageView) nvMenu.getHeaderView(0).findViewById(R.id.civ_head);
+        mivMenu = nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
+        civHead = nvMenu.getHeaderView(0).findViewById(R.id.civ_head);
 
         //此处实际应用中替换成服务器拉取图片
         Uri headUri = Uri.fromFile(new File(getCacheDir(), HEAD_IMAGE_NAME + ".jpg"));
@@ -207,12 +207,12 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
 
         dlRoot.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
                 mivMenu.pauseMoving();
             }
 
             @Override
-            public void onDrawerOpened(View drawerView) {
+            public void onDrawerOpened(@NonNull View drawerView) {
                 if (mivMenu.getMovingState() == MovingState.stop) {
                     mivMenu.startMoving();
                 } else if (mivMenu.getMovingState() == MovingState.pause) {
@@ -221,7 +221,7 @@ public class MainActivity extends BaseCompatActivity implements HomeFragment
             }
 
             @Override
-            public void onDrawerClosed(View drawerView) {
+            public void onDrawerClosed(@NonNull View drawerView) {
                 mivMenu.stopMoving();
             }
 

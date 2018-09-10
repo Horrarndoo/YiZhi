@@ -13,7 +13,6 @@ def buildTime() {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.zyw.horrarndoo.yizhi"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -60,6 +59,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -71,7 +71,7 @@ dependencies {
     //Butterknife
     //    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
-    testCompile 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.12'
     implementation project(':sdk')
     debugImplementation project(':sdk')
     releaseImplementation project(':sdk')

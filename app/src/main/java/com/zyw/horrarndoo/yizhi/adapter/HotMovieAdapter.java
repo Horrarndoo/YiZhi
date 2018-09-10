@@ -1,5 +1,6 @@
 package com.zyw.horrarndoo.yizhi.adapter;
 
+import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.animation.ScaleInAnimation;
+import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.yizhi.R;
 import com.zyw.horrarndoo.yizhi.model.bean.douban.movie.child.SubjectsBean;
 
