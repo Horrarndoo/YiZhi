@@ -38,13 +38,17 @@ public class HotMovieAdapter extends BaseQuickAdapter<SubjectsBean, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, SubjectsBean item) {
+        if (SpUtils.getNightModel(mContext)) {
+            helper.setTextColor(R.id.tv_movie_title, Color.GRAY);
+            helper.setTextColor(R.id.tv_movie_directors, Color.GRAY);
+        }
         helper.setText(R.id.tv_movie_title, item.getTitle());
         helper.setText(R.id.tv_movie_directors, item.getDirectorsString());
         helper.setText(R.id.tv_movie_actors, item.getActorsString());
         helper.setText(R.id.tv_movie_genres, item.getGenresString());
         helper.setText(R.id.tv_movie_rating_rate, String.valueOf(item.getRating().getAverage()));
         Glide.with(mContext).load(item.getImages().getLarge()).crossFade(300).placeholder(R
-                .mipmap.img_default_movie).into((ImageView) helper.getView(R.id.iv_moive_photo));
+                .mipmap.img_default_movie).into((ImageView) helper.getView(R.id.iv_movie_photo));
     }
 
     private void init() {

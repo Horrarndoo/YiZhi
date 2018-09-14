@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.AppManager;
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
