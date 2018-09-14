@@ -39,8 +39,8 @@ public class HotMovieAdapter extends BaseQuickAdapter<SubjectsBean, BaseViewHold
     @Override
     protected void convert(BaseViewHolder helper, SubjectsBean item) {
         if (SpUtils.getNightModel(mContext)) {
-            helper.setTextColor(R.id.tv_movie_title, Color.GRAY);
-            helper.setTextColor(R.id.tv_movie_directors, Color.GRAY);
+            helper.setTextColor(R.id.tv_movie_title, mContext.getResources().getColor(R.color.txt_light_gray));
+            helper.setTextColor(R.id.tv_movie_directors, mContext.getResources().getColor(R.color.txt_light_gray));
         }
         helper.setText(R.id.tv_movie_title, item.getTitle());
         helper.setText(R.id.tv_movie_directors, item.getDirectorsString());
