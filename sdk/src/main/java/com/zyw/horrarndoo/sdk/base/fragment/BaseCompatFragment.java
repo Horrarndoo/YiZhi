@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 import com.zyw.horrarndoo.sdk.utils.AppUtils;
-import com.zyw.horrarndoo.sdk.widgets.WaitPorgressDialog;
+import com.zyw.horrarndoo.sdk.widgets.WaitProgressDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -29,7 +30,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     protected Context mContext;
     protected Activity mActivity;
     protected GlobalApplication mApplication;
-    protected WaitPorgressDialog mWaitPorgressDialog;
+    protected WaitProgressDialog mWaitPorgressDialog;
     private Unbinder binder;
 
     @Override
@@ -40,7 +41,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
             Bundle savedInstanceState) {
         if (getLayoutView() != null) {
             return getLayoutView();
@@ -51,7 +52,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         TAG = getClass().getSimpleName();
@@ -100,7 +101,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
      * 在监听器之前把数据准备好
      */
     public void initData() {
-        mWaitPorgressDialog = new WaitPorgressDialog(mActivity);
+        mWaitPorgressDialog = new WaitProgressDialog(mActivity);
         mContext = AppUtils.getContext();
         mApplication = (GlobalApplication) mActivity.getApplication();
     }

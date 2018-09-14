@@ -100,7 +100,7 @@ public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMa
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 //由于有headview click position需要+1 adapter.getItem返回的是数据list的position，所以不用+1
                 mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position),
-                        (ImageView) view.findViewById(R.id.iv_moive_photo));
+                        (ImageView) view.findViewById(R.id.iv_movie_photo));
             }
         });
         initHeadView();

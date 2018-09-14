@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.AppManager;
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
@@ -17,7 +18,7 @@ import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.sdk.utils.StatusBarUtils;
 import com.zyw.horrarndoo.sdk.utils.ThemeUtils;
-import com.zyw.horrarndoo.sdk.widgets.WaitPorgressDialog;
+import com.zyw.horrarndoo.sdk.widgets.WaitProgressDialog;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
@@ -32,7 +33,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 public abstract class BaseCompatActivity extends SupportActivity {
     protected GlobalApplication mApplication;
-    protected WaitPorgressDialog mWaitPorgressDialog;
+    protected WaitProgressDialog mWaitPorgressDialog;
     protected Context mContext;//全局上下文对象
     protected boolean isTransAnim;
 
@@ -102,7 +103,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
     protected void initData() {
         mContext = AppUtils.getContext();
         mApplication = (GlobalApplication) getApplication();
-        mWaitPorgressDialog = new WaitPorgressDialog(this);
+        mWaitPorgressDialog = new WaitProgressDialog(this);
         isTransAnim = true;
     }
 
