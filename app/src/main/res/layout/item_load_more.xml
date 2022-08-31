@@ -16,8 +16,7 @@
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp_4"
-            android:indeterminateDrawable="@drawable/sample_footer_loading_progress"/>
+            android:layout_marginRight="@dimen/dp_4" />
 
         <TextView
             android:id="@+id/loading_text"
@@ -55,7 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/load_end"
             android:textColor="@android:color/darker_gray"/>
     </FrameLayout>
 </FrameLayout>

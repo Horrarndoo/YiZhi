@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YiZhi.iml" filepath="$PROJECT_DIR$/YiZhi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sdk/sdk.iml" filepath="$PROJECT_DIR$/sdk/sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YiZhi.iml" filepath="$PROJECT_DIR$/.idea/modules/YiZhi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YiZhi.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YiZhi.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YiZhi.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YiZhi.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YiZhi.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YiZhi.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YiZhi.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YiZhi.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk/YiZhi.sdk.unitTest.iml" />
     </modules>
   </component>
 </project>

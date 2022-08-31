@@ -64,14 +64,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     //Butterknife
     //    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     implementation project(':sdk')
     debugImplementation project(':sdk')
     releaseImplementation project(':sdk')
